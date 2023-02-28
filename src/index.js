@@ -1,0 +1,1 @@
+import themeSwitcher from "./JS/switherTheme.js"
