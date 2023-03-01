@@ -1,2 +1,0 @@
-!function(){var t=document.querySelector("body"),e=document.getElementById("switch"),l=document.getElementById("dark"),s=document.getElementById("light");e.addEventListener("change",(function(e){e.preventDefault(),t.classList.toggle("dark-mode"),s.classList.toggle("hover-text"),s.classList.toggle("light-text"),l.classList.toggle("dark-text"),l.classList.toggle("hover-text")}))}();
-//# sourceMappingURL=index.4a4a6cc5.js.map

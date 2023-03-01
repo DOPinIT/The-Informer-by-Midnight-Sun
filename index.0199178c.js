@@ -1,2 +1,0 @@
-const t=document.querySelector("body"),e=document.getElementById("switch"),s=document.getElementById("dark"),l=document.getElementById("light");e.addEventListener("change",(e=>{e.preventDefault(),t.classList.toggle("dark-mode"),l.classList.toggle("hover-text"),l.classList.toggle("light-text"),s.classList.toggle("dark-text"),s.classList.toggle("hover-text")}));
-//# sourceMappingURL=index.0199178c.js.map
