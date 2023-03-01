@@ -1,0 +1,110 @@
+// ^ ===== Розмітка кнопок категорій новин і календаря =====
+.container--categories {
+  display: flex;
+  justify-content: space-between;
+}
+
+// & Кнопка розкриття Categories/Others та Calendar
+.select-list {
+  @media screen and (min-width: $tablet) {
+    margin-left: 14px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 16px;
+  }
+}
+
+.select-list__btn,
+.categories__btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  // rotate: 0deg;
+  transition: transform var(--transition);
+
+  width: 112px;
+  height: 30px;
+  padding: 7px 13px;
+
+  background-color: var(--brand-light);
+  border: 1px solid var(--brand-main);
+  border-radius: 20px;
+
+  color: var(--main-transparent-color);
+  @include font(400, 12px, 16px);
+
+  &:hover,
+  &:focus {
+    background-color: var(--brand-main);
+    color: var(--brand-light);
+    fill: var(--brand-light);
+  }
+
+  &:hover .select-list__icon,
+  &:focus .select-list__icon {
+    transform: rotate(180deg);
+  }
+}
+
+.select-list__icon {
+  transform: rotate(0deg);
+  transition: transform var(--transition);
+  fill: currentColor;
+
+  margin-left: 10px;
+  width: 14px;
+  height: 14px;
+}
+// &/ Кнопка розкриття Categories/Others та Calendar
+
+// & Кнопки категорій
+.categories {
+  display: none;
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    gap: 14px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    gap: 16px;
+  }
+}
+
+.categories__item:nth-child(n + 5) {
+  @media screen and (max-width: ($desktop - 1px)) {
+    display: none;
+  }
+}
+
+.categories__name {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+// &/ Кнопки категорій
+
+// * Розмітка календаря
+.calendar__title {
+  display: none;
+  @media screen and (min-width: $desktop) {
+    display: block;
+    margin-right: 36px;
+  }
+}
+
+// & Кнопка календаря
+.select-list__btn--calendar {
+  border: 1px solid var(--brand-black);
+}
+
+.calendar {
+  display: flex;
+  align-items: center;
+}
+// &/ Кнопка календаря
+// */ Розмітка календаря
+// ^/ ===== Розмітка кнопок категорій новин і календаря =====

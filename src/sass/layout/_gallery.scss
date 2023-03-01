@@ -1,0 +1,205 @@
+// * Розмітка карток у Home
+.card {
+  display: flex;
+  gap: 28px;
+
+  @media screen and (min-width: $tablet) {
+    gap: 30px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 40px 32px;
+  }
+}
+
+.card__item {
+  width: 288px;
+
+  @media screen and (min-width: $tablet) {
+    flex-basis: calc(100% - 30px) / 2;
+    width: 353px;
+  }
+  @media screen and (min-width: $desktop) {
+    flex-basis: calc(100% - 64px) / 3;
+    width: 395px;
+  }
+}
+
+.card__img-box {
+  position: relative; // для плиток
+}
+
+.card__img {
+  background-image: url('../images/test-image-w395.png');
+  background-size: cover;
+  background-position: center center;
+
+  height: 395px;
+  width: 288px;
+
+  @media screen and (min-width: $tablet) {
+    width: 353px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 395px;
+  }
+}
+
+// & Плитки
+.plate {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plate--category-name {
+  left: 0;
+  top: 40px;
+  width: 112px;
+  height: 24px;
+  padding: 4px 8px;
+
+  background: rgba(68, 64, 247, 0.7);
+  border-radius: 0px 4px 4px 0px;
+
+  color: var(--brand-light);
+}
+
+.plate__text--category-name {
+  @include font(500, 12px, 16px);
+  user-select: none;
+}
+
+.plate--already-read {
+  top: 14px;
+  right: 14px;
+  background-color: transparent;
+  color: var(--brand-green);
+}
+
+.plate__text--already-read {
+  @include font(700, 14px, 19px);
+
+  user-select: none;
+}
+
+.plate__icon--already-read {
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  fill: currentColor;
+}
+
+.plate--add-to-favorite {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+
+  bottom: 12px;
+  right: 8px;
+  width: 126px;
+  height: 28px;
+  padding: 6px 12px;
+
+  background-color: var(--brand-light);
+  border-radius: 20px;
+
+  color: var(--brand-main);
+}
+
+.plate__text--add-to-favorite {
+  @include font(500, 12px, 16px);
+  color: var(--brand-black);
+
+  user-select: none;
+}
+
+.plate__icon--add-to-favorite {
+  width: 16px;
+  height: 16px;
+
+  & .non-favorite {
+    opacity: 1;
+    stroke: var(--brand-main);
+    fill: transparent;
+    transition: opacity var(--transition);
+  }
+  & .in-favorite {
+    opacity: 0;
+  }
+
+  &.is-favorite .non-favorite {
+    opacity: 0;
+  }
+  &.is-favorite .in-favorite {
+    opacity: 1;
+    fill: currentColor;
+    transition: opacity var(--transition);
+  }
+}
+// &/ Плитки
+
+// & Інформаційна частина картки
+.card__info-box {
+  flex-grow: 1; // на випадок різної висоти тексту в різних картках
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+
+  width: 100%;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.card__title {
+  overflow: hidden;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+  max-height: 99px;
+
+  @include font(700, 24px, 33px, -0.01em);
+  color: var(--theme-text-color);
+
+  @media screen and (min-width: $tablet) {
+    max-height: 132px;
+    @include font(700, 32px, 44px, -0.01em);
+  }
+}
+
+.card__description {
+  overflow: hidden;
+  // white-space: nowrap;
+  // text-overflow: ellipsis;
+  max-height: 57px;
+  @include font(400, 14px, 19px);
+  color: var(--theme-text-color);
+
+  @media screen and (min-width: $tablet) {
+    max-height: 66px;
+    @include font(400, 16px, 22px);
+  }
+}
+
+// Вирівнювання .card__date і .card__read-more
+.card__info-box-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card__date,
+.card__read-more {
+  height: 19px;
+  @include font(400, 14px, 19px);
+  color: var(--brand-grey);
+
+  @media screen and (min-width: $tablet) {
+    max-height: 22px;
+    @include font(400, 16px, 22px);
+  }
+}
+.card__read-more {
+  color: var(--brand-main);
+}
+// &/ Інформаційна частина картки
+// */ Розмітка карток у Home
