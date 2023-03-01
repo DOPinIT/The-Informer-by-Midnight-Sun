@@ -1,0 +1,21 @@
+/* === CONTAINER === */
+.container {
+  margin: 0 auto;
+  padding: 0 16px;
+  max-width: $mobile;
+}
+
+@media screen and (min-width: $tablet) {
+  .container {
+    // width: $tablet;
+    max-width: $tablet;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .container {
+    // width: $desktop;
+    max-width: $desktop;
+  }
+}
+/* === /CONTAINER === */

@@ -1,0 +1,73 @@
+<!-- * Розмітка карток Home -->
+<section class="section-home">
+  <div class="container">
+    <ul class="card">
+      <li class="card__item">
+        <!-- position: relative -->
+        <div class="card__img-box">
+          <div class="card__img"></div>
+          <!-- <img
+          class="card__img"
+          src="./images/test-image w395.png"
+          alt=""
+          loading="lazy"
+        /> -->
+
+          <!-- position: absolute -->
+          <div class="plate plate--category-name">
+            <!-- textContent міняється у JS в залежності від категорії: -->
+            <span class="plate__text--category-name">Job searching</span>
+          </div>
+
+          <div class="plate plate--already-read">
+            <span class="plate__text--already-read">Already read</span>
+            <svg class="plate__icon--already-read">
+              <use href="./images/icons.svg#already-read"></use>
+            </svg>
+          </div>
+
+          <!-- Додавання до обраного: -->
+          <div class="plate plate--add-to-favorite">
+            <span class="plate__text--add-to-favorite">Add to favorite</span>
+            <svg class="plate__icon--add-to-favorite">
+              <use
+                class="non-favorite"
+                href="./images/icons.svg#heart-border"
+              ></use>
+              <use
+                class="in-favorite"
+                href="./images/icons.svg#heart-fill"
+              ></use>
+            </svg>
+          </div>
+          <!--/ position: absolute -->
+        </div>
+        <!--/ position: relative -->
+
+        <div class="card__info-box">
+          <h2 class="card__title">
+            title What is Lorem Ipsum? What is Lorem Ipsum? What is Lorem Ipsum?
+          </h2>
+          <p class="card__description">
+            description Lorem Ipsum is simply dummy text of the printing and
+            typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the 1500s, when an unknown printer took a
+            galley of type and scrambled it to make a type specimen book. It has
+            survived not only five centuries, but also the leap into electronic
+            typesetting, remaining essentially unchanged. It was popularised in
+            the 1960s with the release of Letraset sheets containing Lorem Ipsum
+            passages, and more recently with desktop publishing software like
+            Aldus PageMaker including versions of Lorem Ipsum.
+          </p>
+          <div class="card__info-box-wrapper">
+            <p class="card__date">date</p>
+
+            <!-- посиланння на новину: -->
+            <a href="" class="card__read-more">Read more</a>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+<!-- */ Розмітка карток Home -->

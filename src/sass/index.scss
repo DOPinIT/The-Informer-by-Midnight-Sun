@@ -1,9 +1,45 @@
-@import './common';
-@import './theme-switcher';
+// @import './common';
+// @import './theme-switcher';
+// @import './calendar';
+// @import './burger-menu';
+// @import './filters';
+// @import './header';
+// @import './home';
+// @import './weather';
+
+// ! Пропоную наступну структуру:
+// Змінні
+@import './utils/variables';
+@import './utils/breakpoints';
+@import './utils/mixin';
+
+// Нормалізація стилів
+@import './base/modern-normalize';
+@import './base/project-normalize';
+
+// Загальні компоненти
+@import './components/hidden';
+@import './components/container';
+@import './components/logo';
+@import './components/switch-theme';
 @import './calendar';
-@import './burger-menu';
-@import './filters';
-@import './header';
-@import './home';
 @import './weather';
 
+// Капелюх
+@import './layout/header';
+@import './layout/menu';
+@import './layout/categories';
+
+// Розмітка карток
+@import './layout/gallery.scss';
+
+// Сторінки
+@import './layout/hero';
+@import './layout/favorite';
+@import './layout/read';
+
+// Пагінація
+@import './layout/pagination';
+
+// FOOTER
+@import './layout/footer';

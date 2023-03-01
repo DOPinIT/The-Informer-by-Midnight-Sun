@@ -1,0 +1,49 @@
+/* ========== VARIABLES ========== */
+// Стилі для світлої теми:
+body {
+  --theme-text-color: #111321;
+  --theme-bg-color: #f4f4f4;
+
+  --theme-switch-light-side: #4b48db;
+  --theme-switch-dark-side: #5f6775;
+
+  --theme-tgl-bg: #4b48db;
+}
+
+// Стилі для темної теми:
+body.dark-theme {
+  --theme-text-color: #f4f4f4;
+  --theme-bg-color: #111321;
+
+  --theme-switch-light-side: #5f6775;
+  --theme-switch-dark-side: #4b48db;
+
+  --theme-tgl-bg: #fff;
+}
+
+// Загальні стилі
+:root {
+  --font-main: 'Manrope', sans-serif;
+  --font-second: 'Poppins', sans-serif;
+  --font-weather: 'Roboto', sans-serif;
+
+  --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-menu: 750ms cubic-bezier(0.48, 1.75, 0.55, 0.91);
+
+  --brand-main: #4440f6;
+  --brand-main-opt: #4b48db;
+  --brand-green: #00dd73;
+  --brand-grey: #a8a8a8;
+  --brand-grey-dark: #2e2e2e;
+  --brand-light: #fff;
+  --brand-black: #111321;
+
+  --bg-menu: #f8f8f8;
+  --button-color: #a2a2a2;
+  --icon-stroke-color: #f4f4f4;
+
+  --main-transparent-color: rgba(68, 64, 247, 0.7);
+  --read-cover-color: rgba(244, 244, 244, 0.4);
+  --footer: #7a7a7a;
+}
+/* ========== /VARIABLES ========== */

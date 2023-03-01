@@ -1,0 +1,146 @@
+.header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding-top: 24px;
+  padding-bottom: 24px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 32px;
+    padding-bottom: 28px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 28px;
+    padding-bottom: 28px;
+  }
+}
+
+.container-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  position: relative; // для позиціонування бургера і пошуку у $mobile
+}
+
+// * Блок форми пошуку в $tablet та $desktop
+.search-form {
+  display: none; // в $mobile використовується окрема розмітка
+
+  @media screen and (min-width: $tablet) {
+    display: block;
+    margin-left: 32px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    margin-left: 147px;
+  }
+}
+
+.input-box {
+  position: relative; // для іконки пошуку .input-submit__icon
+}
+
+.input-submit {
+  height: 30px;
+  border: 1px solid var(--theme-text-color);
+  border-radius: 20px;
+  background-color: transparent;
+  color: var(--theme-text-color);
+
+  padding-left: 48;
+  // padding-top: 5;
+  // padding-bottom: 5;
+
+  &::placeholder {
+    font-family: var(--font-second);
+    @include font(400, 14, 24, 0.02em);
+
+    color: var(--theme-text-color);
+    opacity: 0.4;
+    // padding-left: 48;
+    margin-right: 106;
+
+    border-right: 1px solid var(--theme-text-color);
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 214px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: 288px;
+    &::placeholder {
+      margin-right: 180;
+    }
+  }
+}
+
+// & Іконка пошуку (в усіх вьюпортах)
+.input-submit__icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  // opacity: 0.4;
+  fill: var(--theme-text-color);
+}
+// */ Блок форми пошуку в $tablet та $desktop
+
+// * Блок пошуку в $mobile
+// & Кнопка відкриття пошуку в $mobile
+.search-mobile-open {
+  position: absolute;
+  top: 0;
+  right: 54px;
+
+  top: 50%;
+  transform: translate(0%, -50%);
+
+  display: flex;
+  border: none;
+  background-color: transparent;
+  margin: 0;
+  padding: 0;
+
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+.search-mobile-open__icon {
+  width: 20px;
+  height: 20px;
+  fill: var(--theme-text-color);
+}
+
+// & Форма пошуку в $mobile
+.search-form--mobile {
+  display: block;
+  margin-right: 38px;
+
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+.input-box--mobile {
+  transform: scale(0);
+  transform-origin: center right;
+  transition: transform var(--transition);
+}
+.input-box--mobile.is-open {
+  transform: scale(1);
+}
+
+.input-submit--mobile {
+  width: 172px;
+  @include font(400, 12, 21, 0.02em);
+
+  &::placeholder {
+    margin-right: 64px; // ? 77px по макету
+  }
+
+  @media screen and (min-width: $tablet) {
+    display: none;
+  }
+}
+// */ Блок пошуку в $mobile
