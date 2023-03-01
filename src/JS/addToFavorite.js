@@ -1,7 +1,7 @@
 // * Доавання в обране - заготовка
-const plateFavorite = document.querySelector('.plate--add-to-favorite') || '';
-if (plateFavorite) {
-  plateFavorite.addEventListener('click', toggleToFavorite);
+const placeToFavorite = document.querySelector('.plate--add-to-favorite') || '';
+if (placeToFavorite) {
+  placeToFavorite.addEventListener('click', toggleToFavorite);
 }
 
 function toggleToFavorite() {
