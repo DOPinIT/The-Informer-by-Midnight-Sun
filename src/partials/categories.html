@@ -2,49 +2,7 @@
 <section class="section-categories">
   <div class="container container--categories">
     <!-- & Кнопки інших категорій -->
-    <ul class="categories">
-      <li class="categories__item">
-        <button class="categories__btn">
-          <p class="categories__name">Категорія 01</p>
-        </button>
-      </li>
-      <li class="categories__item">
-        <button class="categories__btn">
-          <p class="categories__name">Категорія lorem 02</p>
-        </button>
-      </li>
-      <li class="categories__item">
-        <button class="categories__btn">
-          <p class="categories__name">Категорія 03</p>
-        </button>
-      </li>
-      <li class="categories__item">
-        <button class="categories__btn">
-          <p class="categories__name">Категорія ipsum 04</p>
-        </button>
-      </li>
-      <li class="categories__item">
-        <button class="categories__btn">
-          <p class="categories__name">Категорія 05</p>
-        </button>
-      </li>
-      <li class="categories__item">
-        <button class="categories__btn">
-          <p class="categories__name">Категорія 06</p>
-        </button>
-      </li>
-    </ul>
-
-    <!-- & Кнопка розкриття категорій. textContent: "Categories" або "Others"-->
-    <div class="select-list">
-      <!-- ? Через JS треба змінювати назву кнопки Categories/Others -->
-      <button type="button" class="select-list__btn">
-        Categories
-        <svg class="select-list__icon">
-          <use href="./images/icons.svg#scroll-down"></use>
-        </svg>
-      </button>
-    </div>
+    <include src="./partials/newsFilter.html"></include>
 
     <!-- & Розмітка календаря -->
     <div class="calendar">
