@@ -40,24 +40,22 @@
 }
 
 .input-submit {
-  height: 30px;
+  height: 31px;
   border: 1px solid var(--theme-text-color);
   border-radius: 20px;
   background-color: transparent;
   color: var(--theme-text-color);
 
   padding-left: 48;
-  // padding-top: 5;
-  // padding-bottom: 5;
 
   &::placeholder {
+    height: 18px;
+    width: 59px;
     font-family: var(--font-second);
     @include font(400, 14, 24, 0.02em);
 
     color: var(--theme-text-color);
     opacity: 0.4;
-    // padding-left: 48;
-    margin-right: 106;
 
     border-right: 1px solid var(--theme-text-color);
   }
@@ -132,11 +130,12 @@
 }
 
 .input-submit--mobile {
-  width: 172px;
-  @include font(400, 12, 21, 0.02em);
+  width: 173px;
 
   &::placeholder {
-    margin-right: 64px; // ? 77px по макету
+    @include font(400, 12, 21, 0.02em);
+    height: 15px;
+    width: 48px;
   }
 
   @media screen and (min-width: $tablet) {

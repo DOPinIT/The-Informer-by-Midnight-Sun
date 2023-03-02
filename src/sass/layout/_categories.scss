@@ -2,6 +2,11 @@
 .container--categories {
   display: flex;
   justify-content: space-between;
+  padding-top: 24px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 28px;
+  }
 }
 
 // & Кнопка розкриття Categories/Others та Calendar
