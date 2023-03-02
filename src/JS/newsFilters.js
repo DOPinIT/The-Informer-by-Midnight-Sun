@@ -4,34 +4,52 @@ import axios from "axios";
 const refs = {
     categories: document.querySelector(".categories"),
     categoriesList: document.querySelector(".categories__list"),
-    othersBox: document.querySelector(".categories__othersBox"),
+    othersBox: document.querySelector(".categories__box"),
     iconBtnBlue: document.querySelector(".btn__icon-blue"),
     iconBtnWhite: document.querySelector(".btn__icon-white"),
     otherBtn: document.getElementById("othersBtn"),
-
 }
+
+let widthScreen = screen.width;
 
 getSectionList().then(data => {
     const ElAll = data.results.map(section => section.display_name)
     console.log(ElAll.length);
 
-    const ElForCategoriesList = ElAll.slice(0, 6)
-    console.log(ElForCategoriesList);
-    refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
+    if (widthScreen > 1279) {
+        const ElForCategoriesList = ElAll.slice(0, 6)
+        refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
 
-    const ElForOthersBox = ElAll.slice(6, 19)
-    console.log(ElForOthersBox);
+        const ElForOthersBox = ElAll.slice(6, ElAll.length)
+        refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
+        return
+    }
 
+    if (widthScreen > 767 && widthScreen < 1280) {
+        const ElForCategoriesList = ElAll.slice(0, 4)
+        refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
 
+        const ElForOthersBox = ElAll.slice(4, ElAll.length)
+        refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
+        return
+    }
 
-    console.log(categories)
+    refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElAll);
 
 })
 
 function createElForCategoriesList(arr) {
     let markup = "";
     arr.forEach(elem => {
-        markup = `<li class="categories__item"><button class="categories__btn">${elem}</button></li>` + markup
+        markup = markup + `<li class="categories__item"><button class="categories__btn">${elem}</button></li>`;
+    })
+    return markup
+}
+
+function createElForOthersBox(arr) {
+    let markup = "";
+    arr.forEach(elem => {
+        markup = markup + `<li class="categories__item"><button class="categories__othrs-btn">${elem}</button></li>`;
     })
     return markup
 }
@@ -43,7 +61,7 @@ function getFilteredNews() {
         // console.dir(e.target);
         if (e.target.nodeName === "BUTTON") {
             if (e.target.outerText === "Others") {
-                refs.othersBox.classList.toggle('isHidden');
+                refs.othersBox.firstElementChild.classList.toggle('isHidden');
                 refs.otherBtn.classList.toggle('is-active');
                 setTimeout(() => { closeOthersBox() }, 0)
                 closeOthersBox()
@@ -59,13 +77,12 @@ function getFilteredNews() {
     })
 }
 
-
 function closeOthersBox() {
     window.addEventListener('click', (e) => {
         if (e.target.outerText !== "Others") {
             // console.log("qweqwe");
             refs.otherBtn.classList.remove('is-active');
-            refs.othersBox.classList.add('isHidden');
+            refs.othersBox.firstElementChild.classList.add('isHidden');
         }
     }, { once: true })
 }
@@ -78,14 +95,6 @@ function removeTadIsActiv() {
         button.classList.remove('is-active');
     })
 }
-
-
-
-
-
-
-
-
 
 function getSectionList() {
     const API_KEY = 'f4MnGfOgcSDDONkk5En7THEIhywC71B5';

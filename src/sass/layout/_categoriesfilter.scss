@@ -87,29 +87,13 @@
     }
 }
 
-
-
-.categories__othersBox {
-    // display: none;
-    overflow: hidden;
-    opacity: 1;
-
-    background: var(--brand-light);
-    border-radius: 20px;
-
+.categories__box {
     position: absolute;
     top: 31px;
+    overflow: hidden;
 
-    display: flex;
-    gap: 12px;
-    margin: 0;
-    padding: 15px;
-
-    flex-direction: column;
-    width: 168px;
-    height: 380;
-
-    transition: all 1s;
+    border-radius: 20px;
+    z-index: 1;
 
     @media screen and (min-width: $tablet) {
         left: 444.5px;
@@ -118,8 +102,73 @@
     @media screen and (min-width: $desktop) {
         left: 668px;
     }
+}
 
-    z-index: 1;
+
+
+.categories__othersBox {
+    // display: none;
+    overflow: hidden;
+    opacity: 1;
+
+    background: var(--brand-light);
+    // border-radius: 20px;
+
+    // position: absolute;
+    // top: 31px;
+
+    display: flex;
+    gap: 12px;
+    margin: 0;
+    padding: 10px;
+
+    flex-direction: column;
+    width: 168px;
+    height: 380;
+
+    transition: all 1s;
+
+    @media screen and (max-width: 1279px) {
+        overflow: auto;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--button-color);
+            border-radius: 25px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-main-opt);
+        }
+    }
+
+    // z-index: 1;
+
+    &:hover {
+        overflow: auto;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--button-color);
+            border-radius: 25px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-main-opt);
+        }
+    }
 }
 
 .isHidden {
@@ -127,7 +176,7 @@
     opacity: 0;
 
     transform: translate(-20px, -80px) scale(0.75);
-    transition: all var(--transition);
+    transition: all 200ms;
 }
 
 .categories__othersBox .categories__item {
@@ -151,34 +200,6 @@
 
     color: var(--brand-main);
 
-}
-
-.categories__item.closeToMobil {
-    @media screen and (min-width: $tablet) {
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        border: 0;
-        padding: 0;
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        margin: -1px;
-    }
-
-    @media screen and (min-width: $desktop) {
-        position: absolute;
-        white-space: nowrap;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-        border: 0;
-        padding: 0;
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        margin: -1px;
-    }
 }
 
 .categories__othrs-btn.is-active {
