@@ -1,5 +1,5 @@
 import themeSwitcher from './JS/switcherTheme.js';
-import getFilteredNews from "./JS/newsFilters.js"
+import getFilteredNews from "./JS/newsFilters.js";
 
 // * Імпорт бібліотеки повідомлень:
 import Notiflix from 'notiflix';

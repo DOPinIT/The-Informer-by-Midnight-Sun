@@ -8,23 +8,25 @@ const refs = {
 
 }
 
+getFilteredNews()
+
 function getFilteredNews() {
     refs.categories.addEventListener('click', (e) => {
         if (e.target.nodeName === "BUTTON" || e.target.nodeName === "svg") {
             if (e.target.nodeName === "svg") {
+                refs.othersBox.classList.toggle('isHidden');
+                setTimeout(() => { closeOthersBox() }, 0)
                 e.target.parentNode.classList.toggle('is-active');
-                openOthersBox()
                 removeTadIsActiv()
                 return
             } else if (e.target.outerText === "Others") {
+                e.target.focus({ focusVisible: false });
+
+                refs.othersBox.classList.toggle('isHidden');
                 e.target.classList.toggle('is-active');
-                openOthersBox()
+                setTimeout(() => { closeOthersBox() }, 0)
+                closeOthersBox()
                 return
-            } else if (!refs.othersBox.classList.contains('isHidden')) {
-                refs.othersBox.classList.add('isHidden');
-                refs.iconBtnBlue.classList.add('isHidden');
-                refs.iconBtnWhite.classList.remove('isHidden');
-                refs.otherBtn.classList.remove('is-active');
             }
 
             removeTadIsActiv()
@@ -37,11 +39,14 @@ function getFilteredNews() {
 }
 
 
-
-function openOthersBox() {
-    refs.othersBox.classList.toggle('isHidden');
-    refs.iconBtnBlue.classList.toggle('isHidden');
-    refs.iconBtnWhite.classList.toggle('isHidden');
+function closeOthersBox() {
+    window.addEventListener('click', (e) => {
+        if (e.target.outerText !== "Others") {
+            // console.log("qweqwe");
+            refs.otherBtn.classList.remove('is-active');
+            refs.othersBox.classList.add('isHidden');
+        }
+    }, { once: true })
 }
 
 function removeTadIsActiv() {
