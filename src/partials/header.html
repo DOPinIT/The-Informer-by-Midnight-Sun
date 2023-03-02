@@ -1,6 +1,142 @@
-<div class="themeSwitcher">
-  <p id="light" class="hover-text">Light</p>
-  <input type="checkbox" id="switch" />
-  <label class="switcher" for="switch">Toggle</label>
-  <p class="dark-text" id="dark">Dark</p>
-</div>
+</div> -->
+
+<section class="section-header">
+  <div class="header">
+    <div class="container container-header">
+      <!-- svg or img? -->
+      <h2 class="hidden">navigation</h2>
+
+      <a href="./" class="logo">
+        News
+        <!-- <svg class="logo__image">
+          <use href="./images/icons.svg#logo" class="logo__icon"></use>
+        </svg> -->
+      </a>
+
+      <!-- * Блок меню -->
+      <div class="nav-box" data-nav>
+        <div class="container-menu">
+          <nav class="nav" id="menu-container">
+            <ul class="menu">
+              <!-- Навігація: через JS додаю клас menu__link--current на активному посиланні -->
+              <li class="menu__item">
+                <div class="menu__item-wrapper">
+                  <div class="menu__icon-box">
+                    <svg class="menu__icon">
+                      <use href="./images/icons.svg#pg-home-cut"></use>
+                    </svg>
+                  </div>
+                  <a href="./" class="menu__link menu__link--current">Home</a>
+                </div>
+
+                <div class="menu__icon-box-scroll">
+                  <svg class="menu__icon">
+                    <use href="./images/icons.svg#scroll-down"></use>
+                  </svg>
+                </div>
+              </li>
+
+              <li class="menu__item">
+                <div class="menu__item-wrapper">
+                  <div class="menu__icon-box">
+                    <svg class="menu__icon">
+                      <use href="./images/icons.svg#pg-favorite-cut"></use>
+                    </svg>
+                  </div>
+                  <a href="./favorite.html" class="menu__link">Favorite</a>
+                </div>
+                <div class="menu__icon-box-scroll">
+                  <svg class="menu__icon">
+                    <use href="./images/icons.svg#scroll-down"></use>
+                  </svg>
+                </div>
+              </li>
+
+              <li class="menu__item">
+                <div class="menu__item-wrapper">
+                  <div class="menu__icon-box">
+                    <svg class="menu__icon">
+                      <use href="./images/icons.svg#pg-read-cut"></use>
+                    </svg>
+                  </div>
+                  <a href="./read.html" class="menu__link">Read</a>
+                </div>
+                <div class="menu__icon-box-scroll">
+                  <svg class="menu__icon">
+                    <use href="./images/icons.svg#scroll-down"></use>
+                  </svg>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <!-- * Блок форми пошуку в $tablet та $desktop -->
+          <form class="search-form" id="search-form" data-search-form>
+            <div class="input-box">
+              <input class="input-submit" type="text" name="searchQuery" autocomplete="off" placeholder="Search"
+                autofocus />
+              <svg class="input-submit__icon">
+                <use href="./images/icons.svg#search"></use>
+              </svg>
+            </div>
+            <button type="submit" class="btn-submit hidden">Search</button>
+          </form>
+          <!-- */ Блок форми пошуку в $tablet та $desktop -->
+
+          <!-- * Блок перемикання теми -->
+          <div class="theme">
+            <!-- & Або іконка (або написи по before/after у css): -->
+            <svg class="theme__sun-icon">
+              <use href="./images/icons.svg#sun"></use>
+            </svg>
+            <!-- <span class="theme__text-light">Light</span> -->
+
+            <!-- &Кнопка перемикання теми -->
+            <span class="theme__btn">
+              <input class="switch-input" type="checkbox" id="switch" />
+              <label class="switch-lbl" for="switch"></label>
+            </span>
+            <!-- & /Кнопка перемикання теми -->
+
+            <!-- & Або іконка (або написи по before/after у css): -->
+            <svg class="theme__moon-icon">
+              <use href="./images/icons.svg#moon"></use>
+            </svg>
+          </div>
+          <!-- */ Блок перемикання теми -->
+        </div>
+      </div>
+      <!-- */ Блок меню -->
+
+      <!-- * Блок форми пошуку в $mobile -->
+      <button type="button" class="search-mobile-open">
+        <svg class="search-mobile-open__icon">
+          <use href="./images/icons.svg#search"></use>
+        </svg>
+      </button>
+
+      <form class="search-form search-form--mobile">
+        <div class="input-box input-box--mobile">
+          <!-- Інпут в $mobile без автофокусу -->
+          <input class="input-submit input-submit--mobile" type="text" name="searchQuery" autocomplete="off"
+            placeholder="Search" />
+          <svg class="input-submit__icon">
+            <use href="./images/icons.svg#search"></use>
+          </svg>
+        </div>
+        <button type="submit" class="btn-submit hidden">Search</button>
+      </form>
+      <!-- */ Блок форми пошуку в $mobile -->
+
+      <!-- * Кнопка меню у $mobile -->
+      <button type="button" class="btn-mobile" aria-expanded="false" aria-controls="menu-container" data-nav-btn>
+        <svg class="btn-mobile__icon" aria-label="Перемикач мобільного меню">
+          <use class="icon-burger" href="./images/icons.svg#btn-burger"></use>
+          <use class="icon-close" href="./images/icons.svg#btn-close"></use>
+        </svg>
+      </button>
+      <!-- */ Кнопка меню  у $mobile -->
+    </div>
+  </div>
+</section>
+>>>>>>> main

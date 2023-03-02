@@ -1,0 +1,84 @@
+// * Секція пагінації
+.container--pagin {
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.pagin {
+  display: flex;
+  justify-content: baseline;
+  gap: 10px;
+
+  @media screen and (min-width: $tablet) {
+    gap: 8px;
+  }
+}
+
+// Пагінація у $mobile
+.pagin-in-moblie {
+  display: flex;
+  justify-content: baseline;
+  gap: 4px;
+}
+
+// Кнопка пагінації
+.pagin__btn {
+  width: 28px;
+  height: 28px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+
+  background-color: var(--icon-stroke-color);
+  border: 1px solid var(--brand-main);
+  border-radius: 2px;
+  background-position: 50% 50%;
+
+  color: var(--brand-black);
+
+  &:hover,
+  &:focus {
+    background-color: var(--brand-main);
+    fill: var(--icon-stroke-color);
+    color: var(--icon-stroke-color);
+  }
+
+  @media screen and (min-width: $tablet) {
+    width: 33px;
+    height: 30px;
+  }
+}
+
+// Вирівнювання іконки і тексту у pagin__btn--prew і pagin__btn--next
+.pagin__prew,
+.pagin__next {
+  display: flex;
+  align-items: center;
+}
+
+.pagin__btn--prew,
+.pagin__btn--next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 72px;
+  gap: 10px;
+
+  @media screen and (min-width: $tablet) {
+    width: 82px;
+  }
+}
+
+.pagin__prew-icon,
+.pagin__next-icon {
+  width: 13px;
+  height: 13px;
+
+  fill: currentColor;
+  transform: rotate(90deg);
+}
+
+.pagin__next-icon {
+  transform: rotate(-90deg);
+}
+// */ Секція пагінації
