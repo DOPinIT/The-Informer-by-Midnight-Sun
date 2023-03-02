@@ -1,12 +1,3 @@
-// @import './common';
-// @import './theme-switcher';
-// @import './calendar';
-// @import './burger-menu';
-// @import './filters';
-// @import './header';
-// @import './home';
-// @import './weather';
-
 // ! Пропоную наступну структуру:
 // Змінні
 @import './utils/variables';
@@ -22,8 +13,8 @@
 @import './components/container';
 @import './components/logo';
 @import './components/switch-theme';
-@import './calendar';
-@import './weather';
+@import './components/calendar';
+@import './components/weather';
 
 // Капелюх
 @import './layout/header';
