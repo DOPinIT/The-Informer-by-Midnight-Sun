@@ -19,13 +19,25 @@
 }
 
 .categories .categories__list {
+    @media screen and (min-width: $mobile) {
+        visibility: hidden;
+        display: none;
+    }
+
     @media screen and (min-width: $tablet) {
-        margin-left: 14px;
+        display: flex;
+        visibility: visible;
+
+        margin: 0 14px;
+        width: 416px;
     }
 
     @media screen and (min-width: $desktop) {
-        margin-left: 16px;
+        margin: 0 16px;
+        width: 635px;
     }
+
+    overflow: hidden;
 
     padding: 0;
     margin: 0;
@@ -53,7 +65,7 @@
 
 
 
-    padding: 8px 21px;
+    padding: 7.5px 24px;
 
     background-color: var(--brand-light);
     border: 1px solid var(--brand-main);
@@ -87,12 +99,11 @@
 
     position: absolute;
     top: 31px;
-    left: 630.5px;
 
     display: flex;
+    gap: 12px;
     margin: 0;
     padding: 15px;
-    gap: 12px;
 
     flex-direction: column;
     width: 168px;
@@ -100,7 +111,15 @@
 
     transition: all 1s;
 
-    // 
+    @media screen and (min-width: $tablet) {
+        left: 444.5px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        left: 668px;
+    }
+
+    z-index: 1;
 }
 
 .isHidden {
@@ -109,6 +128,10 @@
 
     transform: translate(-20px, -80px) scale(0.75);
     transition: all var(--transition);
+}
+
+.categories__othersBox .categories__item {
+    text-align: start;
 }
 
 .categories__othrs-btn {
@@ -127,6 +150,35 @@
     letter-spacing: 0.01em;
 
     color: var(--brand-main);
+
+}
+
+.categories__item.closeToMobil {
+    @media screen and (min-width: $tablet) {
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        border: 0;
+        padding: 0;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        margin: -1px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        position: absolute;
+        white-space: nowrap;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        border: 0;
+        padding: 0;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        margin: -1px;
+    }
 }
 
 .categories__othrs-btn.is-active {
@@ -136,4 +188,8 @@
 .categories__othrs-btn:hover {
     text-decoration-line: underline;
     letter-spacing: 0.01em;
+}
+
+.categories__btn .select-list__icon {
+    pointer-events: none;
 }

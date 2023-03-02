@@ -12,18 +12,11 @@ getFilteredNews()
 
 function getFilteredNews() {
     refs.categories.addEventListener('click', (e) => {
-        if (e.target.nodeName === "BUTTON" || e.target.nodeName === "svg") {
-            if (e.target.nodeName === "svg") {
+        // console.dir(e.target);
+        if (e.target.nodeName === "BUTTON") {
+            if (e.target.outerText === "Others") {
                 refs.othersBox.classList.toggle('isHidden');
-                setTimeout(() => { closeOthersBox() }, 0)
-                e.target.parentNode.classList.toggle('is-active');
-                removeTadIsActiv()
-                return
-            } else if (e.target.outerText === "Others") {
-                e.target.focus({ focusVisible: false });
-
-                refs.othersBox.classList.toggle('isHidden');
-                e.target.classList.toggle('is-active');
+                refs.otherBtn.classList.toggle('is-active');
                 setTimeout(() => { closeOthersBox() }, 0)
                 closeOthersBox()
                 return
