@@ -66,6 +66,7 @@
 
   @media screen and (min-width: $desktop) {
     width: 288px;
+
     &::placeholder {
       margin-right: 180;
     }
@@ -83,6 +84,7 @@
   // opacity: 0.4;
   fill: var(--theme-text-color);
 }
+
 // */ Блок форми пошуку в $tablet та $desktop
 
 // * Блок пошуку в $mobile
@@ -105,6 +107,7 @@
     display: none;
   }
 }
+
 .search-mobile-open__icon {
   width: 20px;
   height: 20px;
@@ -120,11 +123,13 @@
     display: none;
   }
 }
+
 .input-box--mobile {
   transform: scale(0);
   transform-origin: center right;
   transition: transform var(--transition);
 }
+
 .input-box--mobile.is-open {
   transform: scale(1);
 }
@@ -142,4 +147,5 @@
     display: none;
   }
 }
+
 // */ Блок пошуку в $mobile
