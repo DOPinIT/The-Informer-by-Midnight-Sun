@@ -36,7 +36,7 @@
   color: var(--main-transparent-color);
   @include font(400, 12px, 16px);
 
-  // &:hover,
+  &:hover,
   &:focus {
     background-color: var(--brand-main);
     color: var(--brand-light);
