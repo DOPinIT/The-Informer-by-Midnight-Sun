@@ -109,6 +109,14 @@
   width: 20px;
   height: 20px;
   fill: var(--theme-text-color);
+
+  opacity: 1;
+  transform: scale(1);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.search-mobile-open__icon.is-open {
+  opacity: 0;
+  transform: scale(0);
 }
 
 // & Форма пошуку в $mobile
