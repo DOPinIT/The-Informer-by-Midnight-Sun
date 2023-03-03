@@ -17,7 +17,7 @@
 
 // Мій варіант перемикача:
 // * Зміна теми перемиканням класу dark-them
-const themeSwitch = document.querySelector('.switch-lbl');
+const themeSwitch = document.querySelector('.switch-input');
 themeSwitch.addEventListener('click', changeTheme2);
 
 function changeTheme2() {
