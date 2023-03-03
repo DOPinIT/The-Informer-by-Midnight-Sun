@@ -81,12 +81,9 @@
   }
 
   &:checked + .switch-lbl:after {
-    left: calc(100% - 2px); // позиція праворуч
-    translate: -100% 0%; // переміщення праворуч
-
-    // розмір коли коло праворуч (біле) зменшено на 1px:
-    width: 13px;
-    height: 13px;
+    left: calc(100% - 1px);
+    translate: -100% 0%;
+    transform: translate --transition;
   }
 }
 
@@ -100,29 +97,21 @@
   margin-right: 12px;
 
   background-color: var(--brand-light);
-  // border: 1px solid var(--theme-tgl-bg); // бордер по розмиітці
-  border: 1.5px solid var(--theme-tgl-bg); // бордер збільшений на 0.5px
+  border: 1px solid var(--theme-tgl-bg);
   border-radius: 20px;
 
   &:after {
     content: '';
     position: absolute;
-
-    // центрування по -y
     top: 50%;
-    transform: translateY(-50%);
-
-    // left: 1px; // позиція ліворуч по розмітці
-    left: 1.5px; // позиція ліворуч
-
-    // розмір коли коло ліворуч (синє):
-    width: 14px;
-    height: 14px;
+    left: 1px;
+    transform: translate(0%, -50%);
+    width: 16px;
+    height: 16px;
 
     background-color: var(--theme-tgl-bg);
     border-radius: 20px;
-
-    transition: 250ms;
+    transition: 0.3s;
   }
 }
 // &/ Перемикач малюється за допомогою css (copy-paste)
