@@ -1,15 +1,10 @@
-// ^ ===== Розмітка кнопок категорій новин і календаря =====
+// ^=====Розмітка кнопок категорій новин і календаря=====
 .container--categories {
   display: flex;
   justify-content: space-between;
-  padding-top: 24px;
-
-  @media screen and (min-width: $tablet) {
-    padding-top: 28px;
-  }
 }
 
-// & Кнопка розкриття Categories/Others та Calendar
+// // & Кнопка розкриття Calendar
 .select-list {
   @media screen and (min-width: $tablet) {
     margin-left: 14px;
@@ -20,8 +15,7 @@
   }
 }
 
-.select-list__btn,
-.categories__btn {
+.select-list__btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,7 +43,7 @@
     fill: var(--brand-light);
   }
 
-  &:hover .select-list__icon,
+  // &:hover .select-list__icon,
   &:focus .select-list__icon {
     transform: rotate(180deg);
   }
@@ -64,37 +58,41 @@
   width: 14px;
   height: 14px;
 }
+
 // &/ Кнопка розкриття Categories/Others та Calendar
 
-// & Кнопки категорій
-.categories {
-  display: none;
-  @media screen and (min-width: $tablet) {
-    display: flex;
-    gap: 14px;
-  }
+// // & Кнопки категорій
+// .categories {
+//   display: none;
 
-  @media screen and (min-width: $desktop) {
-    gap: 16px;
-  }
-}
+//   @media screen and (min-width: $tablet) {
+//     display: flex;
+//     gap: 14px;
+//   }
 
-.categories__item:nth-child(n + 5) {
-  @media screen and (max-width: ($desktop - 1px)) {
-    display: none;
-  }
-}
+//   @media screen and (min-width: $desktop) {
+//     gap: 16px;
+//   }
+// }
 
-.categories__name {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-// &/ Кнопки категорій
+// .categories__item:nth-child(n + 5) {
+//   @media screen and (max-width: ($desktop - 1px)) {
+//     display: none;
+//   }
+// }
+
+// .categories__name {
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+
+// // &/ Кнопки категорій
 
 // * Розмітка календаря
 .calendar__title {
   display: none;
+
   @media screen and (min-width: $desktop) {
     display: block;
     margin-right: 36px;
@@ -110,6 +108,7 @@
   display: flex;
   align-items: center;
 }
+
 // &/ Кнопка календаря
 // */ Розмітка календаря
 // ^/ ===== Розмітка кнопок категорій новин і календаря =====

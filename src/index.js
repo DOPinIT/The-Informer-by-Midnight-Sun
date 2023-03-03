@@ -1,4 +1,5 @@
 import themeSwitcher from './JS/switcherTheme.js';
+import getFilteredNews from './JS/newsFilters.js';
 
 // * Імпорт бібліотеки повідомлень:
 import Notiflix from 'notiflix';
@@ -18,5 +19,7 @@ import './JS/header';
 import './JS/switcherTheme'; //виправлена ппомилка в назві
 import './JS/mobileMenu';
 import './JS/addToFavorite';
-import './JS/modalTeam';
 import './JS/dots';
+import './JS/scrollToUp';
+import './JS/modalTeam';
+
