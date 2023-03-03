@@ -24,4 +24,5 @@ function changeTheme2() {
   document.body.classList.toggle('dark-theme');
   // + додати ключ у local storage по body.dark-theme
 }
+
 // */ Зміна теми перемиканням класу dark-them
