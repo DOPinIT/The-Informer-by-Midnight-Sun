@@ -43,12 +43,12 @@ function searchMobileOpen() {
   // Відслідковую втрату фокусу:
   inputSubmitMobile.addEventListener('blur', closeSearchMobile);
   searchInputMobile.classList.toggle('is-open');
-  searchMobileIcon.style.visibility = 'hidden';
+  searchMobileIcon.classList.toggle('is-open');
 }
 
 function closeSearchMobile() {
   // Закриття input-пошуку по втраті фокусу:
-  searchMobileIcon.style.visibility = 'inherit';
+  searchMobileIcon.classList.toggle('is-open');
   searchInputMobile.classList.toggle('is-open');
   document.removeEventListener('blur', closeSearchMobile);
 }

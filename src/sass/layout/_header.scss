@@ -112,6 +112,13 @@
   width: 20px;
   height: 20px;
   fill: var(--theme-text-color);
+  transform: scale(0);
+  opacity: 0;
+  transition: transform var(--transition), opacity var(--transition);
+}
+.search-mobile-open__icon.is-open {
+  opacity: 1;
+  transform: scale(1);
 }
 
 // & Форма пошуку в $mobile
@@ -147,5 +154,4 @@
     display: none;
   }
 }
-
 // */ Блок пошуку в $mobile
