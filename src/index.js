@@ -20,3 +20,4 @@ import './JS/switcherTheme'; //виправлена ппомилка в назв
 import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/modalTeam';
+import './JS/readDate';
