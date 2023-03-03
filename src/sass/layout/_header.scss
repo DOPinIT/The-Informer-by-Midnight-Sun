@@ -144,6 +144,10 @@
 .input-submit--mobile {
   width: 173px;
 
+  opacity: 0;
+  transform: scale(0);
+  transition: transform var(--transition);
+
   &::placeholder {
     @include font(400, 12, 21, 0.02em);
     height: 15px;
@@ -155,4 +159,8 @@
   }
 }
 
+.input-submit--mobile {
+  opacity: 1;
+  transform: scale(1);
+}
 // */ Блок пошуку в $mobile
