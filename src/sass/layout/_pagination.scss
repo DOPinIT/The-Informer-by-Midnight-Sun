@@ -2,10 +2,22 @@
 .container--pagin {
   padding-top: 40px;
   padding-bottom: 60px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 48px;
+    padding-bottom: 100px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 60px;
+    padding-bottom: 150px;
+  }
 }
 
 .pagin {
   display: flex;
+  justify-content: center;
+
   justify-content: baseline;
   gap: 10px;
 
@@ -81,4 +93,5 @@
 .pagin__next-icon {
   transform: rotate(-90deg);
 }
+
 // */ Секція пагінації

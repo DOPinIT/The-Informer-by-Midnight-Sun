@@ -22,13 +22,14 @@
 @import './components/container';
 @import './components/logo';
 @import './components/switch-theme';
-@import './calendar';
-@import './weather';
+@import './components/calendar';
+@import './components/weather';
 
 // Капелюх
 @import './layout/header';
 @import './layout/menu';
 @import './layout/categories';
+@import './layout/categoriesfilter';
 
 // Розмітка карток
 @import './layout/gallery.scss';
@@ -43,3 +44,4 @@
 
 // FOOTER
 @import './layout/footer';
+@import './layout/modal-team-info';

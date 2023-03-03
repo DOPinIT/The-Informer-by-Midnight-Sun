@@ -1,11 +1,27 @@
 // * Розмітка карток у Home
+
+.container--gallery {
+  padding-top: 40px;
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 48px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-top: 60px;
+  }
+}
+
 .card {
   display: flex;
+  flex-direction: column;
   gap: 28px;
 
   @media screen and (min-width: $tablet) {
+    flex-direction: row;
     gap: 30px;
   }
+
   @media screen and (min-width: $desktop) {
     gap: 40px 32px;
   }
@@ -18,6 +34,7 @@
     flex-basis: calc(100% - 30px) / 2;
     width: 353px;
   }
+
   @media screen and (min-width: $desktop) {
     flex-basis: calc(100% - 64px) / 3;
     width: 395px;
@@ -39,6 +56,7 @@
   @media screen and (min-width: $tablet) {
     width: 353px;
   }
+
   @media screen and (min-width: $desktop) {
     width: 395px;
   }
@@ -124,6 +142,7 @@
     fill: transparent;
     transition: opacity var(--transition);
   }
+
   & .in-favorite {
     opacity: 0;
   }
@@ -131,12 +150,14 @@
   &.is-favorite .non-favorite {
     opacity: 0;
   }
+
   &.is-favorite .in-favorite {
     opacity: 1;
     fill: currentColor;
     transition: opacity var(--transition);
   }
 }
+
 // &/ Плитки
 
 // & Інформаційна частина картки
@@ -187,6 +208,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
 .card__date,
 .card__read-more {
   height: 19px;
@@ -198,8 +220,10 @@
     @include font(400, 16px, 22px);
   }
 }
+
 .card__read-more {
   color: var(--brand-main);
 }
+
 // &/ Інформаційна частина картки
 // */ Розмітка карток у Home
