@@ -1,5 +1,7 @@
 import themeSwitcher from './JS/switcherTheme.js';
 
+import { Pagination } from 'tui-pagination';
+
 // * Імпорт бібліотеки повідомлень:
 import Notiflix from 'notiflix';
 Notiflix.Notify.init({
@@ -21,11 +23,10 @@ import './JS/switcherTheme'; //виправлена ппомилка в назв
 import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/modalTeam';
-
-
-// Імпорт бібліотеки TUI Pagination
-import { Pagination } from 'tui-pagination';
-// Pagination
 import './JS/pagination';
+
+
+
+
 
 
