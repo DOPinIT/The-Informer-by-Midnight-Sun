@@ -13,8 +13,7 @@ Notiflix.Notify.init({
 // * Імпорт бібліотеки axios
 import axios from 'axios';
 
-// Імпорт бібліотеки TUI Pagination
-import { Pagination } from 'tui-pagination';
+
 
 // * імпорт усього вмісту файлів:
 import './JS/header';
@@ -23,6 +22,10 @@ import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/modalTeam';
 
+
+// Імпорт бібліотеки TUI Pagination
+import { Pagination } from 'tui-pagination';
 // Pagination
 import './JS/pagination';
+
 
