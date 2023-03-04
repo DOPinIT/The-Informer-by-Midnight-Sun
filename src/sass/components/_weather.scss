@@ -1,0 +1,185 @@
+// ^ РОЗМІТКА ПОГОДИ
+.weather {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  // ^ БЛОК ДЛЯ ТЕСТУ - ПОТІМ ТРЕБА ПРИБРАТИ
+  // width: 395px;
+  height: 469px;
+  @media screen and (min-width: $tablet) {
+    height: 675px;
+  }
+  // ^/ БЛОК ДЛЯ ТЕСТУ - ПОТІМ ТРЕБА ПРИБРАТИ
+  padding: 32px 36px;
+
+  background: var(--brand-main);
+  // mix-blend-mode: normal;
+  border-radius: 4px;
+  overflow: hidden;
+
+  font-family: var(--font-weather);
+  color: var(--brand-light);
+
+  @media screen and (min-width: $tablet) {
+    padding: 40px 32px 60px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding: 50px 53px;
+  }
+}
+
+.weather__forecast-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather__temp-wrapper {
+  display: flex;
+  padding-right: 1px;
+  height: 100%;
+  align-items: center;
+  border-right: 1px solid var(--brand-light);
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 5px;
+  }
+}
+
+.weather__temp {
+  display: flex;
+  @include font(400, 55px, 64px);
+
+  @media screen and (min-width: $tablet) {
+    padding-right: 8px;
+    @include font(400, 64px, 75px);
+  }
+}
+
+.weather__forecast-day-wrapper {
+  margin-left: 11px;
+
+  @media screen and (min-width: $tablet) {
+    margin-left: 8px;
+    padding-bottom: 2px;
+  }
+}
+
+.weather__sky {
+  padding-bottom: 5px;
+  @include font(400, 24px, 28px);
+
+  @media screen and (min-width: $tablet) {
+    padding-bottom: 0;
+    padding-left: 7px;
+    @include font(400, 36px, 42px);
+  }
+}
+
+.weather__place,
+.weather__link {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 8px;
+
+  width: 121px;
+  height: 34px;
+
+  background: rgba(254, 254, 255, 0.3);
+  border-radius: 10px;
+  @include font(400, 14px, 16px);
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 8px;
+    padding-bottom: 7px;
+    padding-left: 7px;
+
+    width: 177px;
+    height: 42px;
+
+    @include font(400, 20px, 23px);
+  }
+}
+
+.weather__link {
+  justify-content: center;
+  width: 151px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+
+  @include font(400, 16px, 19px);
+
+  @media screen and (min-width: $tablet) {
+    padding-top: 9px;
+    padding-bottom: 10px;
+  }
+}
+
+.weather__place-icon {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+  fill: currentColor;
+
+  @media screen and (min-width: $tablet) {
+    width: 27px;
+    height: 27px;
+    margin-right: 8px;
+  }
+}
+// * Іконка погоди
+// & варіант зображення для тегу div:
+// .weather__img {
+//   width: 128px;
+//   height: 128px;
+//   background-image: url('../images/test-sun-w165.png');
+//   background-position: center center;
+//   background-size: contain;
+//   background-repeat: no-repeat;
+
+//   @media screen and (min-width: $tablet) {
+//     width: 165px;
+//     height: 165px;
+//   }
+// }
+
+// & варіант зображення для тегу img:
+.weather__img {
+  width: 128px;
+  height: 128px;
+
+  @media screen and (min-width: $tablet) {
+    width: 165px;
+    height: 165px;
+  }
+}
+// */ Іконка погоди
+
+.weather__bottom-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 18px;
+
+  @media screen and (min-width: $tablet) {
+    gap: 28px;
+  }
+  @media screen and (min-width: $desktop) {
+    gap: 38px;
+  }
+}
+
+.weather__wrapper-date {
+  display: flex;
+  flex-direction: column;
+  @include font(400, 28px, 33px);
+
+  @media screen and (min-width: $tablet) {
+    @include font(400, 36px, 42px);
+  }
+}
+// ^/ РОЗМІТКА ПОГОДИ
