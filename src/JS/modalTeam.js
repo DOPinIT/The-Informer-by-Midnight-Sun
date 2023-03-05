@@ -6,6 +6,7 @@ const onModalOpenBtnClick = () => {
   modalTeam.classList.remove('is-hidden');
   document.addEventListener('keydown', onEscKeyDown);
   modalTeam.addEventListener('click', onBackdropClick);
+  closeModalTeamBtn.addEventListener('click', closeModal);
 };
 
 const closeModal = () => {
@@ -30,4 +31,3 @@ const onBackdropClick = e => {
 };
 
 openModalTeamBtn.addEventListener('click', onModalOpenBtnClick);
-closeModalTeamBtn.addEventListener('click', closeModal);

@@ -39,10 +39,10 @@ function setCardsDescriptionLength() {
       descriptionLength = 170;
     }
 
-    console.log(
-      'setCardsDescriptionLength >>> descriptionLength:',
-      descriptionLength
-    );
+    // console.log(
+    //   'setCardsDescriptionLength >>> descriptionLength:',
+    //   descriptionLength
+    // );
 
     if (cardDescription[i].textContent.length > descriptionLength) {
       cardDescription[i].textContent = `${cardDescription[i].textContent.slice(
