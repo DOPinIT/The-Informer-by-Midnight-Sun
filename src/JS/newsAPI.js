@@ -1,3 +1,5 @@
+import DateTimestamp from './DateTimestamp';
+
 const KEY = 'S9P6gsklItZ6AfgyQULO5BfOKZag8n9Y';
 const SECTIONS_URL =
   'https://api.nytimes.com/svc/news/v3/content/section-list.json?';
@@ -69,7 +71,8 @@ class NewsApi {
 
     if (milliseconds) {
       filterByDate = `fq=pub_date:(${DateTimestamp.createTimestamp(
-        milliseconds
+        milliseconds,
+        '-'
       )})`;
     }
 
@@ -103,31 +106,13 @@ class NewsApi {
       .then(data => data.results);
   }
 }
-
-// Create timestamp for search request by date - 2020-02-01 - YYYY-MM-DD
-class DateTimestamp {
-  static createTimestamp(milliseconds) {
-    const date = new Date(milliseconds);
-    const year = date.getUTCFullYear();
-    let month = date.getUTCMonth() + 1;
-    let day = date.getUTCDate();
-
-    if (month < 10) {
-      month = month.toString().padStart(2, '0');
-    }
-    if (day < 10) {
-      day = day.toString().padStart(2, '0');
-    }
-    return `${year}-${month}-${day}`;
-  }
-}
-
 const newsApi = new NewsApi();
+/* 
 const sectionListPromise = newsApi.getSectionList().then(sectionList => {
   console.log(sectionList);
 });
 
-const sectionName = 'business';
+const sectionName = 'business'; */
 
 /* newsApi
   .getNewsListBySectionName(sectionName)
