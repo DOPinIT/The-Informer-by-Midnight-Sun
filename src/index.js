@@ -20,3 +20,4 @@ import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/modalTeam';
 import './JS/weatherAPI'
+
