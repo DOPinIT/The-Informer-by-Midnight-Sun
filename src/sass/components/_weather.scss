@@ -1,20 +1,20 @@
+// ^ РОЗМІТКА ПОГОДИ
 .weather {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-
+  // ^ БЛОК ДЛЯ ТЕСТУ - ПОТІМ ТРЕБА ПРИБРАТИ
+  // width: 395px;
   height: 469px;
-
   @media screen and (min-width: $tablet) {
     height: 675px;
   }
-
-
+  // ^/ БЛОК ДЛЯ ТЕСТУ - ПОТІМ ТРЕБА ПРИБРАТИ
   padding: 32px 36px;
 
   background: var(--brand-main);
-  mix-blend-mode: normal;
+  // mix-blend-mode: normal;
   border-radius: 4px;
   overflow: hidden;
 
@@ -78,16 +78,6 @@
   }
 }
 
-.weather__img {
-  width: 128px;
-  height: 128px;
-
-  @media screen and (min-width: $tablet) {
-    width: 165px;
-    height: 165px;
-  }
-}
-
 .weather__place,
 .weather__link {
   display: flex;
@@ -140,9 +130,23 @@
     margin-right: 8px;
   }
 }
+// * Іконка погоди
+// & варіант зображення для тегу div:
+// .weather__img {
+//   width: 128px;
+//   height: 128px;
+//   background-image: url('../images/test-sun-w165.png');
+//   background-position: center center;
+//   background-size: contain;
+//   background-repeat: no-repeat;
 
+//   @media screen and (min-width: $tablet) {
+//     width: 165px;
+//     height: 165px;
+//   }
+// }
 
-
+// & варіант зображення для тегу img:
 .weather__img {
   width: 128px;
   height: 128px;
@@ -152,8 +156,7 @@
     height: 165px;
   }
 }
-
-
+// */ Іконка погоди
 
 .weather__bottom-wrapper {
   display: flex;
@@ -165,7 +168,6 @@
   @media screen and (min-width: $tablet) {
     gap: 28px;
   }
-
   @media screen and (min-width: $desktop) {
     gap: 38px;
   }
@@ -180,3 +182,4 @@
     @include font(400, 36px, 42px);
   }
 }
+// ^/ РОЗМІТКА ПОГОДИ
