@@ -28,5 +28,6 @@ import './JS/pagination';
 import './JS/dots';
 import './JS/scrollToUp';
 import './JS/modalTeam';
+import './JS/calendar';
 
 
