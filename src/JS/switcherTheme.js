@@ -17,11 +17,27 @@
 
 // Мій варіант перемикача:
 // * Зміна теми перемиканням класу dark-them
-const themeSwitch = document.querySelector('.switch-lbl');
+const themeSwitch = document.querySelector('.switch-input');
 themeSwitch.addEventListener('click', changeTheme2);
 
 function changeTheme2() {
   document.body.classList.toggle('dark-theme');
   // + додати ключ у local storage по body.dark-theme
+   if (localStorage.getItem('theme') !== 'dark') {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.removeItem('theme');
+  }
 }
 // */ Зміна теми перемиканням класу dark-them
+function addDarkClassToHTML() {
+  try {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-theme');
+      themeSwitch.checked = true;
+    }
+    
+  } catch (err) {}
+}
+
+addDarkClassToHTML();
