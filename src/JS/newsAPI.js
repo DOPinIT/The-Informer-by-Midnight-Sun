@@ -1,4 +1,9 @@
 import DateTimestamp from './DateTimestamp';
+import {
+  sectionResponseMarkup,
+  favoriteResponseMarkup,
+  searchResponseMarkup,
+} from './markup';
 
 const KEY = 'S9P6gsklItZ6AfgyQULO5BfOKZag8n9Y';
 const SECTIONS_URL =
@@ -12,7 +17,7 @@ const ARTICLE_SEARCH_URL =
 const MOST_VIEWED_ARTICLES_URL =
   'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?';
 
-class NewsApi {
+export default class NewsApi {
   pageNumberBySearch = 0;
   hits = 0;
   totalNumberOfPages = 0;
@@ -55,7 +60,7 @@ class NewsApi {
 
   async getNewsListBySectionName(sectionName) {
     return await fetch(
-      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}&page=${this.pageNumberBySearch}`
+      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}`
     )
       .then(response => {
         if (!response.ok) {
@@ -106,27 +111,43 @@ class NewsApi {
       .then(data => data.results);
   }
 }
+
 const newsApi = new NewsApi();
-/* 
-const sectionListPromise = newsApi.getSectionList().then(sectionList => {
-  console.log(sectionList);
-});
+const gallery = document.querySelector('.card');
 
-const sectionName = 'business'; */
-
-/* newsApi
-  .getNewsListBySectionName(sectionName)
-  .then(newsList => console.log('News list by section name ', newsList)); */
-
+// проверка обработчика для search
 /* newsApi
   .articleSearchList('ukraine')
-  .then(data => console.log('Search list by submit', data))
+  .then(response => {
+    const pageMarkup = searchResponseMarkup(response);
+    gallery.insertAdjacentHTML('beforeend', pageMarkup);
+  })
   .catch(error => console.log(error.message));
  */
-/* 
-newsApi
+
+// проверка обработчика для favorite
+
+/* newsApi
   .getMostViewedArticles()
-  .then(mostViewedArticles =>
-    console.log('The most viewed articles ', mostViewedArticles)
-  );
- */
+  .then(mostViewedArticles => {
+    console.log('The most viewed articles ', mostViewedArticles);
+    gallery.innerHTML = favoriteResponseMarkup(mostViewedArticles);
+  })
+  .catch(error => console.log(error.message)); */
+
+// проверка обработчика для section запросов
+/* const sectionName = 'business';
+
+newsApi
+  .getNewsListBySectionName(sectionName)
+  .then(newsList => {
+    console.log(newsList);
+    if (newsList === null) {
+      throw new Error();
+    }
+    const sectionMarkup = sectionResponseMarkup(newsList);
+    console.log(sectionMarkup);
+    console.log(gallery);
+    gallery.insertAdjacentHTML('beforeend', sectionMarkup);
+  })
+  .catch(error => error.message); */
