@@ -28,6 +28,6 @@ import './JS/weatherAPI'
 import './JS/pagination';
 import './JS/dots';
 import './JS/scrollToUp';
-
+import './JS/calendar';
 
 
