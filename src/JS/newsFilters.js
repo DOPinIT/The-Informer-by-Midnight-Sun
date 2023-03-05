@@ -12,31 +12,35 @@ const refs = {
 
 let widthScreen = screen.width;
 
-getSectionList().then(data => {
-    const ElAll = data.results.map(section => section.display_name)
-    console.log(ElAll.length);
+if (refs.categories) {
+    getFilteredNews()
 
-    if (widthScreen > 1279) {
-        const ElForCategoriesList = ElAll.slice(0, 6)
-        refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
+    getSectionList().then(data => {
+        const ElAll = data.results.map(section => section.display_name)
 
-        const ElForOthersBox = ElAll.slice(6, ElAll.length)
-        refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
-        return
-    }
+        if (widthScreen > 1279) {
+            const ElForCategoriesList = ElAll.slice(0, 6)
+            refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
 
-    if (widthScreen > 767 && widthScreen < 1280) {
-        const ElForCategoriesList = ElAll.slice(0, 4)
-        refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
+            const ElForOthersBox = ElAll.slice(6, ElAll.length)
+            refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
+            return
+        }
 
-        const ElForOthersBox = ElAll.slice(4, ElAll.length)
-        refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
-        return
-    }
+        if (widthScreen > 767 && widthScreen < 1280) {
+            const ElForCategoriesList = ElAll.slice(0, 4)
+            refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
 
-    refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElAll);
+            const ElForOthersBox = ElAll.slice(4, ElAll.length)
+            refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
+            return
+        }
 
-})
+        refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElAll);
+
+    })
+}
+
 
 function createElForCategoriesList(arr) {
     let markup = "";
@@ -53,8 +57,6 @@ function createElForOthersBox(arr) {
     })
     return markup
 }
-
-getFilteredNews()
 
 function getFilteredNews() {
     refs.categories.addEventListener('click', (e) => {
