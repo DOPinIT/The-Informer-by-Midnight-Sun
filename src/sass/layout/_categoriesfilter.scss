@@ -1,0 +1,222 @@
+.section-categories {
+    margin-top: 28px;
+    margin-bottom: 60px;
+}
+
+.categories {
+    position: relative;
+    display: flex;
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.01em;
+
+    color: var(--brand-main);
+}
+
+.categories .categories__list {
+    @media screen and (min-width: $mobile) {
+        visibility: hidden;
+        display: none;
+    }
+
+    @media screen and (min-width: $tablet) {
+        display: flex;
+        visibility: visible;
+
+        margin: 0 14px;
+        width: 416px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        margin: 0 16px;
+        width: 635px;
+    }
+
+    overflow: hidden;
+
+    padding: 0;
+    margin: 0;
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+
+    gap: 16px;
+}
+
+.categories__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: transform var(--transition);
+
+    color: var(--brand-main);
+
+    height: 31px;
+
+
+
+    padding: 7.5px 24px;
+
+    background-color: var(--brand-light);
+    border: 1px solid var(--brand-main);
+    border-radius: 20px;
+
+    @include font(400, 12px, 16px);
+
+    &:hover {
+        background-color: var(--brand-main);
+        color: var(--brand-light);
+        fill: var(--brand-light);
+    }
+}
+
+// // & Кнопка розкриття Others
+.categories__btn.is-active {
+    background-color: var(--brand-main);
+    color: var(--brand-light);
+    fill: var(--brand-light);
+
+    .select-list__icon {
+        transition: transform var(--transition);
+        fill: currentColor;
+        transform: rotate(180deg);
+    }
+}
+
+.categories__box {
+    position: absolute;
+    top: 31px;
+    overflow: hidden;
+
+    border-radius: 20px;
+    z-index: 1;
+
+    @media screen and (min-width: $tablet) {
+        left: 444.5px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        left: 668px;
+    }
+}
+
+
+
+.categories__othersBox {
+    // display: none;
+    overflow: hidden;
+    opacity: 1;
+
+    background: var(--brand-light);
+    // border-radius: 20px;
+
+    // position: absolute;
+    // top: 31px;
+
+    display: flex;
+    gap: 12px;
+    margin: 0;
+    padding: 10px;
+
+    flex-direction: column;
+    width: 168px;
+    height: 380;
+
+    transition: all 200ms;
+
+    @media screen and (max-width: 1279px) {
+        overflow: auto;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--button-color);
+            border-radius: 25px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-main-opt);
+        }
+    }
+
+    // z-index: 1;
+
+    &:hover {
+        overflow: auto;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--button-color);
+            border-radius: 25px;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--brand-main-opt);
+        }
+    }
+}
+
+.isHidden {
+    visibility: hidden;
+    opacity: 0;
+
+    transform: translate(-20px, -80px) scale(0.75);
+    transition: all 200ms;
+}
+
+.categories__othersBox .categories__item {
+    text-align: start;
+}
+
+.categories__othrs-btn {
+    border: 0;
+
+    background-color: inherit;
+    align-self: start;
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 73.215375%;
+    /* 12/16.39 */
+    text-align: center;
+    letter-spacing: 0.01em;
+
+    color: var(--brand-main);
+
+}
+
+.categories__othrs-btn.is-active {
+    text-decoration: underline;
+}
+
+.categories__othrs-btn:hover {
+    text-decoration-line: underline;
+    letter-spacing: 0.01em;
+}
+
+.categories__btn .select-list__icon {
+    pointer-events: none;
+}

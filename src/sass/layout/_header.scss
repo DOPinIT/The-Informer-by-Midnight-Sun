@@ -66,6 +66,7 @@
 
   @media screen and (min-width: $desktop) {
     width: 288px;
+
     &::placeholder {
       margin-right: 180;
     }
@@ -83,6 +84,7 @@
   // opacity: 0.4;
   fill: var(--theme-text-color);
 }
+
 // */ Блок форми пошуку в $tablet та $desktop
 
 // * Блок пошуку в $mobile
@@ -105,10 +107,20 @@
     display: none;
   }
 }
+
 .search-mobile-open__icon {
   width: 20px;
   height: 20px;
   fill: var(--theme-text-color);
+
+
+  opacity: 1;
+  transform: scale(1);
+  transition: transform var(--transition), opacity var(--transition);
+}
+.search-mobile-open__icon.is-open {
+  opacity: 0;
+  transform: scale(0); 
 }
 
 // & Форма пошуку в $mobile
@@ -120,17 +132,23 @@
     display: none;
   }
 }
+
 .input-box--mobile {
   transform: scale(0);
   transform-origin: center right;
   transition: transform var(--transition);
 }
+
 .input-box--mobile.is-open {
   transform: scale(1);
 }
 
 .input-submit--mobile {
   width: 173px;
+
+  opacity: 0;
+  transform: scale(0);
+  transition: transform var(--transition);
 
   &::placeholder {
     @include font(400, 12, 21, 0.02em);
@@ -141,5 +159,10 @@
   @media screen and (min-width: $tablet) {
     display: none;
   }
+}
+
+.input-submit--mobile {
+  opacity: 1;
+  transform: scale(1);
 }
 // */ Блок пошуку в $mobile
