@@ -97,6 +97,8 @@
     position: absolute;
     top: 31px;
     overflow: hidden;
+    opacity: 1;
+    transition: all 200ms;
 
     border-radius: 20px;
     z-index: 1;
@@ -106,18 +108,16 @@
     }
 }
 
+.isHidden {
+    visibility: hidden;
+    opacity: 0;
 
+    transform: translate(-20px, -80px) scale(0.75);
+    transition: all 200ms;
+}
 
 .categories__othersBox {
-    // display: none;
-    overflow: hidden;
-    opacity: 1;
-
     background: var(--brand-light);
-    // border-radius: 20px;
-
-    // position: absolute;
-    // top: 31px;
 
     display: flex;
     gap: 12px;
@@ -127,8 +127,6 @@
     flex-direction: column;
     width: 168px;
     height: 380;
-
-    transition: all 200ms;
 
     @media screen and (max-width: 1279px) {
         overflow: auto;
@@ -173,13 +171,6 @@
     }
 }
 
-.isHidden {
-    visibility: hidden;
-    opacity: 0;
-
-    transform: translate(-20px, -80px) scale(0.75);
-    transition: all 200ms;
-}
 
 .categories__othersBox .categories__item {
     text-align: start;

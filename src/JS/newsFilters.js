@@ -1,5 +1,5 @@
 export default getFilteredNews;
-import axios from "axios";
+import NewsApi from "./newsAPI";
 
 const refs = {
     categories: document.querySelector(".categories"),
@@ -10,14 +10,13 @@ const refs = {
     otherBtn: document.getElementById("othersBtn"),
 }
 
-let widthScreen = screen.width;
+const newsApi = new NewsApi();
 
 if (refs.categories) {
-    getFilteredNews()
 
-    getSectionList().then(data => {
-        const ElAll = data.results.map(section => section.display_name)
-
+    newsApi.getSectionList().then(ElAll => {
+        // const ElAll = data.results.map(section => section.display_name)
+        let widthScreen = screen.width;
         if (widthScreen > 1279) {
             const ElForCategoriesList = ElAll.slice(0, 6)
             refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
@@ -39,8 +38,9 @@ if (refs.categories) {
         refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElAll);
 
     })
-}
 
+    getFilteredNews()
+}
 
 function createElForCategoriesList(arr) {
     let markup = "";
@@ -63,7 +63,7 @@ function getFilteredNews() {
         // console.dir(e.target);
         if (e.target.nodeName === "BUTTON") {
             if (e.target.outerText === "Others") {
-                refs.othersBox.firstElementChild.classList.toggle('isHidden');
+                refs.othersBox.classList.toggle('isHidden');
                 refs.otherBtn.classList.toggle('is-active');
                 setTimeout(() => { closeOthersBox() }, 0)
                 closeOthersBox()
@@ -74,7 +74,7 @@ function getFilteredNews() {
 
             e.target.classList.toggle('is-active');
 
-            console.log(e.target.textContent);
+            newsApi.getNewsListBySectionName(e.target.textContent);
         }
     })
 }
@@ -84,7 +84,7 @@ function closeOthersBox() {
         if (e.target.outerText !== "Others") {
             // console.log("qweqwe");
             refs.otherBtn.classList.remove('is-active');
-            refs.othersBox.firstElementChild.classList.add('isHidden');
+            refs.othersBox.classList.add('isHidden');
         }
     }, { once: true })
 }
@@ -96,12 +96,4 @@ function removeTadIsActiv() {
     document.querySelectorAll(".categories__othrs-btn").forEach(button => {
         button.classList.remove('is-active');
     })
-}
-
-function getSectionList() {
-    const API_KEY = 'f4MnGfOgcSDDONkk5En7THEIhywC71B5';
-
-    const URL = `https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=${API_KEY}`;
-
-    return axios(URL).then(({ data }) => data).catch(console.log)
 }
