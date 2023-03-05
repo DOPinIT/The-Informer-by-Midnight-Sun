@@ -12,6 +12,8 @@ const MOST_VIEWED_ARTICLES_URL =
 
 class NewsApi {
   pageNumberBySearch = 0;
+  hits = 0;
+  totalNumberOfPages = 0;
 
   sections = '';
   constructor() {}
@@ -51,7 +53,7 @@ class NewsApi {
 
   async getNewsListBySectionName(sectionName) {
     return await fetch(
-      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}`
+      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}&page=${this.pageNumberBySearch}`
     )
       .then(response => {
         if (!response.ok) {
@@ -59,7 +61,7 @@ class NewsApi {
         }
         return response.json();
       })
-      .then(data => data);
+      .then(data => data.results);
   }
 
   async articleSearchList(searchQuery, milliseconds) {
@@ -80,7 +82,14 @@ class NewsApi {
         }
         return response.json();
       })
-      .then(data => data);
+      .then(data => data.response)
+      .then(data => {
+        data.meta.hits > 1000
+          ? (this.hits = 1000)
+          : (this.hits = data.meta.hits);
+        this.totalNumberOfPages = Math.ceil(this.hits / 10);
+        return data.docs;
+      });
   }
 
   async getMostViewedArticles() {
@@ -91,7 +100,7 @@ class NewsApi {
         }
         return response.json();
       })
-      .then(data => data);
+      .then(data => data.results);
   }
 }
 
@@ -120,19 +129,19 @@ const sectionListPromise = newsApi.getSectionList().then(sectionList => {
 
 const sectionName = 'business';
 
-newsApi
+/* newsApi
   .getNewsListBySectionName(sectionName)
-  .then(newsList =>
-    console.log('News list by section name ', newsList.results)
-  );
+  .then(newsList => console.log('News list by section name ', newsList)); */
 
-newsApi
+/* newsApi
   .articleSearchList('ukraine')
-  .then(data => console.log('Search list by submit', data.response))
+  .then(data => console.log('Search list by submit', data))
   .catch(error => console.log(error.message));
-
+ */
+/* 
 newsApi
   .getMostViewedArticles()
   .then(mostViewedArticles =>
-    console.log('The most viewed articles ', mostViewedArticles.results)
+    console.log('The most viewed articles ', mostViewedArticles)
   );
+ */
