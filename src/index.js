@@ -24,10 +24,10 @@ import './JS/switcherTheme'; //виправлена ппомилка в назв
 import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/modalTeam';
+import './JS/weatherAPI'
 import './JS/pagination';
 import './JS/dots';
 import './JS/scrollToUp';
-import './JS/modalTeam';
 import './JS/calendar';
 
 
