@@ -28,13 +28,13 @@
         display: flex;
         visibility: visible;
 
-        margin: 0 14px;
-        width: 416px;
+        gap: 14px;
+        margin-right: 14px;
     }
 
     @media screen and (min-width: $desktop) {
-        margin: 0 16px;
-        width: 635px;
+        gap: 16px;
+        margin-right: 16px;
     }
 
     overflow: hidden;
@@ -102,11 +102,7 @@
     z-index: 1;
 
     @media screen and (min-width: $tablet) {
-        left: 444.5px;
-    }
-
-    @media screen and (min-width: $desktop) {
-        left: 668px;
+        right: -56px;
     }
 }
 
