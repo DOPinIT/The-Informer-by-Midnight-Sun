@@ -29,6 +29,7 @@
 @import './layout/header';
 @import './layout/menu';
 @import './layout/categories';
+@import './layout/categoriesfilter';
 
 // Розмітка карток
 @import './layout/gallery.scss';
@@ -37,6 +38,9 @@
 @import './layout/hero';
 @import './layout/favorite';
 @import './layout/read';
+
+// Скрол
+@import './layout/scroll-to-up';
 
 // Пагінація
 @import './layout/pagination';

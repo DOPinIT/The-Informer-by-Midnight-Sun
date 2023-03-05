@@ -1,4 +1,7 @@
 import themeSwitcher from './JS/switcherTheme.js';
+import getFilteredNews from './JS/newsFilters.js';
+
+import { Pagination } from 'tui-pagination';
 
 // * Імпорт бібліотеки повідомлень:
 import Notiflix from 'notiflix';
@@ -13,6 +16,8 @@ Notiflix.Notify.init({
 // * Імпорт бібліотеки axios
 import axios from 'axios';
 
+
+
 // * імпорт усього вмісту файлів:
 import './JS/header';
 import './JS/switcherTheme'; //виправлена ппомилка в назві
@@ -20,4 +25,9 @@ import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/modalTeam';
 import './JS/weatherAPI'
+import './JS/pagination';
+import './JS/dots';
+import './JS/scrollToUp';
+
+
 
