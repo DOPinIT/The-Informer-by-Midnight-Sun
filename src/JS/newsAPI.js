@@ -1,3 +1,5 @@
+import DateTimestamp from './DateTimestamp';
+
 const KEY = 'S9P6gsklItZ6AfgyQULO5BfOKZag8n9Y';
 const SECTIONS_URL =
   'https://api.nytimes.com/svc/news/v3/content/section-list.json?';
@@ -12,6 +14,8 @@ const MOST_VIEWED_ARTICLES_URL =
 
 class NewsApi {
   pageNumberBySearch = 0;
+  hits = 0;
+  totalNumberOfPages = 0;
 
   sections = '';
   constructor() {}
@@ -51,7 +55,7 @@ class NewsApi {
 
   async getNewsListBySectionName(sectionName) {
     return await fetch(
-      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}`
+      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}&page=${this.pageNumberBySearch}`
     )
       .then(response => {
         if (!response.ok) {
@@ -59,7 +63,7 @@ class NewsApi {
         }
         return response.json();
       })
-      .then(data => data);
+      .then(data => data.results);
   }
 
   async articleSearchList(searchQuery, milliseconds) {
@@ -67,7 +71,8 @@ class NewsApi {
 
     if (milliseconds) {
       filterByDate = `fq=pub_date:(${DateTimestamp.createTimestamp(
-        milliseconds
+        milliseconds,
+        '-'
       )})`;
     }
 
@@ -80,7 +85,14 @@ class NewsApi {
         }
         return response.json();
       })
-      .then(data => data);
+      .then(data => data.response)
+      .then(data => {
+        data.meta.hits > 1000
+          ? (this.hits = 1000)
+          : (this.hits = data.meta.hits);
+        this.totalNumberOfPages = Math.ceil(this.hits / 10);
+        return data.docs;
+      });
   }
 
   async getMostViewedArticles() {
@@ -91,48 +103,30 @@ class NewsApi {
         }
         return response.json();
       })
-      .then(data => data);
+      .then(data => data.results);
   }
 }
-
-// Create timestamp for search request by date - 2020-02-01 - YYYY-MM-DD
-class DateTimestamp {
-  static createTimestamp(milliseconds) {
-    const date = new Date(milliseconds);
-    const year = date.getUTCFullYear();
-    let month = date.getUTCMonth() + 1;
-    let day = date.getUTCDate();
-
-    if (month < 10) {
-      month = month.toString().padStart(2, '0');
-    }
-    if (day < 10) {
-      day = day.toString().padStart(2, '0');
-    }
-    return `${year}-${month}-${day}`;
-  }
-}
-
 const newsApi = new NewsApi();
+/* 
 const sectionListPromise = newsApi.getSectionList().then(sectionList => {
   console.log(sectionList);
 });
 
-const sectionName = 'business';
+const sectionName = 'business'; */
 
-newsApi
+/* newsApi
   .getNewsListBySectionName(sectionName)
-  .then(newsList =>
-    console.log('News list by section name ', newsList.results)
-  );
+  .then(newsList => console.log('News list by section name ', newsList)); */
 
-newsApi
+/* newsApi
   .articleSearchList('ukraine')
-  .then(data => console.log('Search list by submit', data.response))
+  .then(data => console.log('Search list by submit', data))
   .catch(error => console.log(error.message));
-
+ */
+/* 
 newsApi
   .getMostViewedArticles()
   .then(mostViewedArticles =>
-    console.log('The most viewed articles ', mostViewedArticles.results)
+    console.log('The most viewed articles ', mostViewedArticles)
   );
+ */
