@@ -29,6 +29,7 @@ function changeTheme2() {
     localStorage.removeItem('theme');
   }
 }
+
 // */ Зміна теми перемиканням класу dark-them
 function addDarkClassToHTML() {
   try {
