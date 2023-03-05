@@ -16,8 +16,6 @@ Notiflix.Notify.init({
 // * Імпорт бібліотеки axios
 import axios from 'axios';
 
-
-
 // * імпорт усього вмісту файлів:
 import './JS/header';
 import './JS/switcherTheme'; //виправлена ппомилка в назві
@@ -29,5 +27,3 @@ import './JS/dots';
 import './JS/scrollToUp';
 import './JS/modalTeam';
 import './JS/calendar';
-
-
