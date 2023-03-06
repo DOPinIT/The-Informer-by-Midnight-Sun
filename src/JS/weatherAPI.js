@@ -1,8 +1,4 @@
 const weatherWidget = document.querySelector('.weather');
-
-const API_KEY = 'fccf2d671c66d0d845cceb32d377da4e';
-
-const weatherWidget = document.querySelector('.weather');
 const API_KEY = 'fccf2d671c66d0d845cceb32d377da4e';
 
 const date = new Date();
