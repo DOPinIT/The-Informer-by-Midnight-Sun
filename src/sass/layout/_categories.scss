@@ -49,6 +49,11 @@
   }
 }
 
+.calendar-icon {
+  width: 16px;
+  fill: var(--brand-main);
+}
+
 .select-list__icon {
   transform: rotate(0deg);
   transition: transform var(--transition);
@@ -105,6 +110,7 @@
 }
 
 .calendar {
+  position: relative;
   display: flex;
   align-items: center;
 }
