@@ -1,4 +1,6 @@
 import Pagination from 'tui-pagination';
+// import axios from 'axios';
+import './newsAPI';
 
 const container = document.querySelector('.tui-pagination');
 
@@ -14,7 +16,6 @@ const options = {
     page: '<a href="#" class="tui-page-btn">{{page}}</a>',
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
-
     disabledMoveButton:
       '<span class="btn-hidden tui-page-btn tui-is-disabled tui-{{type}}">' +
       '<span class="tui-ico-{{type}}">{{type}}</span>' +
@@ -31,3 +32,7 @@ const options = {
 };
 
 const pagination = new Pagination(container, options);
+
+// function changePage(URL, pageNumber) {
+//     return axios.get(URL, { params: { page: pageNumber } });
+// }

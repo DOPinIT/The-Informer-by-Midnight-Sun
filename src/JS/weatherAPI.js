@@ -2,6 +2,9 @@ const weatherWidget = document.querySelector('.weather');
 
 const API_KEY = 'fccf2d671c66d0d845cceb32d377da4e';
 
+const weatherWidget = document.querySelector('.weather');
+const API_KEY = 'fccf2d671c66d0d845cceb32d377da4e';
+
 const date = new Date();
 const days = [
   'Sunday',
@@ -39,6 +42,7 @@ function getWeather() {
 }
 
 async function showPosition(pos) {
+  console.log('1');
   const URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&exclude=hourly,daily&appid=${API_KEY}`;
 
   const requestOn = await fetch(`${URL}`);
@@ -46,8 +50,9 @@ async function showPosition(pos) {
 
   if (requestOn.ok) {
     renderWeather(result);
+  } else {
+    console.log(requestOn.message);
   }
-
   console.log(
     'Latitude: ' + pos.coords.latitude + ', Longitude: ' + pos.coords.longitude
   );
