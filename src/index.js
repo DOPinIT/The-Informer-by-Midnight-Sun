@@ -29,3 +29,4 @@ import './JS/modalTeam';
 import './JS/calendar';
 import './JS/weatherAPI';
 import './JS/searchNews';
+import './JS/mostFavorite';

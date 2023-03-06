@@ -5,7 +5,7 @@ import DateTimestamp from './DateTimestamp';
 export function sectionResponseMarkup(responses) {
   const responseMarkup = responses.reduce((acc, response) => {
     const {
-      thumbnail_standard: imageURL,
+      multimedia: imageURL,
       material_type_facet: category,
       title,
       abstract: description,
@@ -16,7 +16,7 @@ export function sectionResponseMarkup(responses) {
     return (
       acc +
       markup(
-        imageURL,
+        imageURL[2].url,
         category,
         title,
         description,
@@ -39,7 +39,7 @@ export function favoriteResponseMarkup(responses) {
       published_date: pubDate,
       url: pubURL,
     } = response;
-    let imgURL = media.length === 0 ? '' : media[0]['media-metadata'][0].url;
+    let imgURL = media.length === 0 ? '' : media[0]['media-metadata'][2].url;
     return (
       acc +
       markup(
@@ -53,7 +53,6 @@ export function favoriteResponseMarkup(responses) {
     );
   }, '');
 
-  console.log(responseMarkup);
   return responseMarkup;
 }
 
@@ -122,13 +121,13 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
           </div>
 
           <!-- Додавання до обраного: -->
-          <button class="plate plate--add-to-favorite">
+          <div class="plate plate--add-to-favorite">
             <span class="plate__text--add-to-favorite">Add to favorite</span>
             <svg class="plate__icon--add-to-favorite">
-              <use class="set-favorite" href="./images/icons.svg#heart-border"></use>
-              
+              <use class="non-favorite" href="./images/icons.svg#heart-border"></use>
+              <use class="in-favorite" href="./images/icons.svg#heart-fill"></use>
             </svg>
-          </button>
+          </div>
           <!--/ position: absolute -->
         </div>
         <!--/ position: relative -->
@@ -148,4 +147,48 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
           </div>
         </div>
       </li>`;
+}
+
+/* рисуем календарь */
+
+function calendarMarkup() {
+  const calendar = `
+   <!-- Погода - Третя дитина на початковому екрані -->
+      <li class="card__item weather">
+        <!-- position: relative -->
+        <div class="weather__forecast-day">
+          <div class="weather__temp-wrapper">
+            <span class="weather__temp">23°</span>
+          </div>
+
+          <div class="weather__forecast-day-wrapper">
+            <div class="weather__sky">Sunny</div>
+            <div class="weather__place">
+              <svg class="weather__place-icon">
+                <use href="./images/icons.svg#place-weather"></use>
+              </svg>
+              <span class="weather__place-text">West Jakarta</span>
+            </div>
+          </div>
+        </div>
+        <!-- * Іконка погоди -->
+        <!-- & Варіант зображення для тегу  div -->
+        <!-- <div class="weather__img"></div> -->
+        <!-- & Варіант зображення для тегу img -->
+        <img src="./images/test-sun-w165.png" alt="sun" class="weather__img" />
+        <!-- */ Іконка погоди -->
+
+        <!-- Нижня частина погоди -->
+        <div class="weather__bottom-wrapper">
+          <div class="weather__wrapper-date">
+            <span class="weather__week-day">Mon</span>
+            <span class="weather__date-today">21 Jan 2021</span>
+          </div>
+          <!-- <div class="weather__forecast-week"> -->
+          <a href="" class="weather__link">Weather for week</a>
+          <!-- </div> -->
+        </div>
+      </li>`;
+
+  return calendar;
 }
