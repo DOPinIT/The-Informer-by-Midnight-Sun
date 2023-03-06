@@ -103,6 +103,14 @@
     @include font(400, 20px, 23px);
   }
 }
+.weather__place {
+  position: relative;
+  padding-left: 30px;
+
+  @media screen and (min-width: $tablet) {
+    padding-left: 42px;
+  }
+}
 
 .weather__link {
   justify-content: center;
@@ -119,6 +127,11 @@
 }
 
 .weather__place-icon {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translate(0, -50%);
+
   width: 18px;
   height: 18px;
   margin-right: 4px;
@@ -130,6 +143,13 @@
     margin-right: 8px;
   }
 }
+
+.weather__place-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 // * Іконка погоди
 // & варіант зображення для тегу div:
 // .weather__img {

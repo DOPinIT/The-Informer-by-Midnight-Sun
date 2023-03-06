@@ -71,7 +71,8 @@ function renderWeather(data) {
 
   const currentDay = days[date.getDay()];
 
-  const template = `<div class="weather__forecast-day">
+  const template = `        
+                <div class="weather__forecast-day">
           <div class="weather__temp-wrapper">
             <span class="weather__temp">${temp}°</span>
           </div>
@@ -90,7 +91,7 @@ function renderWeather(data) {
         <!-- & Варіант зображення для тегу  div -->
         <!-- <div class="weather__img"></div> -->
         <!-- & Варіант зображення для тегу img -->
-        <img src="http://openweathermap.org/img/wn/${weatherIcon}@4x.png" class="weather__img" />
+        <img src="http://openweathermap.org/img/wn/${weatherIcon}@4x.png" alt="weather-icon" class="weather__img" />
         <!-- */ Іконка погоди -->
 
         <!-- Нижня частина погоди -->
@@ -102,7 +103,7 @@ function renderWeather(data) {
           <!-- <div class="weather__forecast-week"> -->
           <a href="" class="weather__link">Weather for week</a>
           <!-- </div> -->
-        </div>`;
+        </div>        `;
 
   return (weatherWidget.innerHTML = template);
 }
