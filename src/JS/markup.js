@@ -122,13 +122,13 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
           </div>
 
           <!-- Додавання до обраного: -->
-          <button class="plate plate--add-to-favorite">
+          <div class="plate plate--add-to-favorite">
             <span class="plate__text--add-to-favorite">Add to favorite</span>
             <svg class="plate__icon--add-to-favorite">
-              <use class="set-favorite" href="./images/icons.svg#heart-border"></use>
-              
+              <use class="non-favorite" href="./images/icons.svg#heart-border"></use>
+              <use class="in-favorite" href="./images/icons.svg#heart-fill"></use>
             </svg>
-          </button>
+          </div>
           <!--/ position: absolute -->
         </div>
         <!--/ position: relative -->
