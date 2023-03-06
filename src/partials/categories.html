@@ -12,37 +12,42 @@
           type="button"
           class="select-list__btn select-list__btn--calendar"
         >
-          Calendar
-          <svg class="select-list__icon">
-            <use href="./images/icons.svg#scroll-down"></use>
+          <svg class="calendar-icon">
+            <use href="./images/icons.svg#calendar"></use>
           </svg>
         </button>
       </div>
-    </div>
-    <div class="calendar-container">
-      <div class="wrapper-calendar">
-        <header>
-          <p class="current-date"></p>
-          <div class="icons">
-            <span id="prev" class="material-symbols-rounded"><</span>
-            <span id="next" class="material-symbols-rounded">></span>
+      <div class="calendar_box calendar_isHidden">
+        <div class="wrapper-calendar">
+          <header>
+            <p class="current-date"></p>
+            <div class="icons">
+              <span>
+                <svg id="prev">
+                  <use href="./images/icons.svg#icon-prev"></use></svg
+              ></span>
+              <span>
+                <svg id="next">
+                  <use href="./images/icons.svg#icon-next"></use>
+                </svg>
+              </span>
+            </div>
+          </header>
+          <div class="calendar-box">
+            <ul class="weeks">
+              <li>Mo</li>
+              <li>Tu</li>
+              <li>We</li>
+              <li>Th</li>
+              <li>Fr</li>
+              <li>Sa</li>
+              <li>Su</li>
+            </ul>
+            <ul class="days"></ul>
           </div>
-        </header>
-        <div class="calendar-box">
-          <ul class="weeks">
-            <li>Mo</li>
-            <li>Tu</li>
-            <li>We</li>
-            <li>Th</li>
-            <li>Fr</li>
-            <li>Sa</li>
-            <li>Su</li>
-          </ul>
-          <ul class="days"></ul>
         </div>
       </div>
     </div>
   </div>
-  
 </section>
 <!-- */ Розмітка кнопок категорій новин і календаря -->
