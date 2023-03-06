@@ -1,6 +1,6 @@
 const daysList = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
-  calendarBtn = document.querySelector('.select-list__btn--calendar'),
+  calendarBtn = document.querySelector('.select-list__btn--text'),
   calendarBox = document.querySelector('.calendar_box'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
@@ -8,7 +8,7 @@ calendarBtn.addEventListener('click', openCalendar);
 
 function openCalendar(e) {
   if (
-    e.target.classList.contains('select-list__btn--calendar') ||
+    e.target.classList.contains('select-list__btn--text') ||
     e.target.classList.contains('calendar-prev') ||
     e.target.classList.contains('calendar-next')
   ) {
@@ -22,7 +22,7 @@ function openCalendar(e) {
 function closeCalendar() {
   window.addEventListener('click', e => {
     if (
-      e.target.classList.contains('select-list__btn--calendar') ||
+      e.target.classList.contains('select-list__btn--text') ||
       e.target.classList.contains('select-list__icon') ||
       e.target.nodeName === 'svg'
     ) {
@@ -90,7 +90,7 @@ renderCalendar();
 prevNextIcon.forEach(icon => {
   icon.addEventListener('click', () => {
     currMonth = icon.id === 'prev' ? currMonth - 1 : currMonth + 1;
-//     console.log(icon.id);
+    //     console.log(icon.id);
     if (currMonth < 0 || currMonth > 11) {
       date = new Date(currYear, currMonth, new Date().getDate());
       currYear = date.getFullYear();
