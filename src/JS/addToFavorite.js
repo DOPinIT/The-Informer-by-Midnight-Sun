@@ -27,7 +27,7 @@ if (placeToFavorite) {
   placeToFavorite.addEventListener('click', toggleToFavorite);
 }
 
-firstDownloading(favoriteArr);
+firstDownloading(favoriteArr); // при оновленні сторінки
 
 function toggleToFavorite(e) {
   // Якщо клік не по add to favorite (іконка, або кнопка), то виходимо
@@ -75,5 +75,4 @@ function toggleToFavorite(e) {
     localStorage.setItem('favorites', JSON.stringify(favoriteArr));
   }
 }
-
 // */ Додавання в обране
