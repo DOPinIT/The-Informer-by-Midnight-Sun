@@ -42,6 +42,11 @@
   }
 }
 
+// Залити кольором іконку add-to-favorite
+.card__item.is-active .set-favorite {
+  fill: var(--brand-main);
+}
+
 .card__img-box {
   position: relative; // для плиток
 }
@@ -122,41 +127,48 @@
 
   background-color: var(--brand-light);
   border-radius: 20px;
+  border: none;
 
-  color: var(--brand-main);
-}
+  // color: var(--brand-main);
 
-.plate__text--add-to-favorite {
   @include font(500, 12px, 16px);
   color: var(--brand-black);
 
   user-select: none;
 }
 
+// .plate__text--add-to-favorite {
+//     @include font(500, 12px, 16px);
+//   color: var(--brand-black);
+
+//   user-select: none;
+// }
+
 .plate__icon--add-to-favorite {
   width: 16px;
   height: 16px;
 
-  & .non-favorite {
-    opacity: 1;
+  & .set-favorite {
+    // opacity: 1;
     stroke: var(--brand-main);
     fill: transparent;
-    transition: opacity var(--transition);
+    // transition: opacity var(--transition);
   }
 
-  & .in-favorite {
-    opacity: 0;
-  }
+  // & .in-favorite {
+  //   opacity: 0;
+  // }
 
-  &.is-favorite .non-favorite {
-    opacity: 0;
-  }
+  // &.is-favorite .set-favorite {
+  //   // opacity: 0;
+  //   fill: var(--brand-main);
+  // }
 
-  &.is-favorite .in-favorite {
-    opacity: 1;
-    fill: currentColor;
-    transition: opacity var(--transition);
-  }
+  // &.is-favorite .in-favorite {
+  //   opacity: 1;
+  //   fill: currentColor;
+  //   transition: opacity var(--transition);
+  // }
 }
 
 // &/ Плитки
