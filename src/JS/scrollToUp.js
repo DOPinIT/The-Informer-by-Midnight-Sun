@@ -1,4 +1,6 @@
 // Scroll //
+import throttle from 'lodash.throttle';
+
 const btnUp = {
   el: document.querySelector('.btn-up'),
   scrolling: false,
@@ -28,21 +30,24 @@ const btnUp = {
   },
   addEventListener() {
     // при прокрутці вікна (window)
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY || document.documentElement.scrollTop;
-      if (this.scrolling && scrollY > 0) {
-        return;
-      }
-      this.scrolling = false;
-      // якщо користувач прокрутив біль чим 200px
-      if (scrollY > 200) {
-        // зробимо .btn-up видною
-        this.show();
-      } else {
-        // в іншому випадку зкриваємо кнопку .btn-up
-        this.hide();
-      }
-    });
+    window.addEventListener(
+      'scroll',
+      throttle(() => {
+        const scrollY = window.scrollY || document.documentElement.scrollTop;
+        if (this.scrolling && scrollY > 0) {
+          return;
+        }
+        this.scrolling = false;
+        // якщо користувач прокрутив біль чим 200px
+        if (scrollY > 200) {
+          // зробимо .btn-up видною
+          this.show();
+        } else {
+          // в іншому випадку зкриваємо кнопку .btn-up
+          this.hide();
+        }
+      }, 300)
+    );
     // при натисканні на кнопку .btn-up
     document.querySelector('.btn-up').onclick = () => {
       this.scrolling = true;
