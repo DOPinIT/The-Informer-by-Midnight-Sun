@@ -95,17 +95,11 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
     newDescription = `${newDescription.slice(0, 112)}...`;
   }
 
-  return `<li class="card__item" data-index="0">
+  return `
+<li class="card__item">
         <!-- position: relative -->
         <div class="card__img-box">
-          <div class="card__img">
-          <img
-          class="card__img"
-          src="${imageURL}"
-          alt=""
-          loading="lazy"
-        />
-          </div>
+          <div class="card__img" style="background-image: url('${imageURL}');"></div>
           
           <!-- position: absolute -->
           <div class="plate plate--category-name">
@@ -121,32 +115,40 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
           </div>
 
           <!-- Додавання до обраного: -->
-          <div class="plate plate--add-to-favorite">
-            <span class="plate__text--add-to-favorite">Add to favorite</span>
+          <button class="plate plate--add-to-favorite">
+            Add to favorite
+            <!-- <span class="plate__text--add-to-favorite">Add to favorite</span> -->
             <svg class="plate__icon--add-to-favorite">
-              <use class="non-favorite" href="./images/icons.svg#heart-border"></use>
-              <use class="in-favorite" href="./images/icons.svg#heart-fill"></use>
+              <use
+                class="set-favorite"
+                href="./images/icons.svg#heart-border"
+              ></use>
+              <!-- <use
+                class="in-favorite"
+                href="./images/icons.svg#heart-fill"
+              ></use> -->
             </svg>
-          </div>
+          </button>
           <!--/ position: absolute -->
         </div>
         <!--/ position: relative -->
 
         <div class="card__info-box">
-          <h2 class="card__title">
-            ${title}
-          </h2>
-          <p class="card__description">
-            ${newDescription}
-          </p>
+          <h2 class="card__title">${title}</h2>
+          <p class="card__description">${newDescription}</p>
           <div class="card__info-box-wrapper">
             <p class="card__date">${pubDate}</p>
 
             <!-- посиланння на новину: -->
-            <a href="${pubURL}" target="_blank" class="card__read-more">Read more</a>
+            <a href="${pubURL}" class="card__read-more" target="_blank" >Read more</a>
           </div>
         </div>
-      </li>`;
+      </li>
+
+
+
+      
+      `;
 }
 
 /* рисуем календарь */
