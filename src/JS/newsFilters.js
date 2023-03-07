@@ -1,6 +1,7 @@
 import NewsApi from "./newsAPI";
 import { sectionResponseMarkup } from './markup';
 import { Spinner } from 'spin.js';
+import { firstDownloading, getFavoriteArr } from './addToFavorite';
 
 const refs = {
   categories: document.querySelector(".categories"),
@@ -11,6 +12,8 @@ const refs = {
   otherBtn: document.getElementById("othersBtn"),
   galleryList: document.querySelector(".card"),
 }
+
+const favoriteArr001 = getFavoriteArr();
 
 const newsApi = new NewsApi();
 
@@ -50,7 +53,7 @@ if (refs.categories) {
 function renderCatehoriesList() {
   newsApi.getSectionList().then(ElAll => {
     // const ElAll = data.results.map(section => section.display_name)
-    let widthScreen = screen.width;
+    let widthScreen = window.innerWidth;
     if (widthScreen > 1279) {
       const ElForCategoriesList = ElAll.slice(0, 6)
       refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
@@ -161,6 +164,7 @@ function renderGaleriList(cetegorie) {
       setTimeout(() => {
         refs.galleryList.classList.remove('isActivSpiner');
         refs.galleryList.innerHTML = sectionResponseMarkup(response);
+        firstDownloading(favoriteArr001);
       }, 400)
 
       // refs.galleryList.innerHTML = sectionResponseMarkup(response);
