@@ -41,28 +41,28 @@
     @include font(400, 14px, 21px, 0.02em);
   }
 
-  &:hover,
-  &:focus {
-    background-color: var(--brand-main);
-    color: var(--brand-light);
-    fill: var(--brand-light);
-  }
+  // &:hover,
+  // &:focus {
+  //   background-color: var(--brand-main);
+  //   color: var(--brand-light);
+  //   fill: var(--brand-light);
+  // }
 
-  &:hover .calendar-icon,
-  &:focus .calendar-icon {
-    fill: var(--brand-light);
-  }
-  // &:hover .select-list__icon,
-  &:focus .select-list__icon--calendar {
-    transform: rotate(180deg);
-    transform-origin: center center;
-    color: var(--brand-light);
-  }
+  // &:hover .calendar-icon,
+  // &:focus .calendar-icon {
+  //   fill: var(--brand-light);
+  // }
+  // // &:hover .select-list__icon,
+  // &:focus .select-list__icon--calendar {
+  //   transform: rotate(180deg);
+  //   transform-origin: center center;
+  //   color: var(--brand-light);
+  // }
 
-  &:focus .select-list__icon--calendar,
-  &:hover .select-list__icon--calendar {
-    fill: var(--brand-light);
-  }
+  // &:focus .select-list__icon--calendar,
+  // &:hover .select-list__icon--calendar {
+  //   fill: var(--brand-light);
+  // }
 }
 
 .calendar-icon {
@@ -169,11 +169,6 @@
       color: var(--brand-light);
       fill: var(--brand-light);
     }
-  }
-
-  &:hover {
-  }
-  &:focus {
   }
 }
 
