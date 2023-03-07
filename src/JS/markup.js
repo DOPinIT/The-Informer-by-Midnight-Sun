@@ -40,8 +40,7 @@ export function favoriteResponseMarkup(responses) {
       url: pubURL,
     } = response;
     let imgURL = media.length === 0 ? '' : media[0]['media-metadata'][2].url;
-    return (
-      acc +
+    acc.push(
       markup(
         imgURL,
         category,
@@ -51,9 +50,21 @@ export function favoriteResponseMarkup(responses) {
         pubURL
       )
     );
-  }, '');
+    return acc;
+  }, []);
 
-  return responseMarkup;
+  const weather = '<li class="card__item weather"></li>';
+  const screenWidth = screen.width;
+
+  if (screenWidth >= 1280) {
+    responseMarkup.splice(2, 0, weather);
+  } else if (screenWidth >= 768 && screenWidth < 1280) {
+    responseMarkup.splice(1, 0, weather);
+  } else if (screenWidth < 768) {
+    responseMarkup.splice(0, 0, weather);
+  }
+
+  return responseMarkup.join('');
 }
 
 /* обработка запроса по поиску */
@@ -140,7 +151,7 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
             <p class="card__date">${pubDate}</p>
 
             <!-- посиланння на новину: -->
-            <a href="${pubURL}" class="card__read-more" >Read more</a>
+            <a href="${pubURL}" class="card__read-more" target="_blank">Read more</a>
           </div>
         </div>
       </li>
