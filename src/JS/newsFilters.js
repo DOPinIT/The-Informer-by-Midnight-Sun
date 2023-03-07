@@ -1,137 +1,185 @@
-export default getFilteredNews;
-import axios from 'axios';
-import NewsApi from './newsAPI';
+import NewsApi from "./newsAPI";
 import { sectionResponseMarkup } from './markup';
-
-const gallery = document.querySelector('.card');
+import { Spinner } from 'spin.js';
 
 const refs = {
-  categories: document.querySelector('.categories'),
-  categoriesList: document.querySelector('.categories__list'),
-  othersBox: document.querySelector('.categories__box'),
-  iconBtnBlue: document.querySelector('.btn__icon-blue'),
-  iconBtnWhite: document.querySelector('.btn__icon-white'),
-  otherBtn: document.getElementById('othersBtn'),
+  categories: document.querySelector(".categories"),
+  categoriesList: document.querySelector(".categories__list"),
+  othersBox: document.querySelector(".categories__box"),
+  iconBtnBlue: document.querySelector(".btn__icon-blue"),
+  iconBtnWhite: document.querySelector(".btn__icon-white"),
+  otherBtn: document.getElementById("othersBtn"),
+  galleryList: document.querySelector(".card"),
+}
+
+const newsApi = new NewsApi();
+
+const target = document.getElementById('foo');
+
+const opts = {
+  lines: 10, // The number of lines to draw
+  length: 49, // The length of each line
+  width: 17, // The line thickness
+  radius: 45, // The radius of the inner circle
+  scale: 1, // Scales overall size of the spinner
+  corners: 1, // Corner roundness (0..1)
+  speed: 1, // Rounds per second
+  rotate: 0, // The rotation offset
+  animation: 'spinner-line-fade-more', // The CSS animation name for the lines
+  direction: 1, // 1: clockwise, -1: counterclockwise
+  color: '#4b48db', // CSS color or array of colors
+  fadeColor: 'transparent', // CSS color or array of colors
+  top: '50%', // Top position relative to parent
+  left: '50%', // Left position relative to parent
+  shadow: '0 0 1px transparent', // Box-shadow for the lines
+  zIndex: 2000000000, // The z-index (defaults to 2e9)
+  className: 'spinner', // The CSS class to assign to the spinner
+  position: 'absolute', // Element positioning
 };
 
-let widthScreen = screen.width;
 
 if (refs.categories) {
-  getFilteredNews();
+  renderCatehoriesList();
 
-  getSectionList().then(data => {
-    const ElAll = data.results.map(section => section.display_name);
+  rendersGalleryBySelectedCategory()
+}
 
+
+
+//  //  //Рендерить розмітку для категорій.
+function renderCatehoriesList() {
+  newsApi.getSectionList().then(ElAll => {
+    // const ElAll = data.results.map(section => section.display_name)
+    let widthScreen = screen.width;
     if (widthScreen > 1279) {
-      const ElForCategoriesList = ElAll.slice(0, 6);
-      refs.categoriesList.innerHTML =
-        createElForCategoriesList(ElForCategoriesList);
+      const ElForCategoriesList = ElAll.slice(0, 6)
+      refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
 
-      const ElForOthersBox = ElAll.slice(6, ElAll.length);
-      refs.othersBox.firstElementChild.innerHTML =
-        createElForOthersBox(ElForOthersBox);
-      return;
+      const ElForOthersBox = ElAll.slice(6, ElAll.length)
+      refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
+      return
     }
 
     if (widthScreen > 767 && widthScreen < 1280) {
-      const ElForCategoriesList = ElAll.slice(0, 4);
-      refs.categoriesList.innerHTML =
-        createElForCategoriesList(ElForCategoriesList);
+      const ElForCategoriesList = ElAll.slice(0, 4)
+      refs.categoriesList.innerHTML = createElForCategoriesList(ElForCategoriesList);
 
-      const ElForOthersBox = ElAll.slice(4, ElAll.length);
-      refs.othersBox.firstElementChild.innerHTML =
-        createElForOthersBox(ElForOthersBox);
-      return;
+      const ElForOthersBox = ElAll.slice(4, ElAll.length)
+      refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElForOthersBox);
+      return
     }
 
     refs.othersBox.firstElementChild.innerHTML = createElForOthersBox(ElAll);
-  });
+
+  })
 }
 
+//  //  //Створює елементи для головного списку. 
 function createElForCategoriesList(arr) {
-  let markup = '';
+  let markup = "";
   arr.forEach(elem => {
-    markup =
-      markup +
-      `<li class="categories__item"><button class="categories__btn">${elem}</button></li>`;
-  });
-  return markup;
+    markup = markup + `<li class="categories__item"><button class="categories__btn">${elem}</button></li>`;
+  })
+  return markup
 }
 
+//  //  //Створює елементи для боксу. 
 function createElForOthersBox(arr) {
-  let markup = '';
+  let markup = "";
   arr.forEach(elem => {
-    markup =
-      markup +
-      `<li class="categories__item"><button class="categories__othrs-btn">${elem}</button></li>`;
-  });
-  return markup;
+    markup = markup + `<li class="categories__item"><button class="categories__othrs-btn">${elem}</button></li>`;
+  })
+  return markup
 }
 
-function getFilteredNews() {
-  refs.categories.addEventListener('click', e => {
-    // console.dir(e.target);
-    if (e.target.nodeName === 'BUTTON') {
-      if (e.target.outerText === 'Others') {
-        refs.othersBox.firstElementChild.classList.toggle('isHidden');
-        refs.otherBtn.classList.toggle('is-active');
-        setTimeout(() => {
-          closeOthersBox();
-        }, 0);
-        closeOthersBox();
-        return;
+//  //  //Рендер галереї по вибраній категорії. 
+function rendersGalleryBySelectedCategory() {
+  refs.categories.addEventListener('click', (e) => {
+    if (e.target.nodeName === "BUTTON") {
+      if (e.target.outerText === "Others") {
+        openOthersBox()
+        setTimeout(() => { closeOthersBox() }, 0)
+        return
       }
 
-      removeTadIsActiv();
+      removeTadIsActiv()
 
       e.target.classList.toggle('is-active');
-
-      console.log(e.target.textContent);
-      const newsApi = new NewsApi();
-      newsApi
-        .getNewsListBySectionName(e.target.textContent)
-        .then(response => {
-          if (response === null) {
-            throw new Error();
-          }
-          gallery.innerHTML = sectionResponseMarkup(response);
-        })
-        .catch(() => {
-          gallery.innerHTML = '';
-        });
+      console.log(e.target.textContent)
+      renderGaleriList(e.target.textContent)
     }
-  });
+  })
 }
 
+//  //  //Відкриває бокс з додатковими категоріями. 
+function openOthersBox() {
+  refs.othersBox.classList.toggle('isHidden');
+  refs.otherBtn.classList.toggle('is-active');
+}
+
+//  //  //Зкариває бокс з додатковими категоріями по кліку. 
 function closeOthersBox() {
-  window.addEventListener(
-    'click',
-    e => {
-      if (e.target.outerText !== 'Others') {
-        // console.log("qweqwe");
-        refs.otherBtn.classList.remove('is-active');
-        refs.othersBox.firstElementChild.classList.add('isHidden');
-      }
-    },
-    { once: true }
-  );
+  window.addEventListener('click', (e) => {
+    if (e.target.outerText !== "Others") {
+      refs.otherBtn.classList.remove('is-active');
+      refs.othersBox.classList.add('isHidden');
+    }
+  }, { once: true })
 }
 
+//  //  //Шукає і видаляє активну категорію. 
 function removeTadIsActiv() {
-  document.querySelectorAll('.categories__btn').forEach(button => {
+  document.querySelectorAll(".categories__btn").forEach(button => {
     button.classList.remove('is-active');
   });
-  document.querySelectorAll('.categories__othrs-btn').forEach(button => {
+  document.querySelectorAll(".categories__othrs-btn").forEach(button => {
     button.classList.remove('is-active');
-  });
+  })
 }
 
-function getSectionList() {
-  const API_KEY = 'f4MnGfOgcSDDONkk5En7THEIhywC71B5';
+function renderGaleriList(cetegorie) {
+  newsApi
+    .getNewsListBySectionName(cetegorie)
+    .then(response => {
+      if (response === null) {
+        refs.galleryList.innerHTML = '';
+        refs.galleryList.classList.add('isActivSpiner');
+        new Spinner(opts).spin(refs.galleryList);
+        setTimeout(() => {
+          refs.galleryList.classList.remove('isActivSpiner');
+          refs.galleryList.innerHTML = markupError();
+        }, 800)
 
-  const URL = `https://api.nytimes.com/svc/news/v3/content/section-list.json?api-key=${API_KEY}`;
 
-  return axios(URL)
-    .then(({ data }) => data)
-    .catch(console.log);
+        // refs.galleryList.innerHTML = markupError();
+        return
+      }
+      console.log(sectionResponseMarkup(response))
+      refs.galleryList.innerHTML = sectionResponseMarkup(response);
+    })
+    .catch(() => {
+      refs.galleryList.innerHTML = '';
+    });
 }
+
+function markupError() {
+  return `<div class="sectionError">
+    <h1 class="sectionError__title">We haven’t found news from this category</h1>
+    <div class="sectionError__img"></div>
+  </div>`
+}
+
+
+
+// newsApi.getNewsListBySectionName(sectionName)
+//     .then(newsList => {
+//         console.log(newsList);
+//         if (newsList === null) {
+//             throw new Error();
+//         }
+//         const sectionMarkup = sectionResponseMarkup(newsList);
+//         console.log(sectionMarkup);
+//         console.log(gallery);
+//         gallery.insertAdjacentHTML('beforeend', sectionMarkup);
+//     })
+//     .catch(error => error.message);
