@@ -19,11 +19,8 @@ calendarBtn.addEventListener('click', openCalendar);
 function openCalendar(e) {
   if (
     e.target.classList.contains('select-list__btn--calendar') ||
-    e.target.classList.contains('calendar-prev') ||
-    e.target.classList.contains('calendar-next') ||
     e.target.classList.contains('calendar-icon') ||
     e.target.classList.contains('select-list__btn--text') ||
-    e.target.classList.contains('select-list__icon--calendar') ||
     e.target.classList.contains('select-list__icon--calendar') ||
     e.target.nodeName === 'use'
   ) {
@@ -43,7 +40,6 @@ function closeCalendar() {
       e.target.nodeName === 'svg' ||
       e.target.classList.contains('calendar-icon') ||
       e.target.classList.contains('select-list__btn--text') ||
-      e.target.classList.contains('select-list__icon--calendar') ||
       e.target.classList.contains('select-list__icon--calendar') ||
       e.target.nodeName === 'use'
     ) {
