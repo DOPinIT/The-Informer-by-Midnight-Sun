@@ -18,6 +18,8 @@
 
     color: #111321;
 
+
+
     @media screen and (min-width: $tablet) {
         width: 548px;
         font-size: 40px;
@@ -26,7 +28,9 @@
 }
 
 
-
+body.dark-theme .sectionError__title {
+    color: #f4f4f4;
+}
 
 .sectionError__img {
     background-image: url('../images/imageNoCategories.png');
