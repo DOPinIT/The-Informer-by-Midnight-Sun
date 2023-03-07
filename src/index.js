@@ -1,5 +1,5 @@
 import themeSwitcher from './JS/switcherTheme.js';
-import getFilteredNews from './JS/newsFilters.js';
+// import getFilteredNews from './JS/newsFilters.js';
 
 import { Pagination } from 'tui-pagination';
 
@@ -23,7 +23,7 @@ import './JS/mobileMenu';
 import './JS/addToFavorite';
 import './JS/pagination';
 import './JS/dots';
-import './JS/scrollToUp';
+// import './JS/scrollToUp';
 import './JS/modalTeam';
 import './JS/calendar';
 import './JS/weatherAPI';

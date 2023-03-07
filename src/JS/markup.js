@@ -140,7 +140,7 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
             <p class="card__date">${pubDate}</p>
 
             <!-- посиланння на новину: -->
-            <a href="${pubURL}" class="card__read-more" >Read more</a>
+            <a href="${pubURL}" class="card__read-more" target="_blank" >Read more</a>
           </div>
         </div>
       </li>
