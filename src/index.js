@@ -29,3 +29,6 @@ import './JS/modalTeam';
 import './JS/calendar';
 import './JS/weatherAPI';
 import './JS/searchNews';
+import './JS/readDate';
+import './JS/saveToRead';
+
