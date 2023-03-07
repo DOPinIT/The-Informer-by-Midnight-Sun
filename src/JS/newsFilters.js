@@ -105,7 +105,7 @@ function rendersGalleryBySelectedCategory() {
       removeTadIsActiv()
 
       e.target.classList.toggle('is-active');
-      console.log(e.target.textContent)
+      // console.log(e.target.textContent)
       renderGaleriList(e.target.textContent)
     }
   })
@@ -154,8 +154,16 @@ function renderGaleriList(cetegorie) {
         // refs.galleryList.innerHTML = markupError();
         return
       }
-      console.log(sectionResponseMarkup(response))
-      refs.galleryList.innerHTML = sectionResponseMarkup(response);
+      // console.log(sectionResponseMarkup(response))
+      refs.galleryList.innerHTML = '';
+      refs.galleryList.classList.add('isActivSpiner');
+      new Spinner(opts).spin(refs.galleryList);
+      setTimeout(() => {
+        refs.galleryList.classList.remove('isActivSpiner');
+        refs.galleryList.innerHTML = sectionResponseMarkup(response);
+      }, 400)
+
+      // refs.galleryList.innerHTML = sectionResponseMarkup(response);
     })
     .catch(() => {
       refs.galleryList.innerHTML = '';
