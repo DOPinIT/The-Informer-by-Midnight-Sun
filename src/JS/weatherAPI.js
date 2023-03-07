@@ -30,7 +30,7 @@ const day = ('0' + date.getDate()).slice(-2);
 const month = months[date.getMonth()];
 const currentDate = `${day} ${month} ${year}`;
 
-function getWeather() {
+export default function getWeather() {
   console.log(navigator.geolocation);
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showDonetsk);
@@ -109,6 +109,7 @@ function renderWeather(data) {
           <!-- </div> -->
         </div>        `;
 
+  document.querySelector('.weather').innerHTML = template;
   return (weatherWidget.innerHTML = template);
 }
 
