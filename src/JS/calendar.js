@@ -5,6 +5,15 @@ const daysList = document.querySelector('.days'),
   calendarBox = document.querySelector('.calendar_box'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
+// console.log(window.location.pathname);
+
+if (
+  window.location.pathname.includes('/favorite.html') ||
+  window.location.pathname.includes('/read.html')
+) {
+  return;
+}
+
 calendarBtn.addEventListener('click', openCalendar);
 
 function openCalendar(e) {
