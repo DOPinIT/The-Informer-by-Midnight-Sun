@@ -57,10 +57,12 @@
     gap: 24px;
   }
   @media screen and (min-width: $tablet) {
+    margin-left: 48px;
     width: 238px;
   }
 
   @media screen and (min-width: $desktop) {
+    margin-left: 102px;
     width: 305px;
   }
 }
@@ -122,15 +124,17 @@
 .menu__item.on-mouse-enter .menu__icon-box-scroll {
   @media screen and (max-width: ($tablet - 1px)) {
     display: block;
+    margin-left: auto;
   }
 }
 
 .menu__link {
-  margin-left: 14px;
+  // margin-left: 14px;
   @include font(500, 16, 22);
 
   @media screen and (min-width: $tablet) {
     position: relative;
+    margin-left: 0;
     padding-bottom: 8px;
 
     @include font(700, 16, 22);
@@ -170,6 +174,12 @@
   }
 }
 
+.menu__link--mobile {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 // Постійне підкреслювання під назвою і заміна кольору:
 .menu__link--current {
   @media screen and (min-width: $tablet) {
@@ -178,6 +188,10 @@
       transform: scale(1);
     }
   }
+}
+
+.menu__text {
+  margin-left: 14px;
 }
 
 .menu__icon-box {
@@ -196,8 +210,8 @@
 }
 
 .menu__icon {
-  top: 0;
-  left: 0;
+  // top: 0;
+  // left: 0;
   width: 18px;
   height: 18px;
   fill: var(--brand-main);

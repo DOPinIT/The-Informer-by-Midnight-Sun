@@ -17,7 +17,6 @@
     <link rel="stylesheet" href="./sass/index.scss" />
 
     <!-- favicon -->
-
     <link
       rel="icon"
       type="image/png"
@@ -32,7 +31,7 @@
     />
   </head>
 
-  <body>
+  <body class="favorite">
     <!-- ❗️❗️❗️ Add partials like so for every page -->
     <header id="the-top">
       <include src="./partials/header.html"></include>
@@ -40,7 +39,9 @@
 
     <main>
       <!-- * Галерея карток -->
-      <div class="gallery"></div>
+      <div class="container container--gallery">
+        <ul class="gallery card"></ul>
+      </div>
       <!-- */ Галерея карток -->
       <include src="./partials/pagiination.html"></include>
       <!-- */ Скрол -->

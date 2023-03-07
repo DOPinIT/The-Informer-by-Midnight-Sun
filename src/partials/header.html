@@ -25,52 +25,62 @@
             <ul class="menu">
               <!-- Навігація: через JS додаю клас menu__link--current на активному посиланні -->
               <li class="menu__item">
-                <div class="menu__item-wrapper">
-                  <div class="menu__icon-box">
+                <a
+                  href="./"
+                  class="menu__link menu__link--current menu__link--mobile"
+                >
+                  <div class="menu__item-wrapper">
+                    <div class="menu__icon-box">
+                      <svg class="menu__icon">
+                        <use href="./images/icons.svg#pg-home-cut"></use>
+                      </svg>
+                    </div>
+                    <!-- <a href="./" class="menu__link menu__link--current">Home</a> -->
+                  </div>
+                  <span class="menu__text">Home</span>
+
+                  <div class="menu__icon-box-scroll">
                     <svg class="menu__icon">
-                      <use href="./images/icons.svg#pg-home-cut"></use>
+                      <use href="./images/icons.svg#scroll-down"></use>
                     </svg>
                   </div>
-                  <a href="./" class="menu__link menu__link--current">Home</a>
-                </div>
-
-                <div class="menu__icon-box-scroll">
-                  <svg class="menu__icon">
-                    <use href="./images/icons.svg#scroll-down"></use>
-                  </svg>
-                </div>
+                </a>
               </li>
 
               <li class="menu__item">
-                <div class="menu__item-wrapper">
-                  <div class="menu__icon-box">
+                <a href="./favorite.html" class="menu__link menu__link--mobile">
+                  <div class="menu__item-wrapper">
+                    <div class="menu__icon-box">
+                      <svg class="menu__icon">
+                        <use href="./images/icons.svg#pg-favorite-cut"></use>
+                      </svg>
+                    </div>
+                    <span class="menu__text">Favorite</span>
+                  </div>
+                  <div class="menu__icon-box-scroll">
                     <svg class="menu__icon">
-                      <use href="./images/icons.svg#pg-favorite-cut"></use>
+                      <use href="./images/icons.svg#scroll-down"></use>
                     </svg>
                   </div>
-                  <a href="./favorite.html" class="menu__link">Favorite</a>
-                </div>
-                <div class="menu__icon-box-scroll">
-                  <svg class="menu__icon">
-                    <use href="./images/icons.svg#scroll-down"></use>
-                  </svg>
-                </div>
+                </a>
               </li>
 
               <li class="menu__item">
-                <div class="menu__item-wrapper">
-                  <div class="menu__icon-box">
+                <a href="./read.html" class="menu__link menu__link--mobile">
+                  <div class="menu__item-wrapper">
+                    <div class="menu__icon-box">
+                      <svg class="menu__icon">
+                        <use href="./images/icons.svg#pg-read-cut"></use>
+                      </svg>
+                    </div>
+                    <span class="menu__text">Read</span>
+                  </div>
+                  <div class="menu__icon-box-scroll">
                     <svg class="menu__icon">
-                      <use href="./images/icons.svg#pg-read-cut"></use>
+                      <use href="./images/icons.svg#scroll-down"></use>
                     </svg>
                   </div>
-                  <a href="./read.html" class="menu__link">Read</a>
-                </div>
-                <div class="menu__icon-box-scroll">
-                  <svg class="menu__icon">
-                    <use href="./images/icons.svg#scroll-down"></use>
-                  </svg>
-                </div>
+                </a>
               </li>
             </ul>
           </nav>

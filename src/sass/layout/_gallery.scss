@@ -47,12 +47,16 @@
   fill: var(--brand-main);
 }
 
+.card__item.is-active .plate__icon--add-to-favorite {
+  background-image: url('../images/add-to-favorite-fill.svg');
+}
+
 .card__img-box {
   position: relative; // для плиток
 }
 
 .card__img {
-  background-image: url('../images/test-image-w395.png');
+  // background-image: url('../images/test-image-w395.png');
   background-size: cover;
   background-position: center center;
   object-fit: cover;
@@ -112,6 +116,7 @@
   height: 18px;
   margin-left: 4px;
   fill: currentColor;
+  background-image: url(../images/already-read.svg);
 }
 
 .plate--add-to-favorite {
@@ -148,10 +153,14 @@
   width: 16px;
   height: 16px;
 
+  background-image: url('../images/add-to-favorite-stroke.svg');
+
   & .set-favorite {
     // opacity: 1;
     stroke: var(--brand-main);
     fill: transparent;
+
+    // background-image: url('../images/add-to-favorite-fill.svg');
     // transition: opacity var(--transition);
   }
 
@@ -169,6 +178,13 @@
   //   fill: currentColor;
   //   transition: opacity var(--transition);
   // }
+  &.non-favorite {
+    background-image: url(../images/add-to-favorite-stroke.svg);
+  }
+
+  &.on-favorite {
+    background-image: url(../images/add-to-favorite-fill.svg);
+  }
 }
 
 // &/ Плитки
