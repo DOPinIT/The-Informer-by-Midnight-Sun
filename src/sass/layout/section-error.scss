@@ -1,0 +1,49 @@
+.sectionError {
+    margin: auto;
+}
+
+.sectionError__title {
+    width: 276px;
+    margin-bottom: 40px;
+
+    text-align: center;
+
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    text-align: center;
+    letter-spacing: -0.01em;
+
+    color: #111321;
+
+    @media screen and (min-width: $tablet) {
+        width: 548px;
+        font-size: 40px;
+        line-height: 55px;
+    }
+}
+
+
+
+
+.sectionError__img {
+    background-image: url('../images/imageNoCategories.png');
+    background-size: cover;
+    background-position: center center;
+
+    height: 198px;
+    width: 248px;
+    margin: auto;
+
+    @media screen and (min-width: $tablet) {
+        height: 444px;
+        width: 560px;
+    }
+
+    @media screen and (min-width: $desktop) {
+        height: 478px;
+        width: 601px;
+    }
+}

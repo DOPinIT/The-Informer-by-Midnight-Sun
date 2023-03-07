@@ -1,6 +1,10 @@
 const daysList = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   calendarBtn = document.querySelector('.select-list__btn--calendar'),
+<<<<<<< Updated upstream
+  calendarBtnText = document.querySelector('.select-list__btn--text'),
+=======
+>>>>>>> Stashed changes
   calendarBox = document.querySelector('.calendar_box'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
@@ -10,9 +14,19 @@ function openCalendar(e) {
   if (
     e.target.classList.contains('select-list__btn--calendar') ||
     e.target.classList.contains('calendar-prev') ||
-    e.target.classList.contains('calendar-next')
+    e.target.classList.contains('calendar-next') ||
+    e.target.classList.contains('calendar-icon') ||
+    e.target.classList.contains('select-list__btn--text') ||
+    e.target.classList.contains('select-list__icon--calendar') ||
+    e.target.classList.contains('select-list__icon--calendar') ||
+    e.target.nodeName === 'use'
   ) {
     calendarBox.classList.toggle('calendar_isHidden');
+<<<<<<< Updated upstream
+    calendarBtn.classList.toggle('is-open');
+=======
+    // calendarBtn.classList.toggle('is-active');
+>>>>>>> Stashed changes
     closeCalendar();
   }
 
@@ -24,11 +38,17 @@ function closeCalendar() {
     if (
       e.target.classList.contains('select-list__btn--calendar') ||
       e.target.classList.contains('select-list__icon') ||
-      e.target.nodeName === 'svg'
+      e.target.nodeName === 'svg' ||
+      e.target.classList.contains('calendar-icon') ||
+      e.target.classList.contains('select-list__btn--text') ||
+      e.target.classList.contains('select-list__icon--calendar') ||
+      e.target.classList.contains('select-list__icon--calendar') ||
+      e.target.nodeName === 'use'
     ) {
       return;
     }
     calendarBox.classList.add('calendar_isHidden');
+    calendarBtn.classList.remove('is-open');
   });
 }
 
@@ -37,7 +57,7 @@ let date = new Date(),
   currMonth = date.getMonth();
 
 // отримуємо сьогоднішню дату яка відображається в кнопці
-calendarBtn.textContent = date
+calendarBtnText.textContent = date
   .toLocaleString()
   .split(',')[0]
   .replace(/\./g, '/');
@@ -90,7 +110,6 @@ renderCalendar();
 prevNextIcon.forEach(icon => {
   icon.addEventListener('click', () => {
     currMonth = icon.id === 'prev' ? currMonth - 1 : currMonth + 1;
-//     console.log(icon.id);
     if (currMonth < 0 || currMonth > 11) {
       date = new Date(currYear, currMonth, new Date().getDate());
       currYear = date.getFullYear();
@@ -131,5 +150,5 @@ daysList.addEventListener('click', e => {
     .toLocaleString()
     .split(',')[0]
     .replace(/\./g, '/');
-  calendarBtn.textContent = dayString;
+  calendarBtnText.textContent = dayString;
 });

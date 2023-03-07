@@ -60,7 +60,7 @@ export default class NewsApi {
 
   async getNewsListBySectionName(sectionName) {
     return await fetch(
-      `${SECTION_SEARCH_URL}${sectionName}.json?api-key=${KEY}`
+      `${SECTION_SEARCH_URL}${sectionName.toLowerCase()}.json?api-key=${KEY}`
     )
       .then(response => {
         if (!response.ok) {

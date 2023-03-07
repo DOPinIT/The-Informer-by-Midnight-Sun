@@ -6,6 +6,7 @@
 
 // // & Кнопка розкриття Calendar
 .select-list {
+  // position: relative;
   @media screen and (min-width: $tablet) {
     margin-left: 14px;
   }
@@ -18,7 +19,7 @@
 .select-list__btn {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 
   cursor: pointer;
 
@@ -27,30 +28,51 @@
 
   width: 112px;
   height: 30px;
-  padding: 7px 13px;
+  padding: 6px 12px;
 
   background-color: var(--brand-light);
   border: 1px solid var(--brand-main);
   border-radius: 20px;
 
   color: var(--main-transparent-color);
-  @include font(400, 12px, 16px);
+  @include font(400, 12px, 21px, 0.02em);
 
-  &:hover,
-  &:focus {
-    background-color: var(--brand-main);
-    color: var(--brand-light);
-    fill: var(--brand-light);
+  @media screen and (min-width: $tablet) {
+    @include font(400, 14px, 21px, 0.02em);
   }
 
-  // &:hover .select-list__icon,
-  &:focus .select-list__icon {
-    transform: rotate(180deg);
-  }
+  // &:hover,
+  // &:focus {
+  //   background-color: var(--brand-main);
+  //   color: var(--brand-light);
+  //   fill: var(--brand-light);
+  // }
+
+  // &:hover .calendar-icon,
+  // &:focus .calendar-icon {
+  //   fill: var(--brand-light);
+  // }
+  // // &:hover .select-list__icon,
+  // &:focus .select-list__icon--calendar {
+  //   transform: rotate(180deg);
+  //   transform-origin: center center;
+  //   color: var(--brand-light);
+  // }
+
+  // &:focus .select-list__icon--calendar,
+  // &:hover .select-list__icon--calendar {
+  //   fill: var(--brand-light);
+  // }
 }
 
 .calendar-icon {
-  width: 16px;
+  // position: absolute;
+  // left: 12px;
+  // top: 50%;
+  // transform: translate(0, -50%);
+
+  width: 20px;
+  height: 20px;
   fill: var(--brand-main);
 }
 
@@ -59,9 +81,24 @@
   transition: transform var(--transition);
   fill: currentColor;
 
-  margin-left: 10px;
+  // margin-left: 10px;
   width: 14px;
   height: 14px;
+}
+
+.select-list__icon--categories {
+  margin-left: 10px;
+}
+
+.select-list__icon--calendar {
+  // position: absolute;
+  // right: 12px;
+  // top: 50%;
+  // transform: translate(0, -50%);
+
+  width: 15px;
+  height: 15px;
+  fill: var(--calendar-icon);
 }
 
 // &/ Кнопка розкриття Categories/Others та Calendar
@@ -106,7 +143,33 @@
 
 // & Кнопка календаря
 .select-list__btn--calendar {
-  border: 1px solid var(--brand-black);
+  border: 1px solid var(--theme-text-color);
+  color: var(--read-cover-color);
+  background-color: transparent;
+
+  width: 152px;
+  height: 31px;
+
+  @media screen and (min-width: $tablet) {
+    width: 168px;
+  }
+
+  &.is-open {
+    background-color: var(--brand-main);
+    color: var(--brand-light);
+    fill: var(--brand-light);
+
+    & .calendar-icon {
+      fill: var(--brand-light);
+    }
+
+    & .select-list__icon--calendar {
+      transform: rotate(180deg);
+      transform-origin: center center;
+      color: var(--brand-light);
+      fill: var(--brand-light);
+    }
+  }
 }
 
 .calendar {

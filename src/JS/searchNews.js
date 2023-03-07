@@ -1,4 +1,4 @@
-import NewsApi from './newsApi.js';
+import NewsApi from './newsAPI.js';
 import {
   sectionResponseMarkup,
   favoriteResponseMarkup,
