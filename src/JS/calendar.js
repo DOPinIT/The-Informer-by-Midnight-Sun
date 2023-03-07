@@ -1,10 +1,7 @@
 const daysList = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
   calendarBtn = document.querySelector('.select-list__btn--calendar'),
-<<<<<<< Updated upstream
   calendarBtnText = document.querySelector('.select-list__btn--text'),
-=======
->>>>>>> Stashed changes
   calendarBox = document.querySelector('.calendar_box'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
@@ -22,11 +19,7 @@ function openCalendar(e) {
     e.target.nodeName === 'use'
   ) {
     calendarBox.classList.toggle('calendar_isHidden');
-<<<<<<< Updated upstream
     calendarBtn.classList.toggle('is-open');
-=======
-    // calendarBtn.classList.toggle('is-active');
->>>>>>> Stashed changes
     closeCalendar();
   }
 
