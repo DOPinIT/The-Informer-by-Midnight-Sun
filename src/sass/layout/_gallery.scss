@@ -52,7 +52,7 @@
 }
 
 .card__img {
-  background-image: url('../images/test-image-w395.png');
+  // background-image: url('../images/test-image-w395.png');
   background-size: cover;
   background-position: center center;
   object-fit: cover;
@@ -112,6 +112,7 @@
   height: 18px;
   margin-left: 4px;
   fill: currentColor;
+  background-image: url(../images/already-read.svg);
 }
 
 .plate--add-to-favorite {
@@ -169,6 +170,10 @@
   //   fill: currentColor;
   //   transition: opacity var(--transition);
   // }
+
+  &.on-favorite {
+    background-image: url(../images/add-to-favorite-fill.svg);
+  }
 }
 
 // &/ Плитки
