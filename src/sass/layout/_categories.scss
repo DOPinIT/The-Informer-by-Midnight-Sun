@@ -153,6 +153,24 @@
   @media screen and (min-width: $tablet) {
     width: 168px;
   }
+
+  &.is-open {
+    background-color: var(--brand-main);
+    color: var(--brand-light);
+    fill: var(--brand-light);
+
+    & .calendar-icon {
+      fill: var(--brand-light);
+    }
+
+    & .select-list__icon--calendar {
+      transform: rotate(180deg);
+      transform-origin: center center;
+      color: var(--brand-light);
+      fill: var(--brand-light);
+    }
+  }
+
   &:hover {
   }
   &:focus {

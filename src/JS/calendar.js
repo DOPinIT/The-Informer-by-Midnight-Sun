@@ -1,6 +1,7 @@
 const daysList = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
-  calendarBtn = document.querySelector('.select-list__btn--text'),
+  calendarBtn = document.querySelector('.select-list__btn--calendar'),
+  calendarBtnText = document.querySelector('.select-list__btn--text'),
   calendarBox = document.querySelector('.calendar_box'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
@@ -8,11 +9,17 @@ calendarBtn.addEventListener('click', openCalendar);
 
 function openCalendar(e) {
   if (
-    e.target.classList.contains('select-list__btn--text') ||
+    e.target.classList.contains('select-list__btn--calendar') ||
     e.target.classList.contains('calendar-prev') ||
-    e.target.classList.contains('calendar-next')
+    e.target.classList.contains('calendar-next') ||
+    e.target.classList.contains('calendar-icon') ||
+    e.target.classList.contains('select-list__btn--text') ||
+    e.target.classList.contains('select-list__icon--calendar') ||
+    e.target.classList.contains('select-list__icon--calendar') ||
+    e.target.nodeName === 'use'
   ) {
     calendarBox.classList.toggle('calendar_isHidden');
+    calendarBtn.classList.toggle('is-open');
     closeCalendar();
   }
 
@@ -22,13 +29,19 @@ function openCalendar(e) {
 function closeCalendar() {
   window.addEventListener('click', e => {
     if (
-      e.target.classList.contains('select-list__btn--text') ||
+      e.target.classList.contains('select-list__btn--calendar') ||
       e.target.classList.contains('select-list__icon') ||
-      e.target.nodeName === 'svg'
+      e.target.nodeName === 'svg' ||
+      e.target.classList.contains('calendar-icon') ||
+      e.target.classList.contains('select-list__btn--text') ||
+      e.target.classList.contains('select-list__icon--calendar') ||
+      e.target.classList.contains('select-list__icon--calendar') ||
+      e.target.nodeName === 'use'
     ) {
       return;
     }
     calendarBox.classList.add('calendar_isHidden');
+    calendarBtn.classList.remove('is-open');
   });
 }
 
@@ -37,7 +50,7 @@ let date = new Date(),
   currMonth = date.getMonth();
 
 // отримуємо сьогоднішню дату яка відображається в кнопці
-calendarBtn.textContent = date
+calendarBtnText.textContent = date
   .toLocaleString()
   .split(',')[0]
   .replace(/\./g, '/');
@@ -131,5 +144,5 @@ daysList.addEventListener('click', e => {
     .toLocaleString()
     .split(',')[0]
     .replace(/\./g, '/');
-  calendarBtn.textContent = dayString;
+  calendarBtnText.textContent = dayString;
 });
