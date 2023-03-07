@@ -1,5 +1,13 @@
+// * Зчитування localStorage Favorite
+export function getFavoriteArr() {
+  const favoriteStr = localStorage.getItem('favorites');
+  const favoriteArr = JSON.parse(favoriteStr) || [];
+  return favoriteArr;
+}
+// */ Зчитування localStorage Favorite
+
 // * Функція додає іконку до тих карток, що вже є у localStorage
-function firstDownloading(favoriteArr) {
+export function firstDownloading(favoriteArr) {
   const cards = document.querySelectorAll('.card__title');
 
   // якщо масив не пустий
@@ -19,9 +27,7 @@ function firstDownloading(favoriteArr) {
 // */ Функція додає іконку до тих карток, що вже є у localStorage
 
 // * Додавання в обране
-const favoriteStr = localStorage.getItem('favorites');
-const favoriteArr = JSON.parse(favoriteStr) || [];
-console.log('favoriteArr:', favoriteArr);
+const favoriteArr = getFavoriteArr();
 
 // Якщо ми на favorite, то розмітка:
 if (document.body.classList.contains('favorite')) {
