@@ -95,7 +95,7 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
     newDescription = `${newDescription.slice(0, 112)}...`;
   }
 
-  return `<li class="card__item">
+  return `<li class="card__item" data-index="0">
         <!-- position: relative -->
         <div class="card__img-box">
           <div class="card__img">
