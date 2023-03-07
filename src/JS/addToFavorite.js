@@ -29,6 +29,7 @@ if (document.body.classList.contains('favorite')) {
   cards.innerHTML = markupFavorite(favoriteArr);
 }
 
+// Вішаю слухача на всю галерею
 const placeToFavorite = document.querySelector('.card');
 if (placeToFavorite) {
   placeToFavorite.addEventListener('click', toggleToFavorite);
