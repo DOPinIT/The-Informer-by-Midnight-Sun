@@ -1,43 +1,53 @@
 const daysList = document.querySelector('.days'),
   currentDate = document.querySelector('.current-date'),
-  calendarBtn = document.querySelector('.select-list__btn--text'),
+  calendarBtn = document.querySelector('.select-list__btn--calendar'),
+  calendarBtnText = document.querySelector('.select-list__btn--text'),
   calendarBox = document.querySelector('.calendar_box'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
 calendarBtn.addEventListener('click', openCalendar);
-
 function openCalendar(e) {
-  if (
-    e.target.classList.contains('select-list__btn--text') ||
-    e.target.classList.contains('calendar-prev') ||
-    e.target.classList.contains('calendar-next')
-  ) {
-    calendarBox.classList.toggle('calendar_isHidden');
-    closeCalendar();
-  }
+  const calendarBtn = document.querySelector('.select-list__btn--calendar');
+  calendarBtn.focus();
+  calendarBtn.addEventListener('blur', closeCalendar);
+  calendarBox.classList.toggle('calendar_isHidden');
+  // if (
+  //   e.currentTarget.classList.contains('select-list__btn--calendar') ||
+  //   e.target.classList.contains('calendar-prev') ||
+  //   e.target.classList.contains('calendar-next')
+  // ) {
+  //   // closeCalendar();
+  // }
+  // if (e.currentTarget.classList.contains('select-list__btn--calendar')) {
+  // }
 
-  return;
+  // window.addEventListener('click', closeCalendar);
 }
 
 function closeCalendar() {
-  window.addEventListener('click', e => {
-    if (
-      e.target.classList.contains('select-list__btn--text') ||
-      e.target.classList.contains('select-list__icon') ||
-      e.target.nodeName === 'svg'
-    ) {
-      return;
-    }
-    calendarBox.classList.add('calendar_isHidden');
-  });
+  calendarBox.classList.toggle('calendar_isHidden');
+  document.removeEventListener('blur', closeCalendar);
 }
+
+// function closeCalendar(e) {
+//   // window.addEventListener('click', e => {
+//   if (
+//     e.target.classList.contains('select-list__btn--calendar') ||
+//     e.target.classList.contains('select-list__icon') ||
+//     e.target.nodeName === 'svg'
+//   ) {
+//     return;
+//   }
+//   calendarBox.classList.add('calendar_isHidden');
+//   // });
+// }
 
 let date = new Date(),
   currYear = date.getFullYear(),
   currMonth = date.getMonth();
 
 // отримуємо сьогоднішню дату яка відображається в кнопці
-calendarBtn.textContent = date
+calendarBtnText.textContent = date
   .toLocaleString()
   .split(',')[0]
   .replace(/\./g, '/');
