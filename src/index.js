@@ -21,7 +21,6 @@ import './JS/header';
 import './JS/switcherTheme'; //виправлена ппомилка в назві
 import './JS/mobileMenu';
 import './JS/addToFavorite';
-import './JS/modalTeam';
 import './JS/pagination';
 import './JS/dots';
 import './JS/scrollToUp';
