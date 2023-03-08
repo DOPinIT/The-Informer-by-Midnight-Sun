@@ -1,5 +1,4 @@
 import themeSwitcher from './JS/switcherTheme.js';
-// import getFilteredNews from './JS/newsFilters.js';
 
 import { Pagination } from 'tui-pagination';
 
@@ -31,3 +30,4 @@ import './JS/newsFilters';
 import './JS/searchNews';
 import './JS/readDate';
 import './JS/saveToRead';
+import './JS/loading';
