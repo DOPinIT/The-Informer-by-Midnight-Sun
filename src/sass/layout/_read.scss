@@ -2,10 +2,8 @@
   width: 105px;
   position: relative;
   margin: 40px 0 40px 16px;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.71;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: baseline;
   cursor: pointer;
 
   @media screen and (min-width: $tablet) {
@@ -28,6 +26,13 @@
   }
 }
 
+.revision-title {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.02em;
+}
+
 .date-icon {
   margin-left: 8px;
   fill: currentColor;
@@ -37,3 +42,4 @@
 .rotated {
   transform: rotate(180deg);
 }
+

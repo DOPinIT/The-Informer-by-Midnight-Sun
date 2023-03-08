@@ -1,127 +1,100 @@
-
-
+const readMoreButtons = document.querySelectorAll('.card__read-more');
 const newGallery = document.querySelector('.container-read');
-let cardItems = document.querySelectorAll('.card__item');
+const STORAGE_KEY = 'read';
+readNews = getReadNews(STORAGE_KEY);
 
-function updateDataIndex() {
-  cardItems = document.querySelectorAll('.card__item');
-  cardItems.forEach((cardItem, index) => {
-    cardItem.dataset.index = index;
-  });
-}
+checkStorage(readNews);
 
-if (document.querySelector('.gallery')) {
-  window.addEventListener('load', updateDataIndex);
-  window.addEventListener('DOMContentLoaded', updateDataIndex);
-}
-
-const storedKeys = Object.keys(localStorage);
-const listKeys = storedKeys.filter(key => key.includes('list'));
-
-const list = document.createElement('ul');
-list.classList.add('card');
-
-listKeys.forEach(key => {
-  const storedData = JSON.parse(localStorage.getItem(key));
-
-  if (storedData) {
-    storedData.items.forEach(item => {
-      const li = document.createElement('li');
-      li.innerHTML = item;
-      const plateAlreadyRead = li.querySelector('.plate--already-read');
-      plateAlreadyRead.style.visibility = 'visible';
-      li.dataset.index = storedData.dataIndex;
-      list.appendChild(li);
-    });
-  } else {
-    console.log(`Елемент з ключем ${key} не знайдено в localStorage`);
+function checkStorage(readNews) {
+  const cards = document.querySelectorAll('.card__title');
+  if (readNews.length) {
+    for (let i = 0; i < readNews.length; i += 1) {
+      for (let j = 0; j < cards.length; j += 1) {
+        const approved =
+          readNews[i].title.trim() === cards[j].textContent.trim();
+        if (approved) {
+          const cardItem = cards[j].closest('.card__item');
+          addAlreadyRead(cardItem);
+        }
+      }
+    }
   }
-});
+}
 
-if (newGallery) newGallery.appendChild(list);
+if (newGallery) {
+  const readNews = getReadNews(STORAGE_KEY);
+
+  const list = document.createElement('ul');
+
+  list.classList.add('card', 'card-read');
+  readNews.forEach(({ items }) => {
+    const li = document.createElement('li');
+    li.innerHTML = items;
+    addAlreadyRead(li);
+    list.appendChild(li);
+  });
+
+  newGallery.appendChild(list);
+}
 
 document.addEventListener('click', event => {
 
   if (event.target.matches('.card__read-more')) {
+    const cardItem = event.target.closest('.card__item');
+     addAlreadyRead(cardItem)
+    const title = cardItem.querySelector('.card__title').textContent;
+    const revisionDate = formatDate(new Date());
+    let items = [];
 
-    const lis = document.querySelectorAll('.card__item');
-    const index = parseInt(event.target.closest('.card__item').dataset.index);
-    const items = [];
+    items.push(cardItem.outerHTML);
 
-    const revisionDate = new Date();
+    const storageKey = STORAGE_KEY;
+    let storedData = JSON.parse(localStorage.getItem(storageKey));
+    if (!storedData) {
+      storedData = [];
+    }
 
-    lis.forEach((li, liIndex) => {
-      if (liIndex === index) {
-        items.push(li.outerHTML);
-        const plateAlreadyReadHome = li.querySelector('.plate--already-read');
-        plateAlreadyReadHome.style.visibility = 'visible';
-      }
-    });
-
-    const key = `list_${index}`;
-
-    const storedData = {
+    const data = {
       items: items,
-      revisionDate: revisionDate,
-      dataIndex: index
+      title: title,
+      date: revisionDate,
     };
 
-    const storedKeys = Object.keys(localStorage);
-    const listKeys = storedKeys.filter(key => key.startsWith('list_'));
-    const existingKey = listKeys.find(key => {
-      const storedIndex = parseInt(key.split('_')[1]);
-      return storedIndex === index;
-    });
+    const existingData = storedData.find(d => d.title === title);
 
-    if (existingKey) {
-      localStorage.setItem(existingKey, JSON.stringify(storedData));
-      console.log(`Елемент з data-index ${index} перезаписано в localStorage`);
+    if (existingData) {
+      Object.assign(existingData, data);
+      localStorage.setItem(storageKey, JSON.stringify(storedData));
+      console.log(`Елемент з title ${title} перезаписано в localStorage`);
+    } else {
+      storedData.push(data);
+      localStorage.setItem(storageKey, JSON.stringify(storedData));
+      console.log(`Елемент з title ${title} додано в localStorage`);
     }
   }
-})
+});
 
-  document.addEventListener('click', event => {
+function getReadNews(key) {
+  try {
+    const serializedState = localStorage.getItem(key);
+    return serializedState === null ? undefined : JSON.parse(serializedState);
+  } catch (err) {
+    console.error(err);
+  }
+}
 
-    if (event.target.matches('.card__read-more')) {
+function formatDate(date) {
+  const day = date.getDate().toString().padStart(2, '0');
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const year = date.getFullYear().toString();
+  return `${day}/${month}/${year}`;
+}
 
-      const lis = document.querySelectorAll('.card__item');
-      const index = parseInt(event.target.closest('.card__item').dataset.index);
-      const items = [];
+function addAlreadyRead(li) {
+  const plateAlreadyRead = li.querySelector('.plate--already-read');
+  if (plateAlreadyRead) {
+    plateAlreadyRead.style.visibility = 'visible';
+  }
+}
 
-      const revisionDate = new Date();
 
-      lis.forEach((li, liIndex) => {
-        if (liIndex === index) {
-          items.push(li.outerHTML);
-          const plateAlreadyReadHome = li.querySelector('.plate--already-read');
-          plateAlreadyReadHome.style.visibility = 'visible';
-        }
-      });
-
-      const key = `list_${index}`;
-
-      const storedData = {
-        items: items,
-        revisionDate: revisionDate,
-        dataIndex: index
-      };
-
-      const storedKeys = Object.keys(localStorage);
-      const listKeys = storedKeys.filter(key => key.startsWith('list_'));
-      const existingKey = listKeys.find(key => {
-        const storedIndex = parseInt(key.split('_')[1]);
-        return storedIndex === index;
-      });
-
-      if (existingKey) {
-        localStorage.setItem(existingKey, JSON.stringify(storedData));
-        console.log(`Елемент з data-index ${index} перезаписано в localStorage`);
-      } else {
-        localStorage.setItem(key, JSON.stringify(storedData));
-        storedKeys.push(key);
-        console.log(`Елемент з data-index ${index} додано в localStorage`);
-      }
-    }
-  });
-
-      

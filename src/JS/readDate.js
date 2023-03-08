@@ -1,15 +1,16 @@
 if (window.location.pathname.includes('/read')) {
   const revisionDate = document.querySelector('.revision-date');
   const dateIcon = document.querySelector('.date-icon');
-  const gallery = document.querySelector('.gallery-read');
+  const galleryCard = document.querySelector('.card-read');
 
   revisionDate.addEventListener('click', function () {
-    if (gallery.style.display === 'none') {
-      gallery.style.display = 'block';
+    if (galleryCard) {
+      if (galleryCard.style.display === 'none') {
+      galleryCard.style.display = 'block';
       dateIcon.classList.remove('rotated');
     } else {
-      gallery.style.display = 'none';
+      galleryCard.style.display = 'none';
       dateIcon.classList.add('rotated');
-    }
+    }}
   });
 }
