@@ -1,7 +1,7 @@
 import NewsApi from "./newsAPI";
 import { sectionResponseMarkup } from './markup';
-import { Spinner } from 'spin.js';
 import { firstDownloading, getFavoriteArr } from './addToFavorite';
+import Loading from "./loading";
 
 const refs = {
   categories: document.querySelector(".categories"),
@@ -16,8 +16,7 @@ const refs = {
 const favoriteArr001 = getFavoriteArr();
 
 const newsApi = new NewsApi();
-
-const target = document.getElementById('foo');
+const loading = new Loading();
 
 const opts = {
   lines: 10, // The number of lines to draw
@@ -44,7 +43,7 @@ const opts = {
 if (refs.categories) {
   renderCatehoriesList();
 
-  rendersGalleryBySelectedCategory()
+  getGalleryListBySelectedCategory()
 }
 
 
@@ -52,7 +51,17 @@ if (refs.categories) {
 //  //  //Рендерить розмітку для категорій.
 function renderCatehoriesList() {
   newsApi.getSectionList().then(ElAll => {
-    // const ElAll = data.results.map(section => section.display_name)
+    ElAll = ElAll.reduce((acc, el)=>{
+      if(el.includes("&")){
+        return acc
+      }
+      if(el.includes("/")){
+        return acc
+      }
+      acc.push(el);
+      return acc
+    },[])
+
     let widthScreen = window.innerWidth;
     if (widthScreen > 1279) {
       const ElForCategoriesList = ElAll.slice(0, 6)
@@ -95,8 +104,10 @@ function createElForOthersBox(arr) {
   return markup
 }
 
-//  //  //Рендер галереї по вибраній категорії. 
-function rendersGalleryBySelectedCategory() {
+
+
+//  //  //Визиває рендер галереї по вибраній категорії. 
+function getGalleryListBySelectedCategory() {
   refs.categories.addEventListener('click', (e) => {
     if (e.target.nodeName === "BUTTON") {
       if (e.target.outerText === "Others") {
@@ -113,6 +124,8 @@ function rendersGalleryBySelectedCategory() {
     }
   })
 }
+
+
 
 //  //  //Відкриває бокс з додатковими категоріями. 
 function openOthersBox() {
@@ -140,58 +153,40 @@ function removeTadIsActiv() {
   })
 }
 
+
+
+//  //  //Рендерить галерею (коли прийшов нулл повідомленя markupError)
 function renderGaleriList(cetegorie) {
   newsApi
     .getNewsListBySectionName(cetegorie)
     .then(response => {
       if (response === null) {
         refs.galleryList.innerHTML = '';
-        refs.galleryList.classList.add('isActivSpiner');
-        new Spinner(opts).spin(refs.galleryList);
+        loading.open(refs.galleryList);
         setTimeout(() => {
-          refs.galleryList.classList.remove('isActivSpiner');
+          loading.closed(refs.galleryList);
           refs.galleryList.innerHTML = markupError();
         }, 800)
-
-
-        // refs.galleryList.innerHTML = markupError();
         return
       }
-      // console.log(sectionResponseMarkup(response))
       refs.galleryList.innerHTML = '';
-      refs.galleryList.classList.add('isActivSpiner');
-      new Spinner(opts).spin(refs.galleryList);
+      loading.open(refs.galleryList)
       setTimeout(() => {
-        refs.galleryList.classList.remove('isActivSpiner');
+        loading.closed(refs.galleryList);
         refs.galleryList.innerHTML = sectionResponseMarkup(response);
-        firstDownloading(favoriteArr001);
-      }, 400)
 
-      // refs.galleryList.innerHTML = sectionResponseMarkup(response);
+        firstDownloading(favoriteArr001);
+      }, 300)
+
     })
     .catch(() => {
       refs.galleryList.innerHTML = '';
     });
 }
-
+//  //  //Шаблон (коли прийшов нулл)
 function markupError() {
   return `<div class="sectionError">
     <h1 class="sectionError__title">We haven’t found news from this category</h1>
     <div class="sectionError__img"></div>
   </div>`
 }
-
-
-
-// newsApi.getNewsListBySectionName(sectionName)
-//     .then(newsList => {
-//         console.log(newsList);
-//         if (newsList === null) {
-//             throw new Error();
-//         }
-//         const sectionMarkup = sectionResponseMarkup(newsList);
-//         console.log(sectionMarkup);
-//         console.log(gallery);
-//         gallery.insertAdjacentHTML('beforeend', sectionMarkup);
-//     })
-//     .catch(error => error.message);

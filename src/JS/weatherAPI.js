@@ -1,4 +1,7 @@
+// Доступ до блоку погоди
+
 const weatherWidget = document.querySelector('.weather');
+
 const API_KEY = 'fccf2d671c66d0d845cceb32d377da4e';
 
 const date = new Date();
@@ -30,40 +33,42 @@ const day = ('0' + date.getDate()).slice(-2);
 const month = months[date.getMonth()];
 const currentDate = `${day} ${month} ${year}`;
 
+// Вивід погоди в залежності від відповіді користувача, при дозволі погода по місцезнаходженні,ні погода в Донецьку
+
 export default function getWeather() {
-  console.log(navigator.geolocation);
-  if (navigator.geolocation) {
+ if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showPosition, showDonetsk);
   }
 }
 
 async function showPosition(pos) {
-  console.log('1');
   const URL = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}&exclude=hourly,daily&appid=${API_KEY}`;
 
   const requestOn = await fetch(`${URL}`);
   const result = await requestOn.json();
 
   if (requestOn.ok) {
-    renderWeather(result);
+    renderWeatherMarkup(result);
   } else {
     console.log(requestOn.message);
   }
-  console.log(
-    'Latitude: ' + pos.coords.latitude + ', Longitude: ' + pos.coords.longitude
-  );
+
 }
 
+// Запит для погоди в Донецьку
+
 async function showDonetsk() {
-  const DonetskWeather = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=london&exclude=hourly,daily&appid=${API_KEY}`;
+  const DonetskWeather = `https://api.openweathermap.org/data/2.5/weather?units=metric&q=donetsk&exclude=hourly,daily&appid=${API_KEY}`;
   const requestDonetsk = await fetch(`${DonetskWeather}`);
   const resultDonetsk = await requestDonetsk.json();
   if (requestDonetsk.ok) {
-    renderWeather(resultDonetsk);
+    renderWeatherMarkup(resultDonetsk);
   }
 }
 
-function renderWeather(data) {
+
+// Шаблон для відображання погоди погоди 
+function renderWeatherMarkup(data) {
   const temp = Math.round(data.main.temp);
   const location = data.name;
   const statusWeather = data.weather[0].main;
@@ -107,12 +112,19 @@ function renderWeather(data) {
           <!-- <div class="weather__forecast-week"> -->
           <a href="" class="weather__link">Weather for week</a>
           <!-- </div> -->
-        </div>        `;
-
+        </div>`;
+  
   document.querySelector('.weather').innerHTML = template;
   return (weatherWidget.innerHTML = template);
 }
 
+if (window) {
+  showDonetsk();
+};
+
 if (weatherWidget) {
-  getWeather();
+    getWeather();
 }
+
+
+

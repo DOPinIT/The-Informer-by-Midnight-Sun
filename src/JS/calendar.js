@@ -3,9 +3,11 @@ const daysList = document.querySelector('.days'),
   calendarBtn = document.querySelector('.select-list__btn--calendar'),
   calendarBtnText = document.querySelector('.select-list__btn--text'),
   calendarBox = document.querySelector('.calendar_box'),
+  currentYear = document.querySelector('.current-year'),
+  prevNextMonthIcon = document.querySelectorAll('.month-box svg'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
-// console.log(window.location.pathname);
+console.log(prevNextMonthIcon);
 
 if (
   window.location.pathname.includes('/favorite.html') ||
@@ -99,15 +101,16 @@ function renderCalendar() {
   for (let i = lastDayofMonth; i < 6; i++) {
     liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
   }
-  currentDate.innerHTML = `${months[currMonth]} ${currYear}`;
+  currentDate.innerHTML = `${months[currMonth]}`;
+  currentYear.innerHTML = ` ${currYear}`;
   daysList.innerHTML = liTag;
   //   console.log(currentDate);
 }
 renderCalendar();
 
-prevNextIcon.forEach(icon => {
+prevNextMonthIcon.forEach(icon => {
   icon.addEventListener('click', () => {
-    currMonth = icon.id === 'prev' ? currMonth - 1 : currMonth + 1;
+    currMonth = icon.id === 'prev-month' ? currMonth - 1 : currMonth + 1;
     if (currMonth < 0 || currMonth > 11) {
       date = new Date(currYear, currMonth, new Date().getDate());
       currYear = date.getFullYear();
@@ -115,6 +118,13 @@ prevNextIcon.forEach(icon => {
     } else {
       date = new Date();
     }
+    renderCalendar();
+  });
+});
+
+prevNextIcon.forEach(icon => {
+  icon.addEventListener('click', () => {
+    currYear = icon.id === 'prev' ? currYear - 1 : currYear + 1;
     renderCalendar();
   });
 });

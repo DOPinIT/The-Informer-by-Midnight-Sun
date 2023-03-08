@@ -172,6 +172,10 @@
       transform: scale(1);
     }
   }
+
+  @media screen and (min-width: $desktop) {
+    @include font(700, 18, 25);
+  }
 }
 
 .menu__link--mobile {
@@ -191,7 +195,9 @@
 }
 
 .menu__text {
-  margin-left: 14px;
+  @media screen and (max-width: ($tablet - 1px)) {
+    margin-left: 14px;
+  }
 }
 
 .menu__icon-box {
