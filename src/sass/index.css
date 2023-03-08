@@ -1711,8 +1711,13 @@ header .current-date {
   justify-content: space-between;
   gap: 20px;
   width: 100%;
-  padding-top: 20px;
-  padding-right: 20px;
+  margin-top: 20px;
+
+}
+@media screen and (min-width: 1280px) {
+  .card__info-box{
+    padding-right: 20px;
+  }
 }
 
 .card__title {
