@@ -123,7 +123,6 @@ prevNextMonthIcon.forEach(icon => {
 });
 
 prevNextIcon.forEach(icon => {
-  console.log(icon);
   icon.addEventListener('click', () => {
     currYear = icon.id === 'prev' ? currYear - 1 : currYear + 1;
     renderCalendar();

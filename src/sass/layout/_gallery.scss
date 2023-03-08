@@ -51,6 +51,10 @@
   background-image: url('../images/add-to-favorite-fill.svg');
 }
 
+.card__item.is-active-read .plate--already-read {
+  visibility: inherit;
+}
+
 .card__img-box {
   position: relative; // для плиток
 }
@@ -151,6 +155,7 @@
 // }
 
 .plate__icon--add-to-favorite {
+  pointer-events: none;
   width: 16px;
   height: 16px;
 
@@ -158,8 +163,8 @@
 
   & .set-favorite {
     // opacity: 1;
-    stroke: var(--brand-main);
-    fill: transparent;
+    // stroke: var(--brand-main);
+    // fill: transparent;
 
     // background-image: url('../images/add-to-favorite-fill.svg');
     // transition: opacity var(--transition);

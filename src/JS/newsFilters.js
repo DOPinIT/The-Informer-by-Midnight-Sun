@@ -1,6 +1,5 @@
 import NewsApi from "./newsAPI";
 import { sectionResponseMarkup } from './markup';
-// import { Spinner } from 'spin.js';
 import { firstDownloading, getFavoriteArr } from './addToFavorite';
 import Loading from "./loading";
 
@@ -44,7 +43,7 @@ const opts = {
 if (refs.categories) {
   renderCatehoriesList();
 
-  rendersGalleryBySelectedCategory()
+  getGalleryListBySelectedCategory()
 }
 
 
@@ -52,16 +51,17 @@ if (refs.categories) {
 //  //  //Рендерить розмітку для категорій.
 function renderCatehoriesList() {
   newsApi.getSectionList().then(ElAll => {
-    // console.log(ElAll)
     ElAll = ElAll.reduce((acc, el)=>{
       if(el.includes("&")){
-        // console.log("yes")
+        return acc
+      }
+      if(el.includes("/")){
         return acc
       }
       acc.push(el);
       return acc
     },[])
-    // console.log(ElAll)
+
     let widthScreen = window.innerWidth;
     if (widthScreen > 1279) {
       const ElForCategoriesList = ElAll.slice(0, 6)
@@ -104,8 +104,10 @@ function createElForOthersBox(arr) {
   return markup
 }
 
-//  //  //Рендер галереї по вибраній категорії. 
-function rendersGalleryBySelectedCategory() {
+
+
+//  //  //Визиває рендер галереї по вибраній категорії. 
+function getGalleryListBySelectedCategory() {
   refs.categories.addEventListener('click', (e) => {
     if (e.target.nodeName === "BUTTON") {
       if (e.target.outerText === "Others") {
@@ -122,6 +124,8 @@ function rendersGalleryBySelectedCategory() {
     }
   })
 }
+
+
 
 //  //  //Відкриває бокс з додатковими категоріями. 
 function openOthersBox() {
@@ -149,6 +153,9 @@ function removeTadIsActiv() {
   })
 }
 
+
+
+//  //  //Рендерить галерею (коли прийшов нулл повідомленя markupError)
 function renderGaleriList(cetegorie) {
   newsApi
     .getNewsListBySectionName(cetegorie)
@@ -166,18 +173,17 @@ function renderGaleriList(cetegorie) {
       loading.open(refs.galleryList)
       setTimeout(() => {
         loading.closed(refs.galleryList);
-
         refs.galleryList.innerHTML = sectionResponseMarkup(response);
 
         firstDownloading(favoriteArr001);
-      }, 400)
+      }, 300)
 
     })
     .catch(() => {
       refs.galleryList.innerHTML = '';
     });
 }
-
+//  //  //Шаблон (коли прийшов нулл)
 function markupError() {
   return `<div class="sectionError">
     <h1 class="sectionError__title">We haven’t found news from this category</h1>
