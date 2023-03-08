@@ -27,6 +27,7 @@ import './JS/dots';
 import './JS/modalTeam';
 import './JS/calendar';
 import './JS/weatherAPI';
+import './JS/newsFilters';
 import './JS/searchNews';
 import './JS/readDate';
 import './JS/saveToRead';
