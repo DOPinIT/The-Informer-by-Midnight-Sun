@@ -127,11 +127,11 @@
 .plate--add-to-favorite {
   cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
 
   bottom: 12px;
   right: 8px;
-  width: 126px;
+  // width: 126px;
   height: 28px;
   padding: 6px 12px;
 
@@ -153,11 +153,15 @@
 
 //   user-select: none;
 // }
+.plate--add-to-favorite-text {
+  pointer-events: none;
+}
 
 .plate__icon--add-to-favorite {
   pointer-events: none;
   width: 16px;
   height: 16px;
+  margin-left: 4px;
 
   background-image: url('../images/add-to-favorite-stroke.svg');
 

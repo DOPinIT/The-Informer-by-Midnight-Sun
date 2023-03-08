@@ -147,8 +147,7 @@ export function markupRead(readArr) {
 
           <!-- Додавання до обраного: -->
           <button class="plate plate--add-to-favorite">
-            Add to favorite
-            <!-- <span class="plate__text--add-to-favorite"></span> -->
+            <span class="plate--add-to-favorite-text">Add to favorite</span>
             <svg class="plate__icon--add-to-favorite">
               
             </svg>

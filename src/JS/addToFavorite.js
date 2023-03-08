@@ -18,7 +18,12 @@ export function firstDownloading(favoriteArr) {
         const accord =
           favoriteArr[i].title.trim() === cards[j].textContent.trim();
         if (accord) {
-          cards[j].closest('.card__item').classList.add('is-active');
+          const currentParentEl = cards[j].closest('.card__item');
+          currentParentEl.classList.add('is-active');
+          const currentTextCont = currentParentEl.querySelector(
+            '.plate--add-to-favorite-text'
+          );
+          currentTextCont.textContent = 'Remove from favorite';
         }
       }
     }
@@ -28,8 +33,8 @@ export function firstDownloading(favoriteArr) {
 
 // * Додавання в обране
 const favoriteArr = getFavoriteArr(); // зчитуємо масив Favorite з localStorage
-firstDownloading(favoriteArr); // при оновленні сторінки
 favoriteMarkup(); // перевірка, що ми на сторінці Favorite і виклик розмітки
+firstDownloading(favoriteArr); // при оновленні сторінки
 addListenerOnGallery();
 
 // Якщо ми на favorite, то розмітка для favorite:
@@ -48,7 +53,7 @@ export function addListenerOnGallery() {
   }
 }
 export function toggleToFavorite(e) {
-  // Якщо клік не по add to favorite (іконка, або кнопка), то виходимо
+  // Якщо клік не по add to favorite (кнопка), то виходимо
   if (!e.target.classList.contains('plate--add-to-favorite')) {
     return;
   }
@@ -57,6 +62,13 @@ export function toggleToFavorite(e) {
   // Замальовуємо іконку серця add-to-favorite
   const currentCardItem = e.target.closest('.card__item');
   currentCardItem.classList.toggle('is-active');
+  const currentTextCont = currentCardItem.querySelector(
+    '.plate--add-to-favorite-text'
+  );
+  currentTextCont.textContent =
+    currentTextCont.textContent === 'Add to favorite'
+      ? 'Remove from favorite'
+      : 'Add to favorite';
 
   // Селектори для подальшого запису картки в масив
   // imageURL, category, title, description, pubDate, pubURL
@@ -150,8 +162,7 @@ export function markupFavorite(favoriteArr) {
 
           <!-- Додавання до обраного: -->
           <button class="plate plate--add-to-favorite">
-            Add to favorite
-            <!-- <span class="plate__text--add-to-favorite"></span> -->
+            <span class="plate--add-to-favorite-text">Add to favorite</span>
             <svg class="plate__icon--add-to-favorite on-favorite">
 
             </svg>
