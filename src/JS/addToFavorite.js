@@ -33,8 +33,8 @@ export function firstDownloading(favoriteArr) {
 
 // * Додавання в обране
 const favoriteArr = getFavoriteArr(); // зчитуємо масив Favorite з localStorage
-firstDownloading(favoriteArr); // при оновленні сторінки
 favoriteMarkup(); // перевірка, що ми на сторінці Favorite і виклик розмітки
+firstDownloading(favoriteArr); // при оновленні сторінки
 addListenerOnGallery();
 
 // Якщо ми на favorite, то розмітка для favorite:
