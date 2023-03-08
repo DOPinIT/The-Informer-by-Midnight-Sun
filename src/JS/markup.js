@@ -127,8 +127,8 @@ function markup(imageURL, category, title, description, pubDate, pubURL) {
 
           <!-- Додавання до обраного: -->
           <button class="plate plate--add-to-favorite">
-            Add to favorite
-            <!-- <span class="plate__text--add-to-favorite">Add to favorite</span> -->
+            <span class="plate--add-to-favorite-text">Add to favorite</span>
+
             <svg class="plate__icon--add-to-favorite">
               <use
                 class="set-favorite"
