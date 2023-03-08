@@ -31,10 +31,12 @@ if (newGallery) {
   const dateRead = load('date-read');
   const readNews = load('read');
 
-if (dateRead) { dateRead.forEach(date => {
-    const markup = markupDateRead(date);
-    newGallery.insertAdjacentHTML('beforeend', markup);
-  });}
+  if (dateRead) {
+    dateRead.forEach(date => {
+      const markup = markupDateRead(date);
+      newGallery.insertAdjacentHTML('beforeend', markup);
+    });
+  }
 
   const revisionTitles = document.querySelectorAll('.revision-title');
   for (let i = 0; i < revisionTitles.length; i++) {
@@ -51,12 +53,13 @@ if (dateRead) { dateRead.forEach(date => {
   document.addEventListener('click', event => {
     if (event.target.matches('.revision-title')) {
       const cardRead = event.target.nextElementSibling;
-      const dateIcon = event.target.closest('.date-icon');
+      const dateIcon = event.target.querySelector('.date-icon');
       if (cardRead && cardRead.style.display === 'none') {
         cardRead.style.display = 'flex';
+        dateIcon.classList.add('rotated');
       } else if (cardRead) {
         cardRead.style.display = 'none';
-        // dateIcon.classList.add('rotated');
+        dateIcon.classList.remove('rotated');
       }
     }
   });
