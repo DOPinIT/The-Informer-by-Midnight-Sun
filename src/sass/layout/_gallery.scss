@@ -51,6 +51,10 @@
   background-image: url('../images/add-to-favorite-fill.svg');
 }
 
+.card__item.is-active-read .plate--already-read {
+  visibility: inherit;
+}
+
 .card__img-box {
   position: relative; // для плиток
 }
