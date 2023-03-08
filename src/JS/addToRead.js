@@ -1,24 +1,25 @@
-// * Зчитування масиву Favorite з localStorage
-export function getFavoriteArr() {
-  const favoriteStr = localStorage.getItem('favorites');
-  const favoriteArr = JSON.parse(favoriteStr) || [];
-  return favoriteArr;
+// * Зчитування масиву Read з localStorage
+export function getReadArr() {
+  const readStr = localStorage.getItem('read');
+  const readArr = JSON.parse(readStr) || [];
+  return readArr;
 }
-// */ Зчитування масиву Favorite з localStorage
+// */ Зчитування масиву Read з localStorage
 
 // * Функція додає іконку до тих карток, що вже є у localStorage
-export function firstDownloading(favoriteArr) {
+// Її треба додати при кожному оновленні сторінки (після натискання на категорії чи запиту)
+export function firstDownloadingRead(readArr) {
   const cards = document.querySelectorAll('.card__title');
 
   // якщо масив не пустий
-  if (favoriteArr.length) {
-    // Встановлюю клас .is-active, якщо така картка є у localStorage
-    for (let i = 0; i < favoriteArr.length; i += 1) {
+  if (readArr.length) {
+    // Встановлюю клас .is-active-read, якщо така картка є у localStorage
+    for (let i = 0; i < readArr.length; i += 1) {
       for (let j = 0; j < cards.length; j += 1) {
-        const accord =
-          favoriteArr[i].title.trim() === cards[j].textContent.trim();
+        const accord = readArr[i].title.trim() === cards[j].textContent.trim();
+
         if (accord) {
-          cards[j].closest('.card__item').classList.add('is-active');
+          cards[j].closest('.card__item').classList.add('is-active-read');
         }
       }
     }
@@ -27,36 +28,40 @@ export function firstDownloading(favoriteArr) {
 // */ Функція додає іконку до тих карток, що вже є у localStorage
 
 // * Додавання в обране
-const favoriteArr = getFavoriteArr(); // зчитуємо масив Favorite з localStorage
-firstDownloading(favoriteArr); // при оновленні сторінки
-favoriteMarkup(); // перевірка, що ми на сторінці Favorite і виклик розмітки
-addListenerOnGallery();
+const readArr = getReadArr(); // зчитуємо масив Read з localStorage
+firstDownloadingRead(readArr); // при оновленні сторінки
+markupOnReadPage(); // перевірка, що ми на сторінці Read і виклик розмітки
+addListenerOnGalleryRead();
 
-// Якщо ми на favorite, то розмітка для favorite:
-export function favoriteMarkup() {
-  if (document.body.classList.contains('favorite')) {
+// Якщо ми на сторінці read, то розмітка read:
+export function markupOnReadPage() {
+  console.log(document.body.classList.contains('read'));
+  if (document.body.classList.contains('read')) {
     const cards = document.querySelector('.gallery');
-    cards.innerHTML = markupFavorite(favoriteArr);
+    cards.innerHTML = markupRead(readArr);
   }
 }
 
-// Вішаю слухача на всю галерею щоби відслідковувати клік по кнопці add-to-favorite
-export function addListenerOnGallery() {
-  const placeToFavorite = document.querySelector('.card');
-  if (placeToFavorite) {
-    placeToFavorite.addEventListener('click', toggleToFavorite);
+// Вішаю слухача на всю галерею щоби відслідковувати клік по посиланню Read
+export function addListenerOnGalleryRead() {
+  const placeToRead = document.querySelector('.card');
+  if (placeToRead) {
+    placeToRead.addEventListener('click', setToRead);
   }
 }
-export function toggleToFavorite(e) {
-  // Якщо клік не по add to favorite (іконка, або кнопка), то виходимо
-  if (!e.target.classList.contains('plate--add-to-favorite')) {
+
+export function setToRead(e) {
+  // Якщо клік не по Read (посилання), то виходимо
+  console.log('e.target', e.target);
+  if (!e.target.classList.contains('card__read-more')) {
     return;
   }
 
-  // інакше виконуємо дії
-  // Замальовуємо іконку серця add-to-favorite
+  // Якщо ж клік по посиланню Read More, то виконуємо дії
+  // Знаходжу поточну картку:
   const currentCardItem = e.target.closest('.card__item');
-  currentCardItem.classList.toggle('is-active');
+  console.log('setToRead >>> currentCardItem:', currentCardItem);
+  currentCardItem.classList.add('is-active-read'); // показує іконку already read
 
   // Селектори для подальшого запису картки в масив
   // imageURL, category, title, description, pubDate, pubURL
@@ -81,15 +86,16 @@ export function toggleToFavorite(e) {
 
   // шукаю по title:
   let indexEl = -1; // початкове значення - title не знайдений
-  for (let i = 0; i < favoriteArr.length; i += 1) {
-    if (favoriteArr[i].title === currentCardTitle.textContent.trim()) {
+  for (let i = 0; i < readArr.length; i += 1) {
+    if (readArr[i].title === currentCardTitle.textContent.trim()) {
       indexEl = i;
       break;
     }
   }
 
+  // Якщо такого тайтлу не існує в масиві read у Local Storage, то додаємо його туди
   if (indexEl === -1) {
-    favoriteArr.push({
+    readArr.push({
       imgUrl: currentCardImgUrl,
       category: currentCardCategory.textContent.trim(),
       title: currentCardTitle.textContent.trim(),
@@ -97,24 +103,15 @@ export function toggleToFavorite(e) {
       date: currentCardDate.textContent.trim(),
       newsUrl: currentCardUrl.href,
     });
-    localStorage.setItem('favorites', JSON.stringify(favoriteArr));
-  } else {
-    favoriteArr.splice(indexEl, 1);
-    localStorage.setItem('favorites', JSON.stringify(favoriteArr));
-  }
-
-  // // Перемальовую розмітку після кожної зміни localStorage:
-  if (document.body.classList.contains('favorite')) {
-    window.location.reload();
-    markupFavorite(favoriteArr);
+    // оновлюємо масив read у Local Storage
+    localStorage.setItem('read', JSON.stringify(readArr));
   }
 }
-
 // */ Додавання в обране
 
-// * Розмітка у favorite
-export function markupFavorite(favoriteArr) {
-  return favoriteArr
+// * Розмітка у read
+export function markupRead(readArr) {
+  return readArr
     .map(
       ({
         imgUrl: imageURL,
@@ -152,8 +149,8 @@ export function markupFavorite(favoriteArr) {
           <button class="plate plate--add-to-favorite">
             Add to favorite
             <!-- <span class="plate__text--add-to-favorite"></span> -->
-            <svg class="plate__icon--add-to-favorite on-favorite">
-
+            <svg class="plate__icon--add-to-favorite">
+              
             </svg>
           </button>
           <!--/ position: absolute -->
@@ -175,4 +172,4 @@ export function markupFavorite(favoriteArr) {
     )
     .join('');
 }
-// */ Розмітка у favorite
+// */ Розмітка у read
