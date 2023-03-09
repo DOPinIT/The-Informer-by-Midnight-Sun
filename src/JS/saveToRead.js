@@ -1,10 +1,16 @@
+import {
+  firstDownloading,
+  getFavoriteArr,
+  addListenerOnGallery,
+} from './addToFavorite';
+
 const readMoreButtons = document.querySelectorAll('.card__read-more');
 const newGallery = document.querySelector('.container-read');
 
 const readNews = load('read');
 checkStorage(readNews);
 
-function checkStorage(readNews) {
+export function checkStorage(readNews) {
   const cards = document.querySelectorAll('.card__title');
   if (readNews) {
     for (let i = 0; i < readNews.length; i += 1) {
@@ -43,16 +49,19 @@ if (newGallery) {
 
   document.addEventListener('click', event => {
     if (event.target.matches('.revision-title')) {
-      const cardRead = event.target.nextElementSibling ;
+      const cardRead = event.target.nextElementSibling;
       const dateIcon = event.target.closest('.date-icon');
-    if (cardRead && cardRead.style.display === 'none') {
-      cardRead.style.display = 'flex';
-    } else if (cardRead) {
-      cardRead.style.display = 'none';
-      // dateIcon.classList.add('rotated');
+      if (cardRead && cardRead.style.display === 'none') {
+        cardRead.style.display = 'flex';
+      } else if (cardRead) {
+        cardRead.style.display = 'none';
+        // dateIcon.classList.add('rotated');
+      }
     }
-   }
-})
+  });
+  const favoriteArr = getFavoriteArr();
+  firstDownloading(favoriteArr); 
+  addListenerOnGallery();
 }
 
 document.addEventListener('click', event => {
@@ -82,11 +91,9 @@ document.addEventListener('click', event => {
     if (existingData) {
       Object.assign(existingData, data);
       localStorage.setItem(storageKey, JSON.stringify(storedData));
-      console.log(`Елемент з title ${title} перезаписано в localStorage`);
     } else {
       storedData.push(data);
       localStorage.setItem(storageKey, JSON.stringify(storedData));
-      console.log(`Елемент з title ${title} додано в localStorage`);
     }
     let readDates = JSON.parse(localStorage.getItem('date-read'));
     if (!readDates) {
@@ -100,16 +107,14 @@ document.addEventListener('click', event => {
     if (existingDate) {
       Object.assign(existingDate, data);
       localStorage.setItem('date-read', JSON.stringify(readDates));
-      console.log('second');
     } else {
       readDates.push(revisionDate);
       localStorage.setItem('date-read', JSON.stringify(readDates));
-      console.log('first');
     }
   }
 });
 
-function load(key) {
+export function load(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
@@ -136,9 +141,7 @@ function markupDateRead(date) {
   return `
    <div class="wrap-read">
      <p class="revision-title">${date}
-      <svg class="date-icon" width="9" height="15">
-       <use href="../images/icons.svg#scroll-up"></use>
-      </svg>
+      <svg class="date-icon" width="9" height="15"></svg>
      </p>
     <ul class="card card-read"></ul>
   </div>`;
