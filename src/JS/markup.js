@@ -16,7 +16,9 @@ export function sectionResponseMarkup(responses) {
     return (
       acc +
       markup(
-        imageURL[2].url,
+        imageURL
+          ? 'https://cdn.segodnya.ua/i/image_1080x/media/image/5e2/2cd/c56/5e22cdc56651a.jpg'
+          : imageURL[2].url,
         category,
         title,
         description,
@@ -39,7 +41,10 @@ export function favoriteResponseMarkup(responses) {
       published_date: pubDate,
       url: pubURL,
     } = response;
-    let imgURL = media.length === 0 ? '' : media[0]['media-metadata'][2].url;
+    let imgURL =
+      media.length === 0
+        ? 'https://cdn.segodnya.ua/i/image_1080x/media/image/5e2/2cd/c56/5e22cdc56651a.jpg'
+        : media[0]['media-metadata'][2].url;
     acc.push(
       markup(
         imgURL,
@@ -53,18 +58,7 @@ export function favoriteResponseMarkup(responses) {
     return acc;
   }, []);
 
-  const weather = '<li class="card__item weather"></li>';
-  const screenWidth = screen.width;
-
-  if (screenWidth >= 1280) {
-    responseMarkup.splice(2, 0, weather);
-  } else if (screenWidth >= 768 && screenWidth < 1280) {
-    responseMarkup.splice(1, 0, weather);
-  } else if (screenWidth < 768) {
-    responseMarkup.splice(0, 0, weather);
-  }
-
-  return responseMarkup.join('');
+  return responseMarkup;
 }
 
 /* обработка запроса по поиску */
@@ -81,7 +75,7 @@ export function searchResponseMarkup(responses) {
 
     const imageURL =
       multimedia.length === 0
-        ? ''
+        ? 'https://cdn.segodnya.ua/i/image_1080x/media/image/5e2/2cd/c56/5e22cdc56651a.jpg'
         : `https://www.nytimes.com/${multimedia[0].url}`;
 
     return (
@@ -97,7 +91,7 @@ export function searchResponseMarkup(responses) {
     );
   }, '');
 
-  return responseMarkup;
+  return responseMarkup.join('');
 }
 
 function markup(imageURL, category, title, description, pubDate, pubURL) {
