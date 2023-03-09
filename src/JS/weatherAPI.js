@@ -110,7 +110,7 @@ function renderWeatherMarkup(data) {
             <span class="weather__date-today">${currentDate}</span>
           </div>
           <!-- <div class="weather__forecast-week"> -->
-          <a href="" class="weather__link">Weather for week</a>
+          <a href="https://sinoptik.ua/" class="weather__link" target="_blank">Weather for week</a>
           <!-- </div> -->
         </div>`;
   
