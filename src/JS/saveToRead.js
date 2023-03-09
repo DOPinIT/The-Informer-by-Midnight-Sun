@@ -1,13 +1,12 @@
 const readMoreButtons = document.querySelectorAll('.card__read-more');
 const newGallery = document.querySelector('.container-read');
-const STORAGE_KEY = 'read';
-readNews = getReadNews(STORAGE_KEY);
 
+const readNews = load('read');
 checkStorage(readNews);
 
 function checkStorage(readNews) {
   const cards = document.querySelectorAll('.card__title');
-  if (readNews.length) {
+  if (readNews) {
     for (let i = 0; i < readNews.length; i += 1) {
       for (let j = 0; j < cards.length; j += 1) {
         const approved =
@@ -22,33 +21,51 @@ function checkStorage(readNews) {
 }
 
 if (newGallery) {
-  const readNews = getReadNews(STORAGE_KEY);
+  const dateRead = load('date-read');
+  const readNews = load('read');
 
-  const list = document.createElement('ul');
-
-  list.classList.add('card', 'card-read');
-  readNews.forEach(({ items }) => {
-    const li = document.createElement('li');
-    li.innerHTML = items;
-    addAlreadyRead(li);
-    list.appendChild(li);
+  dateRead.forEach(date => {
+    const markup = markupDateRead(date);
+    newGallery.insertAdjacentHTML('beforeend', markup);
   });
 
-  newGallery.appendChild(list);
+  const revisionTitles = document.querySelectorAll('.revision-title');
+  for (let i = 0; i < revisionTitles.length; i++) {
+    const revisionTitle = revisionTitles[i].textContent.trim();
+    const matchingNews = readNews.filter(news => news.date === revisionTitle);
+    if (matchingNews.length > 0) {
+      const cardReadList = revisionTitles[i].nextElementSibling;
+      matchingNews.forEach(news => {
+        cardReadList.innerHTML += news.items;
+      });
+    }
+  }
+
+  document.addEventListener('click', event => {
+    if (event.target.matches('.revision-title')) {
+      const cardRead = event.target.nextElementSibling ;
+      const dateIcon = event.target.closest('.date-icon');
+    if (cardRead && cardRead.style.display === 'none') {
+      cardRead.style.display = 'flex';
+    } else if (cardRead) {
+      cardRead.style.display = 'none';
+      // dateIcon.classList.add('rotated');
+    }
+   }
+})
 }
 
 document.addEventListener('click', event => {
-
   if (event.target.matches('.card__read-more')) {
     const cardItem = event.target.closest('.card__item');
-     addAlreadyRead(cardItem)
+    addAlreadyRead(cardItem);
     const title = cardItem.querySelector('.card__title').textContent;
     const revisionDate = formatDate(new Date());
     let items = [];
 
     items.push(cardItem.outerHTML);
 
-    const storageKey = STORAGE_KEY;
+    const storageKey = 'read';
     let storedData = JSON.parse(localStorage.getItem(storageKey));
     if (!storedData) {
       storedData = [];
@@ -71,10 +88,28 @@ document.addEventListener('click', event => {
       localStorage.setItem(storageKey, JSON.stringify(storedData));
       console.log(`Елемент з title ${title} додано в localStorage`);
     }
+    let readDates = JSON.parse(localStorage.getItem('date-read'));
+    if (!readDates) {
+      readDates = [];
+    }
+
+    localStorage.setItem('date-read', JSON.stringify(readDates));
+
+    const existingDate = readDates.find(d => readDates.includes(revisionDate));
+
+    if (existingDate) {
+      Object.assign(existingDate, data);
+      localStorage.setItem('date-read', JSON.stringify(readDates));
+      console.log('second');
+    } else {
+      readDates.push(revisionDate);
+      localStorage.setItem('date-read', JSON.stringify(readDates));
+      console.log('first');
+    }
   }
 });
 
-function getReadNews(key) {
+function load(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);
@@ -97,4 +132,14 @@ function addAlreadyRead(li) {
   }
 }
 
-
+function markupDateRead(date) {
+  return `
+   <div class="wrap-read">
+     <p class="revision-title">${date}
+      <svg class="date-icon" width="9" height="15">
+       <use href="../images/icons.svg#scroll-up"></use>
+      </svg>
+     </p>
+    <ul class="card card-read"></ul>
+  </div>`;
+}

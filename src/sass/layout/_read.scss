@@ -1,9 +1,11 @@
-.revision-date {
+.revision-title {
   width: 105px;
   position: relative;
   margin: 40px 0 40px 16px;
-  display: flex;
-  align-items: baseline;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.71;
+  letter-spacing: 0.02em;
   cursor: pointer;
 
   @media screen and (min-width: $tablet) {
@@ -11,7 +13,7 @@
   }
 
   @media screen and (min-width: $desktop) {
-    margin: 60px 0 12px 16px;
+    margin: 60px 0 40px 16px;
   }
 
   &::after {
@@ -26,13 +28,6 @@
   }
 }
 
-.revision-title {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.71;
-  letter-spacing: 0.02em;
-}
-
 .date-icon {
   margin-left: 8px;
   fill: currentColor;
@@ -42,4 +37,3 @@
 .rotated {
   transform: rotate(180deg);
 }
-
