@@ -27,6 +27,5 @@ import './JS/modalTeam';
 import './JS/calendar';
 import './JS/newsFilters';
 import './JS/searchNews';
-// import './JS/readDate';
 import './JS/saveToRead';
 import './JS/loading';
