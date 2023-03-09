@@ -165,7 +165,7 @@ function renderGaleriList(cetegorie) {
         loading.open(refs.galleryList);
         setTimeout(() => {
           loading.closed(refs.galleryList);
-          refs.galleryList.innerHTML = markupError();
+          refs.galleryList.innerHTML = markupError("We haven’t found news from this category");
         }, 800)
         return
       }
@@ -184,9 +184,9 @@ function renderGaleriList(cetegorie) {
     });
 }
 //  //  //Шаблон (коли прийшов нулл)
-function markupError() {
+export function markupError(text) {
   return `<div class="sectionError">
-    <h1 class="sectionError__title">We haven’t found news from this category</h1>
+    <h1 class="sectionError__title">${text}</h1>
     <div class="sectionError__img"></div>
   </div>`
 }
