@@ -7,8 +7,6 @@ const daysList = document.querySelector('.days'),
   prevNextMonthIcon = document.querySelectorAll('.month-box svg'),
   prevNextIcon = document.querySelectorAll('.icons svg');
 
-console.log(prevNextMonthIcon);
-
 if (
   window.location.pathname.includes('/favorite.html') ||
   window.location.pathname.includes('/read.html')
