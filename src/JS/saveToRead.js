@@ -4,7 +4,7 @@ const newGallery = document.querySelector('.container-read');
 const readNews = load('read');
 checkStorage(readNews);
 
-function checkStorage(readNews) {
+export function checkStorage(readNews) {
   const cards = document.querySelectorAll('.card__title');
   if (readNews) {
     for (let i = 0; i < readNews.length; i += 1) {
@@ -109,7 +109,7 @@ document.addEventListener('click', event => {
   }
 });
 
-function load(key) {
+export function load(key) {
   try {
     const serializedState = localStorage.getItem(key);
     return serializedState === null ? undefined : JSON.parse(serializedState);

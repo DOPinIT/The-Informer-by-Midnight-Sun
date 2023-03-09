@@ -70,3 +70,9 @@
 </symbol>
 </defs>
 </svg>
+<symbol id="scroll-down-black" viewBox="0 0 50 32">
+<path d="M5.849 0l-5.849 6.089 24.889 25.911 24.889-25.911-5.849-6.089-19.040 19.779-19.040-19.779z"></path>
+</symbol>
+<symbol id="scroll-down-white" viewBox="0 0 53 32">
+<path fill="#f4f4f4" style="fill: var(--color1, #f4f4f4)" d="M6.267 0l-6.267 6.089 26.667 25.911 26.667-25.911-6.267-6.089-20.4 19.779-20.4-19.779z"></path>
+</symbol>
