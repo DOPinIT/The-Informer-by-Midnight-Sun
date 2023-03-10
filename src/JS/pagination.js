@@ -7,7 +7,7 @@ import {
 } from './markup';
 
 const newsApi = new NewsApi();
-console.log(newsApi);
+// console.log(newsApi);
 
 const container = document.querySelector('.tui-pagination');
 const gallery = document.querySelector('.card');
@@ -33,7 +33,7 @@ function onSubmit(e) {
   text = queryText;
 
   newsApi.articleSearchList(queryText).then(response => {
-    console.log(response);
+    // console.log(response);
     gallery.innerHTML = searchResponseMarkup(response);
   });
 
@@ -67,7 +67,7 @@ function onSubmit(e) {
   const pagination = new Pagination(container, options);
 
   pagination.on('afterMove', e => {
-    console.log(e);
+    // console.log(e);
     newsApi.pageNumberBySearch = e.page - 1;
     newsApi.articleSearchList(text).then(response => {
       gallery.innerHTML = searchResponseMarkup(response);
