@@ -115,16 +115,16 @@ function renderWeatherMarkup(data) {
         </div>`;
   
   document.querySelector('.weather').innerHTML = template;
-  return (weatherWidget.innerHTML = template);
+  // return (weatherWidget.innerHTML = template);
 }
 
-if (window) {
-  showDonetsk();
-};
+// if (window) {
+//   showDonetsk();
+// };
 
-if (weatherWidget) {
-    getWeather();
-}
+// if (weatherWidget) {
+//     getWeather();
+// }
 
 
 
