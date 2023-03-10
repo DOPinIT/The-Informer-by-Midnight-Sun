@@ -3,6 +3,7 @@ import getWeather from './weatherAPI';
 import debounce from 'lodash.debounce';
 import { favoriteResponseMarkup } from './markup';
 import { firstDownloading, getFavoriteArr } from './addToFavorite';
+import { checkStorage, load } from './saveToRead';
 
 const cardList = document.querySelector('.card');
 const newsRequest = new NewsApi();
@@ -21,6 +22,7 @@ newsRequest
     getWeather();
     // додаю іконки сердець до необхідних карток
     firstDownloading(getFavoriteArr());
+    checkStorage(load('read'));
   })
   .catch(error => console.log(error.message));
 
@@ -39,6 +41,7 @@ function markupOptimizer() {
   getWeather();
   // додаю іконки сердець до необхідних карток
   firstDownloading(getFavoriteArr());
+  checkStorage(load('read'));
 }
 
 function adaptationFromScreenWidth(responseArray) {
