@@ -16,7 +16,7 @@ export function sectionResponseMarkup(responses) {
     return (
       acc +
       markup(
-        imageURL
+        !imageURL
           ? 'https://cdn.segodnya.ua/i/image_1080x/media/image/5e2/2cd/c56/5e22cdc56651a.jpg'
           : imageURL[2].url,
         category,
@@ -67,7 +67,7 @@ export function searchResponseMarkup(responses) {
     const {
       multimedia,
       section_name: category,
-      headline: { print_headline: title },
+      headline,
       snippet: description,
       pub_date: pubDate,
       web_url: pubURL,
@@ -83,7 +83,9 @@ export function searchResponseMarkup(responses) {
       markup(
         imageURL,
         category,
-        title,
+        headline.print_headline === null
+          ? headline.main
+          : headline.print_headline,
         description,
         DateTimestamp.createTimestamp(new Date(pubDate).getTime(), '/'),
         pubURL
@@ -91,7 +93,7 @@ export function searchResponseMarkup(responses) {
     );
   }, '');
 
-  return responseMarkup.join('');
+  return responseMarkup;
 }
 
 function markup(imageURL, category, title, description, pubDate, pubURL) {
