@@ -4,25 +4,38 @@ import debounce from 'lodash.debounce';
 import { favoriteResponseMarkup } from './markup';
 import { firstDownloading, getFavoriteArr } from './addToFavorite';
 import { checkStorage, load } from './saveToRead';
+import Loading from './loading';
 
 const cardList = document.querySelector('.card');
 const newsRequest = new NewsApi();
 let screenWidth = window.innerWidth;
 let baseFavoriteMarkup = [];
+const loading = new Loading();
 
 newsRequest
   .getMostViewedArticles()
   .then(response => {
     //получаем массив карточек
+    loading.open(cardList);
     const responseMarkup = favoriteResponseMarkup(response);
     //сохраняем его в базовую переменную
     baseFavoriteMarkup = [...responseMarkup];
     //получаем финальную разметку
-    cardList.innerHTML = getFavoritePageMarkup(responseMarkup);
-    getWeather();
+    setTimeout(() => {
+      loading.closed(cardList);
+      cardList.innerHTML = getFavoritePageMarkup(responseMarkup);
+      getWeather();
+      const favoriteArr = getFavoriteArr();
+      if (favoriteArr) {
+        firstDownloading(favoriteArr);
+      }
+      const read = load('read');
+      if (read) {
+        checkStorage(read);
+      }
+    }, 200);
+    /* cardList.innerHTML = getFavoritePageMarkup(responseMarkup); */
     // додаю іконки сердець до необхідних карток
-    firstDownloading(getFavoriteArr());
-    checkStorage(load('read'));
   })
   .catch(error => console.log(error.message));
 
@@ -34,14 +47,24 @@ function getFavoritePageMarkup(responseMarkup) {
 window.addEventListener('resize', debounce(markupOptimizer, 100));
 
 function markupOptimizer() {
+  loading.open(cardList);
   screenWidth = window.innerWidth;
   const favoriteMarkup = [...baseFavoriteMarkup];
   adaptationFromScreenWidth(favoriteMarkup);
-  cardList.innerHTML = favoriteMarkup.join('');
-  getWeather();
-  // додаю іконки сердець до необхідних карток
-  firstDownloading(getFavoriteArr());
-  checkStorage(load('read'));
+  setTimeout(() => {
+    loading.closed(cardList);
+    cardList.innerHTML = favoriteMarkup.join('');
+    getWeather();
+    // додаю іконки сердець до необхідних карток
+    const favoriteArr = getFavoriteArr();
+    if (favoriteArr) {
+      firstDownloading(favoriteArr);
+    }
+    const read = load('read');
+    if (read) {
+      checkStorage(read);
+    }
+  }, 200);
 }
 
 function adaptationFromScreenWidth(responseArray) {
