@@ -47,11 +47,12 @@ function getFavoritePageMarkup(responseMarkup) {
 window.addEventListener('resize', debounce(markupOptimizer, 100));
 
 function markupOptimizer(e) {
+  cardList.innerHTML = '';
   loading.open(cardList);
+
   screenWidth = e.currentTarget.innerWidth;
   const favoriteMarkup = [...baseFavoriteMarkup];
-  baseFavoriteMarkup = [...favoriteMarkup];
-  console.log(screenWidth);
+  /* baseFavoriteMarkup = [...favoriteMarkup]; */
   adaptationFromScreenWidth(favoriteMarkup);
   setTimeout(() => {
     loading.closed(cardList);
@@ -66,7 +67,7 @@ function markupOptimizer(e) {
     if (read) {
       checkStorage(read);
     }
-  }, 200);
+  }, 400);
 }
 
 function adaptationFromScreenWidth(responseArray) {
