@@ -2,6 +2,7 @@ import {
   firstDownloading,
   getFavoriteArr,
   addListenerOnGallery,
+  toggleToFavorite,
 } from './addToFavorite';
 
 const readMoreButtons = document.querySelectorAll('.card__read-more');
@@ -30,10 +31,10 @@ if (newGallery) {
   const dateRead = load('date-read');
   const readNews = load('read');
 
-  dateRead.forEach(date => {
+if (dateRead) { dateRead.forEach(date => {
     const markup = markupDateRead(date);
     newGallery.insertAdjacentHTML('beforeend', markup);
-  });
+  });}
 
   const revisionTitles = document.querySelectorAll('.revision-title');
   for (let i = 0; i < revisionTitles.length; i++) {
@@ -59,9 +60,16 @@ if (newGallery) {
       }
     }
   });
+
+  document.addEventListener('click', e => {
+    if (e.target.matches('.plate--add-to-favorite')) {
+      const placeToFavorite = document.querySelector('.plate--add-to-favorite');
+      toggleToFavorite(e);
+    }
+  });
+
   const favoriteArr = getFavoriteArr();
-  firstDownloading(favoriteArr); 
-  addListenerOnGallery();
+  firstDownloading(favoriteArr);
 }
 
 document.addEventListener('click', event => {
