@@ -2,6 +2,7 @@ import NewsApi from "./newsAPI";
 import { sectionResponseMarkup } from './markup';
 import { firstDownloading, getFavoriteArr } from './addToFavorite';
 import Loading from "./loading";
+import {checkStorage, load} from './saveToRead';
 
 const refs = {
   categories: document.querySelector(".categories"),
@@ -17,27 +18,6 @@ const favoriteArr001 = getFavoriteArr();
 
 const newsApi = new NewsApi();
 const loading = new Loading();
-
-const opts = {
-  lines: 10, // The number of lines to draw
-  length: 49, // The length of each line
-  width: 17, // The line thickness
-  radius: 45, // The radius of the inner circle
-  scale: 1, // Scales overall size of the spinner
-  corners: 1, // Corner roundness (0..1)
-  speed: 1, // Rounds per second
-  rotate: 0, // The rotation offset
-  animation: 'spinner-line-fade-more', // The CSS animation name for the lines
-  direction: 1, // 1: clockwise, -1: counterclockwise
-  color: '#4b48db', // CSS color or array of colors
-  fadeColor: 'transparent', // CSS color or array of colors
-  top: '50%', // Top position relative to parent
-  left: '50%', // Left position relative to parent
-  shadow: '0 0 1px transparent', // Box-shadow for the lines
-  zIndex: 2000000000, // The z-index (defaults to 2e9)
-  className: 'spinner', // The CSS class to assign to the spinner
-  position: 'absolute', // Element positioning
-};
 
 
 if (refs.categories) {
@@ -176,6 +156,10 @@ function renderGaleriList(cetegorie) {
         refs.galleryList.innerHTML = sectionResponseMarkup(response);
 
         firstDownloading(favoriteArr001);
+        const readNews = load('read');
+        if(readNews){
+        checkStorage(readNews);
+        }
       }, 300)
 
     })
