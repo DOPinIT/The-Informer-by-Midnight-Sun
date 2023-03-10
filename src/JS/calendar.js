@@ -15,6 +15,11 @@ if (
 }
 
 calendarBtn.addEventListener('click', openCalendar);
+daysList.addEventListener('click', selectedDate);
+
+let date = new Date(),
+  currYear = date.getFullYear(),
+  currMonth = date.getMonth();
 
 function openCalendar(e) {
   if (
@@ -50,10 +55,6 @@ function closeCalendar() {
   });
 }
 
-let date = new Date(),
-  currYear = date.getFullYear(),
-  currMonth = date.getMonth();
-
 // отримуємо сьогоднішню дату яка відображається в кнопці
 calendarBtnText.textContent = date
   .toLocaleString()
@@ -88,21 +89,23 @@ function renderCalendar() {
 
   for (let i = 1; i <= lastDateofMonth; i++) {
     let isToday =
-      i === date.getDate() &&
-      currMonth === new Date().getMonth() &&
-      currYear === new Date().getFullYear()
+      new Date(currYear, currMonth, i) > new Date()
+        ? 'not-active'
+        : i === date.getDate() &&
+          currMonth === new Date().getMonth() &&
+          currYear === new Date().getFullYear()
         ? 'active'
         : '';
+
     liTag += `<li class="${isToday}">${i}</li>`;
   }
 
   for (let i = lastDayofMonth; i < 6; i++) {
-    liTag += `<li class="inactive">${i - lastDayofMonth + 1}</li>`;
+    liTag += `<li class="inactive-next-month ">${i - lastDayofMonth + 1}</li>`;
   }
   currentDate.innerHTML = `${months[currMonth]}`;
   currentYear.innerHTML = ` ${currYear}`;
   daysList.innerHTML = liTag;
-  //   console.log(currentDate);
 }
 renderCalendar();
 
@@ -140,6 +143,7 @@ function getWeekendDays() {
       if (day.classList.contains('active')) {
         return;
       }
+
       day.style.color = '#5F6775';
     }
   });
@@ -148,13 +152,42 @@ function getWeekendDays() {
 getWeekendDays();
 
 // отримуємо дату з календаря по кліку для її відображення в кнопці
+function selectedDate(e) {
+  if (e.target.classList.contains('inactive')) {
+    currMonth -= 1;
+  } else if (e.target.classList.contains('inactive-next-month')) {
+    currMonth += 1;
+    if (currMonth > date.getMonth()) {
+      const inActiveNextMonth = document.querySelectorAll(
+        '.inactive-next-month'
+      );
+      for (const month of inActiveNextMonth) {
+        month.classList.add('inactive-next-month--block');
+      }
+    }
+  }
 
-daysList.addEventListener('click', e => {
-  const clickedDate = e.target.textContent;
+  if (
+    e.target.nodeName !== 'LI' ||
+    e.target.classList.contains('inactive-next-month--block')
+  ) {
+    return;
+  }
+
+  const clickedDate = Number(e.target.textContent);
   const selectedDate = new Date(currYear, currMonth, clickedDate);
+
   const dayString = selectedDate
     .toLocaleString()
     .split(',')[0]
     .replace(/\./g, '/');
-  calendarBtnText.textContent = dayString;
-});
+
+  if (selectedDate > date) {
+    calendarBtnText.textContent = date
+      .toLocaleString()
+      .split(',')[0]
+      .replace(/\./g, '/');
+  } else {
+    calendarBtnText.textContent = dayString;
+  }
+}
