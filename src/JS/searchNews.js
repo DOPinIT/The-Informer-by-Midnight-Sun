@@ -4,7 +4,6 @@ import {
   favoriteResponseMarkup,
   searchResponseMarkup,
 } from './markup';
-import Notiflix from 'notiflix';
 import { markupError } from './newsFilters.js';
 import Loading from './loading';
 
@@ -32,7 +31,7 @@ function onSubmit(e) {
         gallery.innerHTML = markupError(
           'We haven’t found news for this prompt'
         );
-        return Notiflix.Notify.failure("There's no news for this prompt.");
+        return;
       }
       pagination.classList.remove('isHidden');
       const pageMarkup = searchResponseMarkup(response);
