@@ -1,5 +1,5 @@
 import NewsApi from "./newsAPI";
-import { sectionResponseMarkup } from './markup';
+import { sectionResponseMarkup, searchResponseMarkup } from './markup';
 import { firstDownloading, getFavoriteArr } from './addToFavorite';
 import Loading from "./loading";
 import {checkStorage, load} from './saveToRead';
@@ -174,3 +174,44 @@ export function markupError(text) {
     <div class="sectionError__img"></div>
   </div>`
 }
+
+
+
+// //  // ===========
+
+document.querySelector(".wrapper-calendar").addEventListener('click', (e)=>{
+  if(e.target.nodeName ===  "LI" && Number(e.target.textContent)){
+
+    if(new Date(document.querySelector(".select-list__btn--text").textContent).getDate() === Number(e.target.textContent)){
+
+    let selectedDate = new Date(document.querySelector(".select-list__btn--text").textContent);
+      selectedDate = selectedDate.getTime() + 8600000;
+
+    const searchQuery = document.querySelector(".input-submit").value;
+    const gallery = document.querySelector('.card');
+    const pagination = document.querySelector('.tui-pagination');
+
+      if(searchQuery !== ''){
+        newsApi.articleSearchList(searchQuery, selectedDate).then(response => {
+  
+        gallery.innerHTML = '';
+        loading.open(gallery);
+        pagination.classList.add('isHidden');
+      
+        setTimeout(()=>{
+          loading.closed(gallery);
+        if (response.length == 0) {
+          gallery.innerHTML = markupError(
+            'We haven’t found news for this prompt'
+          );
+          return;
+        }
+        pagination.classList.remove('isHidden');
+        const pageMarkup = searchResponseMarkup(response);
+        gallery.insertAdjacentHTML('beforeend', pageMarkup);
+        }, 300)
+      })
+      }
+    }
+  }})
+// // //======
