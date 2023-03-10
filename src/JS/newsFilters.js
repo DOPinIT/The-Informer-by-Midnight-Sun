@@ -178,8 +178,8 @@ export function markupError(text) {
 
 
 // //  // ===========
-
-document.querySelector(".wrapper-calendar").addEventListener('click', (e)=>{
+if(document.querySelector(".wrapper-calendar")){
+  document.querySelector(".wrapper-calendar").addEventListener('click', (e)=>{
   if(e.target.nodeName ===  "LI" && Number(e.target.textContent)){
 
     if(new Date(document.querySelector(".select-list__btn--text").textContent).getDate() === Number(e.target.textContent)){
@@ -214,4 +214,6 @@ document.querySelector(".wrapper-calendar").addEventListener('click', (e)=>{
       }
     }
   }})
+}
+
 // // //======
