@@ -29,6 +29,8 @@
 }
 
 .card__item {
+  display: flex;
+  flex-direction: column;
   width: 288px;
 
   @media screen and (min-width: $tablet) {
@@ -204,14 +206,14 @@
   flex-grow: 1; // на випадок різної висоти тексту в різних картках
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  // justify-content: space-between;
   gap: 20px;
 
   width: 100%;
   padding-top: 20px;
 }
 
-@media screen and (min-width: 1280px) {
+@media screen and (min-width: $desktop) {
   .card__info-box {
     padding-right: 20px;
   }
@@ -220,13 +222,13 @@
   overflow: hidden;
   // white-space: nowrap;
   // text-overflow: ellipsis;
-  max-height: 99px;
+  height: 99px;
 
   @include font(700, 24px, 33px, -0.01em);
   color: var(--theme-text-color);
 
   @media screen and (min-width: $tablet) {
-    max-height: 132px;
+    height: 132px;
     @include font(700, 32px, 44px, -0.01em);
   }
 }
@@ -235,12 +237,12 @@
   overflow: hidden;
   // white-space: nowrap;
   // text-overflow: ellipsis;
-  max-height: 57px;
+  height: 57px;
   @include font(400, 14px, 19px);
   color: var(--theme-text-color);
 
   @media screen and (min-width: $tablet) {
-    max-height: 66px;
+    height: 66px;
     @include font(400, 16px, 22px);
   }
 }
