@@ -114,6 +114,18 @@ header .month-box {
   color: #aaa;
 }
 
+.days li.inactive-next-month {
+  color: #aaa;
+}
+
+.inactive-next-month--block {
+  // pointer-events: none;
+}
+
+.not-active {
+  // pointer-events: none;
+}
+
 .days li.active {
   color: var(--brand-light);
 }
@@ -156,3 +168,16 @@ header .month-box {
   transform: translate(31px, -31px) scale(0.75);
   transition: all 200ms;
 }
+
+// .calendar-modal {
+//   width: 250px;
+//   height: 250px;
+//   background: rgb(206, 200, 200);
+// }
+
+// .modal_isHidden {
+//   visibility: hidden;
+//   opacity: 0;
+//   transform: translate(31px, -31px) scale(0.75);
+//   transition: all 200ms;
+// }
