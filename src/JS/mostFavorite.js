@@ -46,10 +46,12 @@ function getFavoritePageMarkup(responseMarkup) {
 
 window.addEventListener('resize', debounce(markupOptimizer, 100));
 
-function markupOptimizer() {
+function markupOptimizer(e) {
   loading.open(cardList);
-  screenWidth = window.innerWidth;
+  screenWidth = e.currentTarget.innerWidth;
   const favoriteMarkup = [...baseFavoriteMarkup];
+  baseFavoriteMarkup = [...favoriteMarkup];
+  console.log(screenWidth);
   adaptationFromScreenWidth(favoriteMarkup);
   setTimeout(() => {
     loading.closed(cardList);
