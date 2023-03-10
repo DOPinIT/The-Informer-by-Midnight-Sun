@@ -1,40 +1,23 @@
 .revision-title {
-  width: 105px;
+  width: 100%;
   position: relative;
-  margin: 40px 0 40px 16px;
+  margin: 40px 0 40px 0;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.71;
   letter-spacing: 0.02em;
+  border-bottom: 1px solid #929292;
+  padding: 0 0 12px 16px;
   cursor: pointer;
 
   @media screen and (min-width: $tablet) {
-    margin: 48px 0 42px 16px;
+    margin: 48px 0 42px 0;
   }
 
   @media screen and (min-width: $desktop) {
-    margin: 60px 0 40px 16px;
-  }
-
-  &::after {
-    content: '';
-    position: absolute;
-    width: 90vw;
-    left: 0;
-    bottom: -12px;
-    border: 1px solid #929292;
-    display: block;
-    margin-right: 16px;
+    margin: 60px 0 40px 0;
   }
 }
-
-// .date-icon {
-//   background-image: url('../images/scroll-down-black.svg');
-//   background-size: cover;
-//   margin-left: 8px;
-//   fill: currentColor;
-//   transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-// }
 
 .date-icon {
   pointer-events: none;
@@ -44,12 +27,7 @@
   background-image: url('../images/scroll-down-black.svg');
   background-repeat: no-repeat;
   background-position: center;
-  // transform-origin: center center; // чи потрібно?
   transition: transform var(--transition);
-}
-
-body.dark-theme .date-icon {
-  background-image: url('../images/scroll-down-white.svg');
 }
 
 body.dark-theme .date-icon {
@@ -59,3 +37,4 @@ body.dark-theme .date-icon {
 .rotated {
   transform: rotate(180deg);
 }
+
